@@ -1,3 +1,4 @@
+import { LoginPage } from './../pages/login/login.component';
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -10,7 +11,7 @@ import { EventListPage } from '../pages/event-list/event-list.component';
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = EventListPage;
+  rootPage: any = LoginPage;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -18,6 +19,7 @@ export class MyApp {
     this.initializeApp();
     this.pages = [
       { title: 'Event List', component: EventListPage },
+      { title: 'Login', component: LoginPage },
     ];
   }
 
