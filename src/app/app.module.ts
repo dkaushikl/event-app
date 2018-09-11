@@ -13,6 +13,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { AddEventPage } from '../pages/add-event/add-event.component';
 import { EventListPage } from '../pages/event-list/event-list.component';
+import { EventDetailPage } from '../pages/event-detail/event-detail.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOhwNHsYRh8PT49djMQkvfXKI9kbQahDo",
@@ -27,6 +28,7 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     EventListPage,
+    EventDetailPage,
     AddEventPage
   ],
   imports: [
@@ -42,6 +44,7 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     EventListPage,
+    EventDetailPage,
     AddEventPage
   ],
   providers: [

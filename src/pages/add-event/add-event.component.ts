@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
@@ -12,7 +12,7 @@ export class AddEventPage {
   public event: event;
   eventList: AngularFireList<any>;
   eventForm: FormGroup;
-  constructor(public fb: FormBuilder, public navCtrl: NavController, db: AngularFireDatabase) {
+  constructor(private toastCtrl: ToastController, public fb: FormBuilder, public navCtrl: NavController, db: AngularFireDatabase) {
     this.event = new event();
     this.eventList = db.list('event');
     this.bindData();
@@ -27,15 +27,29 @@ export class AddEventPage {
     });
   }
 
-  addEvent(event) {
-    console.log(event);
-    // const data = {
-    //   name: name,
-    //   address: address,
-    //   phone: phone,
-    //   city: city
-    // }
-    // this.eventList.push(event);
+  addEvent(event, isValid) {
+    if (isValid) {
+      const data = {
+        title: event.title,
+        description: event.description,
+        startDate: event.startDate,
+        endDate: event.endDate
+      }
+      this.eventList.push(data);
+      let toast = this.toastCtrl.create({
+        message: 'Successfully add event',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present();
+    } else {
+      let toast = this.toastCtrl.create({
+        message: 'Please enter all required fields',
+        duration: 2000,
+        position: 'top'
+      });
+      toast.present();
+    }
   }
 
   goBack() {

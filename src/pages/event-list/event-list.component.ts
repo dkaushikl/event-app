@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AddEventPage } from '../add-event/add-event.component';
+import { EventDetailPage } from '../event-detail/event-detail.component';
 
 @Component({
   selector: 'page-event-list',
@@ -19,5 +20,10 @@ export class EventListPage {
 
   addEvent() {
     this.navCtrl.push(AddEventPage);
+  }
+
+  goToEventDetail()
+  {
+    this.navCtrl.push(EventDetailPage);
   }
 }
