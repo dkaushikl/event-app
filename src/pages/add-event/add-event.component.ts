@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 
 export class AddEventPage {
   public event: event;
+  isEventFormSubmitted = false;
   eventList: AngularFireList<any>;
   eventForm: FormGroup;
   constructor(private toastCtrl: ToastController, public fb: FormBuilder, public navCtrl: NavController, db: AngularFireDatabase) {
@@ -28,6 +29,7 @@ export class AddEventPage {
   }
 
   addEvent(event, isValid) {
+    this.isEventFormSubmitted = true;
     if (isValid) {
       const data = {
         title: event.title,
@@ -42,13 +44,7 @@ export class AddEventPage {
         position: 'top'
       });
       toast.present();
-    } else {
-      let toast = this.toastCtrl.create({
-        message: 'Please enter all required fields',
-        duration: 2000,
-        position: 'top'
-      });
-      toast.present();
+      this.isEventFormSubmitted = false;
     }
   }
 
