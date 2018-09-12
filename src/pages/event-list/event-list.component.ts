@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AddEventPage } from '../add-event/add-event.component';
 import { EventDetailPage } from '../event-detail/event-detail.component';
@@ -12,7 +12,8 @@ import { EventDetailPage } from '../event-detail/event-detail.component';
 export class EventListPage {
   eventList: any[];
 
-  constructor(public navCtrl: NavController, db: AngularFireDatabase) {
+  constructor(public menuCtrl: MenuController, public navCtrl: NavController, db: AngularFireDatabase) {
+    this.menuCtrl.enable(true, 'myMenu');
     db.list('/event').valueChanges().subscribe(events => {
       this.eventList = events;
     });
@@ -22,8 +23,7 @@ export class EventListPage {
     this.navCtrl.push(AddEventPage);
   }
 
-  goToEventDetail()
-  {
+  goToEventDetail() {
     this.navCtrl.push(EventDetailPage);
   }
 }

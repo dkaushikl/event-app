@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content" id="myMenu">
   <ion-header>
     <ion-toolbar>
       <ion-title>Event Manager</ion-title>
@@ -10,11 +10,9 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
-      <ul>
-        <li class="text" *ngFor="let item of items | async">
-          {{item.name}}
-        </li>
-      </ul>
+      <button menuClose ion-item (click)="logout()">
+        Logout
+      </button>
     </ion-list>
   </ion-content>
 </ion-menu>

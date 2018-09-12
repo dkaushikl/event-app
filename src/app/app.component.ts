@@ -4,6 +4,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Nav, Platform } from 'ionic-angular';
 import { EventListPage } from '../pages/event-list/event-list.component';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 
 @Component({
@@ -15,11 +16,10 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(private afAuth: AngularFireAuth, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.pages = [
       { title: 'Event List', component: EventListPage },
-      { title: 'Login', component: LoginPage },
     ];
   }
 
@@ -27,6 +27,12 @@ export class MyApp {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+    });
+  }
+
+  async logout() {
+    await this.afAuth.auth.signOut().then(() => {
+      this.nav.setRoot(EventListPage);
     });
   }
 

@@ -13,7 +13,9 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-list-header>My Events</ion-list-header>
+    <ion-toolbar>
+      <ion-title>My Events</ion-title>
+    </ion-toolbar>
     <ion-item *ngFor="let event of eventList" (click)="goToEventDetail()">
       <ion-icon name="book" danger item-left></ion-icon>
       <h2>{{event.title}}</h2>

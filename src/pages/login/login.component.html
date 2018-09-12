@@ -1,17 +1,39 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <ion-title>login</ion-title>
   </ion-navbar>
-</ion-header>
-<ion-content padding>
- <ion-item>
-   <ion-label floating>Email Address</ion-label>
-   <ion-input type="text" [(ngModel)]="user.email"></ion-input>
- </ion-item>
- <ion-item>
-  <ion-label floating>Password</ion-label>
-  <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-</ion-item>
-<button ion-button (click)="login()">Login</button>
-<button ion-button color="light" (click)="register()">Register</button>
+</ion-header> -->
+<ion-content padding margin-top>
+  <ion-card>
+    <form novalidate [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)">
+      <ion-list no-lines>
+        <ion-item>
+          <ion-label floating>Email Address</ion-label>
+          <ion-input type="text" formControlName="email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <div padding>
+          <button type="submit" ion-button full [disabled]="!loginForm.valid">Login</button>
+          <button ion-button full color="light" (click)="register()">Create New Account</button>
+        </div>
+      </ion-list>
+    </form>
+  </ion-card>
+  <div class="content-wrapper">
+    <div padding>
+      <button ion-button block icon-start [style.backgroundColor]="'#3b5998'">
+        <ion-icon name="logo-facebook"></ion-icon>
+        Login With Facebook
+      </button>
+    </div>
+    <div padding>
+      <button ion-button block icon-start [style.backgroundColor]="'#d34836'">
+        <ion-icon name="logo-googleplus"></ion-icon>
+        Login With Google+
+      </button>
+    </div>
+  </div>
 </ion-content>
