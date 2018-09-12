@@ -7,6 +7,7 @@
 
   <ion-content>
     <ion-list no-lines>
+      <ion-list-header>{{ this.auth.getEmail() }}</ion-list-header>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" [class.active]="checkActivePage(p)">
         <ion-icon name="{{p.icon}}" item-left></ion-icon>
         {{p.title}}

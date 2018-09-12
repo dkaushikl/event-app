@@ -37,14 +37,16 @@ export class AddEventPage {
         startDate: event.startDate,
         endDate: event.endDate
       }
-      this.eventList.push(data);
+      const result = this.eventList.push(data);
+      var eventId = result.key;
       let toast = this.toastCtrl.create({
-        message: 'Successfully add event',
+        message: 'Successfully add event' + eventId,
         duration: 2000,
         position: 'top'
       });
       toast.present();
       this.isEventFormSubmitted = false;
+      this.navCtrl.pop();
     }
   }
 

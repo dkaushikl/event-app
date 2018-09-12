@@ -18,6 +18,7 @@ import { SharedProvider } from '../shared/shared.provider';
 import { LoginPage } from './../pages/login/login.component';
 import { RegisterPage } from './../pages/register/register.component';
 import { MyApp } from './app.component';
+import { AuthService } from '../core/auth.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOhwNHsYRh8PT49djMQkvfXKI9kbQahDo",
@@ -64,6 +65,7 @@ export const firebaseConfig = {
     EventService,
     AngularFireDatabase,
     AngularFirestore,
+    AuthService,
     SharedProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ]
