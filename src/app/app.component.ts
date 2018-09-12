@@ -13,13 +13,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = LoginPage;
-
-  pages: Array<{ title: string, component: any }>;
+  activePage: any;
+  pages: Array<{ title: string, icon: string, component: any }>;
 
   constructor(private afAuth: AngularFireAuth, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.pages = [
-      { title: 'Event List', component: EventListPage },
+      { title: 'Home', icon: 'md-home', component: EventListPage },
+      { title: 'Logout', icon: 'md-log-out', component: null },
     ];
   }
 
@@ -32,11 +33,20 @@ export class MyApp {
 
   async logout() {
     await this.afAuth.auth.signOut().then(() => {
-      this.nav.setRoot(EventListPage);
+      this.nav.setRoot(LoginPage, {}, { animate: true, direction: 'forward' });
     });
   }
 
-  openPage(page) {
-    this.nav.setRoot(page.component);
+  async openPage(page) {
+    if (page.component) {
+      this.nav.setRoot(page.component);
+      this.activePage = page;
+    } else {
+      await this.logout();
+    }
+  }
+
+  checkActivePage(page): boolean {
+    return page === this.activePage;
   }
 }

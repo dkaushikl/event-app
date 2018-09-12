@@ -4,17 +4,19 @@ import { AngularFireAuth } from "angularfire2/auth";
 import { NavController, NavParams, MenuController } from "ionic-angular";
 import { RegisterPage } from "../register/register.component";
 import { EventListPage } from "../event-list/event-list.component";
+import { SharedProvider } from "../../shared/shared.provider";
 
 @Component({
   selector: "page-login",
-  templateUrl: "login.component.html"
+  templateUrl: "login.component.html",
+  providers: [SharedProvider]
 })
 
 export class LoginPage {
   user = {} as User;
   isLoginSubmitted = false;
   public loginForm: FormGroup;
-  constructor(public menuCtrl: MenuController, public fb: FormBuilder, private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public shared: SharedProvider,public menuCtrl: MenuController, public fb: FormBuilder, private afAuth: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
     this.menuCtrl.enable(false, 'myMenu');
     this.BindData();
   }
@@ -30,21 +32,21 @@ export class LoginPage {
     this.isLoginSubmitted = true;
     if (isValid) {
       try {
-        const result = await this.afAuth.auth.signInWithEmailAndPassword(
+        await this.afAuth.auth.signInWithEmailAndPassword(
           user.email,
           user.password
         );
         this.isLoginSubmitted = false;
+        // this.shared.Toast.show('All fields are mandatory.');
         this.navCtrl.setRoot(EventListPage, {}, { animate: true, direction: 'forward' });
-        console.log(result);
       } catch (error) {
-        console.log(error.message);
+        this.shared.Toast.show(error.message);
       }
     }
   }
 
   register() {
-    this.navCtrl.setRoot(RegisterPage, {}, { animate: true, direction: 'forward' });
+    this.navCtrl.setRoot(RegisterPage);
   }
 
   // async loginGoogle(): void {

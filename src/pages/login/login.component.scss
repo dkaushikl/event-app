@@ -1,3 +1,21 @@
 page-login {
+  .login {
+    background-image: url('../../assets/imgs/background.jpg');
+    padding-top: 50px;
+    overflow: hidden !important;
+  }
 
+  .logo {
+    margin: 25px 0 0 20px;
+  }
+
+  .login .card,
+  .login.card-md {
+    margin: 10px
+  }
+
+  .scroll-content {
+    padding-bottom: 0px !important;
+    // overflow-y: hidden;
+  }
 }

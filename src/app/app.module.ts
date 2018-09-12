@@ -1,24 +1,23 @@
-import { RegisterPage } from './../pages/register/register.component';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { LoginPage } from './../pages/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { EventService } from '../core/event.service'
-
 // Import the AF2 Module
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
-import { AddEventPage } from '../pages/add-event/add-event.component';
-import { EventListPage } from '../pages/event-list/event-list.component';
-import { EventDetailPage } from '../pages/event-detail/event-detail.component';
+import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { EventService } from '../core/event.service';
 import { AddCompanyPage } from '../pages/add-company/add-company.component';
+import { AddEventPage } from '../pages/add-event/add-event.component';
+import { EventDetailPage } from '../pages/event-detail/event-detail.component';
+import { EventListPage } from '../pages/event-list/event-list.component';
+import { SharedProvider } from '../shared/shared.provider';
+import { LoginPage } from './../pages/login/login.component';
+import { RegisterPage } from './../pages/register/register.component';
+import { MyApp } from './app.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOhwNHsYRh8PT49djMQkvfXKI9kbQahDo",
@@ -65,6 +64,7 @@ export const firebaseConfig = {
     EventService,
     AngularFireDatabase,
     AngularFirestore,
+    SharedProvider,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ]
 })

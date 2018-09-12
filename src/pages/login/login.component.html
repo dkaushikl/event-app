@@ -1,10 +1,9 @@
-<!-- <ion-header>
-  <ion-navbar>
-    <ion-title>login</ion-title>
-  </ion-navbar>
-</ion-header> -->
-<ion-content padding margin-top>
+<ion-content class="login" no-bounce>
+  <div text-center>
+    <ion-img width="120" height="120" src="../../assets/imgs/logo.png" class="logo"></ion-img>
+  </div>
   <ion-card>
+    <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign In</ion-card-header>
     <form novalidate [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)">
       <ion-list no-lines>
         <ion-item>
@@ -16,8 +15,8 @@
           <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
         <div padding>
-          <button type="submit" ion-button full [disabled]="!loginForm.valid">Login</button>
-          <button ion-button full color="light" (click)="register()">Create New Account</button>
+          <button type="submit" ion-button block [disabled]="!loginForm.valid">Login</button>
+          <button type="button" ion-button block color="light" (click)="register()">Create New Account</button>
         </div>
       </ion-list>
     </form>
