@@ -5,7 +5,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { Nav, Platform } from 'ionic-angular';
 import { EventListPage } from '../pages/event-list/event-list.component';
 import { AuthService } from '../core/auth.service';
-// import { AngularFireAuth } from 'angularfire2/auth';
+import { ProfilePage } from '../pages/profile/profile.component';
+import { CompanyListPage } from '../pages/company-list/company-list.component';
 
 @Component({
   templateUrl: 'app.component.html'
@@ -19,7 +20,9 @@ export class MyApp {
   constructor(public auth: AuthService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.pages = [
-      { title: 'Home', icon: 'md-home', component: EventListPage },
+      { title: 'Event', icon: 'md-home', component: EventListPage },
+      { title: 'Company', icon: 'md-business', component: CompanyListPage },
+      { title: 'Profile', icon: 'md-user', component: ProfilePage },
       { title: 'Logout', icon: 'md-log-out', component: null },
     ];
     this.userEmail = this.auth.getEmail()

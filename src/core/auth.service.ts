@@ -29,28 +29,15 @@ export class AuthService {
     return this.user && this.user.email;
   }
 
+  getUserId() {
+    return this.user && this.user.uid;
+  }
+
   signOut(): Promise<void> {
     return  this.afAuth.auth.signOut();
   }
 
   signInWithGoogle() {
-    return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
-  }
-
-  private oauthSignIn(provider: AuthProvider) {
-    if (!(<any>window).cordova) {
-      return this.afAuth.auth.signInWithPopup(provider);
-    } else {
-      return this.afAuth.auth.signInWithRedirect(provider)
-        .then(() => {
-          return this.afAuth.auth.getRedirectResult().then((result: any) => {
-            let token = result.credential.accessToken;
-            let user = result.user;
-            console.log(token, user);
-          }).catch(function (error) {
-            alert(error.message);
-          });
-        });
-    }
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 }

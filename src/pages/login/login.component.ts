@@ -43,7 +43,15 @@ export class LoginPage {
     }
   }
 
-  register() {
+  goToSignup() {
+    this.navCtrl.setRoot(RegisterPage);
+  }
+
+  loginWithGoogle() {
+    this.auth.signInWithGoogle();
+  }
+
+  goToForgotPassword() {
     this.navCtrl.setRoot(RegisterPage);
   }
 }

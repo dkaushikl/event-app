@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { AddEventPage } from '../add-event/add-event.component';
 import { EventDetailPage } from '../event-detail/event-detail.component';
+import { EventService } from '../../core/event.service';
 
 @Component({
   selector: 'page-event-list',
@@ -10,13 +10,17 @@ import { EventDetailPage } from '../event-detail/event-detail.component';
 })
 
 export class EventListPage {
-  eventList: any[];
+  eventList: any;
 
-  constructor(public menuCtrl: MenuController, public navCtrl: NavController, db: AngularFireDatabase) {
-    this.menuCtrl.enable(true, 'myMenu');
-    db.list('/event').valueChanges().subscribe(events => {
-      this.eventList = events;
+  constructor(public menuCtrl: MenuController, public navCtrl: NavController,
+    public eventService: EventService) {
+    this.eventService.getEvents().subscribe(event => {
+      this.eventList = event;
     });
+  }
+
+  ionViewDidLoad() {
+    this.menuCtrl.enable(true, 'myMenu');
   }
 
   addEvent() {

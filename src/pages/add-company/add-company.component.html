@@ -1,12 +1,21 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>add-company</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Add Company</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only (click)="goBack()">
+        <ion-icon name="home"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
-
+  <form novalidate [formGroup]="companyForm" (ngSubmit)="addCompany(companyForm.value, companyForm.valid)">
+    <ion-item [ngClass]="{'error-border':!companyForm.controls.name.valid && companyForm.controls.name.touched}">
+      <ion-label stacked>Name</ion-label>
+      <ion-input type="text" formControlName="name" [ngClass]="{'error-border':!companyForm.controls['name'].valid}" ></ion-input>
+    </ion-item><br />
+    <div class="error-box" *ngIf="companyForm.controls['name'].hasError('required') && companyForm.controls['name'].touched">*
+      Name is required!</div>
+    <button type="submit" ion-button block color="primary" [disabled]="!companyForm.valid"> Add Company </button>
+  </form>
 </ion-content>

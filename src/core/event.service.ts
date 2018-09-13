@@ -1,12 +1,26 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class EventService {
-  private baseUrl = 'https://event-app-1234.firebaseio.com/';
-  constructor(private http: HttpClient) { }
+  eventList: any;
+  constructor(public auth: AngularFireAuth, private database: AngularFireDatabase) { }
 
   getEvents() {
-    return this.http.get(`${this.baseUrl}/event.json`);
+    return this.database.list('/event', ref => ref.orderByChild('createdDate')).valueChanges();
+  }
+
+  addEvent(event: Event) {
+    this.database.list('/event').push(event);
+  }
+
+  editEvent(key: string, event: Event) {
+    this.database.list('/event').update(key, event);
+  }
+
+  deleteEvent(key: string) {
+    this.database.list('/event').remove(key);
   }
 }

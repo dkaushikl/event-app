@@ -1,13 +1,8 @@
-import { event } from "./../../model/event";
 import { Component } from "@angular/core";
-import { NavController, ToastController } from "ionic-angular";
+import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
-import {
-  FormBuilder,
-  FormGroup,
-  FormControl,
-  Validators
-} from "@angular/forms";
+import { MenuController, NavController, ToastController } from "ionic-angular";
+import { event } from "./../../model/event";
 
 @Component({
   selector: "page-add-event",
@@ -22,8 +17,10 @@ export class AddEventPage {
     private toastCtrl: ToastController,
     public fb: FormBuilder,
     public navCtrl: NavController,
-    db: AngularFireDatabase
+    db: AngularFireDatabase,
+    public menuCtrl: MenuController
   ) {
+    this.menuCtrl.enable(false, 'myMenu');
     this.eventList = db.list("event");
     this.bindData();
   }

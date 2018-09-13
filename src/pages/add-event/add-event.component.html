@@ -9,33 +9,25 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-list no-lines>
-    <p *ngIf="!eventForm.valid && isEventFormSubmitted" style="color: #ea6153;">Please fill out all details accurately.</p>
-    <form novalidate [formGroup]="eventForm" (ngSubmit)="addEvent(eventForm.value, eventForm.valid)">
-
-      <ion-item [ngClass]="{'has-error': 'isEventFormSubmitted && !eventForm.controls.title.valid', 
-      'has-success': 'isEventFormSubmitted && eventForm.controls.title.valid'}">
-        <ion-label floating>title</ion-label>
-        <ion-input type="text" formControlName="title"></ion-input>
-      </ion-item>
-
-      <ion-item [ngClass]="{'has-error': 'isEventFormSubmitted && !eventForm.controls.description.valid', 
-      'has-success': 'isEventFormSubmitted && eventForm.controls.description.valid'}">
-        <ion-label floating>description</ion-label>
-        <ion-textarea formControlName="description"></ion-textarea>
-      </ion-item>
-
-      <ion-item [ngClass]="{'has-error': 'isEventFormSubmitted && !eventForm.controls.startDate.valid', 
-      'has-success': 'isEventFormSubmitted && eventForm.controls.startDate.valid'}">
-        <ion-label floating>Start Date</ion-label>
-        <ion-datetime displayFormat="M/D/YYYY HH:MM" pickerFormat="M/D/YYYY HH:MM" formControlName="startDate"></ion-datetime>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>End Date</ion-label>
-        <ion-datetime displayFormat="M/D/YYYY HH:MM" pickerFormat="M/D/YYYY HH:MM" formControlName="endDate"></ion-datetime>
-      </ion-item>
-      <button type="submit" ion-button color="primary" full> Add Event </button>
-    </form>
-  </ion-list>
+  <form novalidate [formGroup]="eventForm" (ngSubmit)="addEvent(eventForm.value, eventForm.valid)">
+    <ion-item [ngClass]="{'error-border':!eventForm.controls.title.valid && eventForm.controls.title.touched}">
+      <ion-label stacked>Title</ion-label>
+      <ion-input type="text" formControlName="title" [ngClass]="{'error-border':!eventForm.controls['title'].valid}" ></ion-input>
+    </ion-item><br />
+    <div class="error-box" *ngIf="eventForm.controls['title'].hasError('required') && eventForm.controls['title'].touched">*
+      Title is required!</div>
+    <ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-textarea type="text" formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Startdate</ion-label>
+      <ion-datetime type="text" displayFormat="M/D/YYYY HH:MM" pickerFormat="M/D/YYYY HH:MM" formControlName="startDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Enddate</ion-label>
+      <ion-datetime type="text" displayFormat="M/D/YYYY HH:MM" pickerFormat="M/D/YYYY HH:MM" formControlName="endDate"></ion-datetime>
+    </ion-item>
+    <button type="submit" ion-button block color="primary" [disabled]="!eventForm.valid"> Add Event </button>
+  </form>
 </ion-content>

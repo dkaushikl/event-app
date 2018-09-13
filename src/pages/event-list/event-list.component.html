@@ -12,7 +12,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-list>
+  <ion-list *ngIf="eventList != undefined && eventList != null">
     <ion-toolbar>
       <ion-title>My Events</ion-title>
     </ion-toolbar>

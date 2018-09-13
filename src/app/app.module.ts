@@ -19,6 +19,10 @@ import { LoginPage } from './../pages/login/login.component';
 import { RegisterPage } from './../pages/register/register.component';
 import { MyApp } from './app.component';
 import { AuthService } from '../core/auth.service';
+import { ProfilePage } from '../pages/profile/profile.component';
+import { CompanyListPage } from '../pages/company-list/company-list.component';
+import { CompanyMemberPage } from '../pages/company-member/company-member.component';
+import { CompanyService } from '../core/company.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOhwNHsYRh8PT49djMQkvfXKI9kbQahDo",
@@ -29,21 +33,18 @@ export const firebaseConfig = {
   messagingSenderId: "991073427296"
 };
 
+const page = [EventListPage, EventDetailPage, AddEventPage, LoginPage, RegisterPage, AddCompanyPage, CompanyListPage,
+  CompanyMemberPage, ProfilePage]
+
+  const service = [EventService, CompanyService, AuthService];
 @NgModule({
   declarations: [
     MyApp,
-    EventListPage,
-    EventDetailPage,
-    AddEventPage,
-    LoginPage,
-    RegisterPage,
-    AddCompanyPage
+    ...page
   ],
   imports: [
-    // Angular
     BrowserModule,
     HttpClientModule,
-    // Ionic
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
@@ -52,21 +53,15 @@ export const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    EventListPage,
-    EventDetailPage,
-    AddEventPage,
-    LoginPage,
-    RegisterPage,
-    AddCompanyPage
+    ...page
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    EventService,
     AngularFireDatabase,
     AngularFirestore,
-    AuthService,
     SharedProvider,
+    ...service,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ]
 })
