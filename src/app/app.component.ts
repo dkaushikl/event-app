@@ -36,7 +36,7 @@ export class MyApp {
       this.auth.afAuth.authState.subscribe(
           user => {
             if (user) {
-              this.rootPage = EventListPage;
+              this.rootPage = CompanyListPage;
             } else {
               this.rootPage = LoginPage;
             }

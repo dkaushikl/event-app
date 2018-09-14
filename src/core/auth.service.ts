@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-import AuthProvider = firebase.auth.AuthProvider;
-
+import { Observable } from 'rxjs';
 @Injectable()
 export class AuthService {
   private user: firebase.User;
@@ -39,5 +38,21 @@ export class AuthService {
 
   signInWithGoogle() {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+
+  signInWithFacebook() {
+    return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+  }
+
+  resetPassword(emailAddress:string){
+    return Observable.create(observer => {
+      this.afAuth.auth.sendPasswordResetEmail(emailAddress).then(function(success) {
+          //console.log('email sent', success);
+          observer.next(success);
+        }, function(error) {
+          //console.log('error sending email',error);
+          observer.error(error);
+        });
+     });
   }
 }

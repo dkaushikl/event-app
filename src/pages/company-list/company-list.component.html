@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <button menuToggle ion-button icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> Company List</ion-title>
+    <!-- <ion-buttons end>
+      <button ion-button icon-only (click)="addCompany()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-toolbar text-center>
+      <ion-title>My Company</ion-title>
+    </ion-toolbar>
+    <ion-item-sliding #slidingItem *ngFor="let company of companyList">
+      <ion-item button (click)="goToCompanyMember(company)">
+        <ion-label>
+          <h3>{{company.name}}</h3>
+          <p>
+            {{company.createdDate | date: 'shortDate'}}
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item-options *ngIf="company.createdBy === userId">
+        <button ion-button color="primary" icon-left (click)="editCompany(company)">
+          <ion-icon name="ios-create"></ion-icon>
+          Edit
+        </button>
+        <button ion-button color="danger" icon-left (click)="deleteCompany(company.key)">
+          <ion-icon name="ios-trash"></ion-icon>
+          Delete
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <!--
+  <ion-list-header>
+    No Company Found
+  </ion-list-header> -->
+
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="addCompany()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+</ion-content>

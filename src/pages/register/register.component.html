@@ -1,4 +1,7 @@
 <ion-content class="register" no-bounce>
+  <div text-center>
+    <ion-img width="120" height="120" src="../../assets/imgs/logo-icon.png" class="logo"></ion-img>
+  </div>
   <ion-card>
     <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign Up</ion-card-header>
     <form novalidate [formGroup]="registerForm" (ngSubmit)="register(registerForm.value, registerForm.valid)">
@@ -18,18 +21,4 @@
       </ion-list>
     </form>
   </ion-card>
-  <div class="content-wrapper">
-      <div padding>
-        <button ion-button block icon-start [style.backgroundColor]="'#3b5998'">
-          <ion-icon name="logo-facebook"></ion-icon>
-          Signup With Facebook
-        </button>
-      </div>
-      <div padding>
-        <button ion-button block icon-start [style.backgroundColor]="'#d34836'">
-          <ion-icon name="logo-googleplus"></ion-icon>
-          Signup With Google+
-        </button>
-      </div>
-    </div>
 </ion-content>

@@ -1,6 +1,6 @@
 <ion-content class="login" no-bounce>
   <div text-center>
-    <ion-img width="120" height="120" src="../../assets/imgs/logo.png" class="logo"></ion-img>
+    <ion-img width="120" height="120" src="../../assets/imgs/logo-icon.png" class="logo"></ion-img>
   </div>
   <ion-card>
     <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign In</ion-card-header>
@@ -33,7 +33,7 @@
   </ion-card>
   <div class="content-wrapper">
     <div padding>
-      <button ion-button block icon-start [style.backgroundColor]="'#3b5998'">
+      <button ion-button block icon-start [style.backgroundColor]="'#3b5998'" (click)="loginWithFacebook()">
         <ion-icon name="logo-facebook"></ion-icon>
         Login With Facebook
       </button>

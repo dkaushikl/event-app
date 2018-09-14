@@ -3,10 +3,12 @@ import { AlertController, Events, ToastController } from 'ionic-angular';
 
 @Injectable()
 export class SharedProvider {
+
   private _toastMsg;
   constructor(private _toastCtrl: ToastController, private _alert: AlertController, public event: Events) { }
 
   public Toast = {
+
     show: (text: string, duration?, position?, closeButton?, btnText?) => {
       this._toastMsg = this._toastCtrl.create({
         message: text,
@@ -17,11 +19,14 @@ export class SharedProvider {
       });
       this._toastMsg.present();
     },
+
     hide() {
       this._toastMsg.dismiss();
     }
   }
+
   public Alert = {
+
     confirm: (msg?, title?) => {
       return new Promise((resolve, reject) => {
         let alert = this._alert.create({
@@ -45,15 +50,14 @@ export class SharedProvider {
         });
         alert.present();
       });
-
     },
+
     alert: (msg, title?) => {
       let alert = this._alert.create({
         title: title || 'Alert',
         subTitle: msg,
         buttons: ['Dismiss']
       });
-
       alert.present();
     }
   }

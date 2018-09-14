@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <button menuToggle ion-button icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> My Profile</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-toolbar>
+      <ion-title>My Profile</ion-title>
+    </ion-toolbar>
+    <ion-item>
+      {{ email }}
+      {{ userId }}
+    </ion-item>
+  </ion-list>
+</ion-content>

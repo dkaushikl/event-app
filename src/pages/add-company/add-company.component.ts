@@ -4,17 +4,20 @@ import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
 import { MenuController, NavController, ToastController, NavParams } from "ionic-angular";
 import { Company } from "../../model/events";
 import { CompanyService } from "../../core/company.service";
+import { AuthService } from "../../core/auth.service";
 
 @Component({
   selector: 'page-add-company',
   templateUrl: 'add-company.component.html',
 })
 export class AddCompanyPage {
-  company = { id: '', name: '' };
+  company: Company;
   isEventFormSubmitted = false;
   companyList: AngularFireList<any>;
   companyForm: FormGroup;
+  isAddOrEdit: string;
   constructor(
+    private auth: AuthService,
     private toastCtrl: ToastController,
     public fb: FormBuilder,
     public navCtrl: NavController,
@@ -22,9 +25,9 @@ export class AddCompanyPage {
     public companyService: CompanyService,
     public menuCtrl: MenuController, public params: NavParams
   ) {
-    this.company.id = this.params.get('key');
-    this.company.name = this.params.get('name');
-
+    this.company = new Company();
+    this.company = this.params.data;
+    this.isAddOrEdit = this.company && this.company.name ? 'Update' : 'Add';
     this.menuCtrl.enable(false, 'myMenu');
     this.companyList = db.list("company");
     this.bindData();
@@ -36,13 +39,13 @@ export class AddCompanyPage {
     });
   }
 
-  addCompany(company: Company, isValid: boolean) {
+  Submit(obj: Company, isValid: boolean) {
     this.isEventFormSubmitted = true;
     if (isValid) {
-      company.createdDate = new Date().toDateString();
-
-      if (company.id) {
-        this.companyService.editCompany(company.id, company);
+      obj.createdDate = new Date().toDateString();
+      obj.createdBy = this.auth.getUserId();
+      if (this.company.key) {
+        this.companyService.updateCompany(this.company.key, obj);
         let toast = this.toastCtrl.create({
           message: "Update company",
           duration: 2000,
@@ -50,7 +53,7 @@ export class AddCompanyPage {
         });
         toast.present();
       } else {
-        this.companyService.addCompany(company);
+        this.companyService.addCompany(obj);
         let toast = this.toastCtrl.create({
           message: "Successfully add company",
           duration: 2000,
