@@ -1,0 +1,25 @@
+page-welcome {
+  ion-content {
+    background-size: cover;
+    display: flex;
+
+    .scroll-content {
+      display: flex;
+
+      .center_screen {
+        margin: auto;
+        width: 100%;
+
+        .logo {
+          width: map_get($width, logo);
+          display: table;
+          margin: 0 auto map_get($margin, big);
+        }
+      }
+    }
+  }
+
+  ion-content.content-md {
+    background-color: map_get($colors, danger) !important;
+  }
+}

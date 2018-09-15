@@ -24,6 +24,7 @@ import { CompanyListPage } from '../pages/company-list/company-list.component';
 import { CompanyMemberPage } from '../pages/company-member/company-member.component';
 import { CompanyService } from '../core/company.service';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password.component';
+import { WelcomePage } from '../pages/welcome/welcome.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCOhwNHsYRh8PT49djMQkvfXKI9kbQahDo",
@@ -34,7 +35,7 @@ export const firebaseConfig = {
   messagingSenderId: "991073427296"
 };
 
-const page = [EventListPage, EventDetailPage, AddEventPage, LoginPage, RegisterPage, AddCompanyPage, CompanyListPage,  CompanyMemberPage, ProfilePage, ResetPasswordPage]
+const page = [EventListPage, EventDetailPage, AddEventPage, LoginPage, RegisterPage, AddCompanyPage, CompanyListPage,  CompanyMemberPage, ProfilePage, ResetPasswordPage, WelcomePage]
 
   const service = [EventService, CompanyService, AuthService];
 @NgModule({

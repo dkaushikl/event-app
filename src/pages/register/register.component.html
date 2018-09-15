@@ -1,24 +1,20 @@
-<ion-content class="register" no-bounce>
-  <div text-center>
-    <ion-img width="120" height="120" src="../../assets/imgs/logo-icon.png" class="logo"></ion-img>
-  </div>
-  <ion-card>
-    <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign Up</ion-card-header>
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>Signup</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <div class="center_screen">
     <form novalidate [formGroup]="registerForm" (ngSubmit)="register(registerForm.value, registerForm.valid)">
-      <ion-list no-lines>
-        <ion-item>
-          <ion-label floating>Email Address</ion-label>
-          <ion-input type="text" formControlName="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <div padding>
-          <button type="submit" ion-button block color="primary" [disabled]="!registerForm.valid">Register</button>
-          <button type="button" ion-button block (click)="login()">Login</button>
-        </div>
-      </ion-list>
+      <div class="input_area">
+        <ion-icon name="md-mail"></ion-icon>
+        <input type="text" placeholder="E-mail Id" formControlName="email">
+      </div>
+      <div class="input_area">
+        <ion-icon name="md-lock"></ion-icon>
+        <input type="password" placeholder="Password" formControlName="password">
+      </div>
+      <button type="submit" ion-button margin-top full color="danger" round>Sign up</button>
     </form>
-  </ion-card>
+  </div>
 </ion-content>

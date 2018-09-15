@@ -1,48 +1,55 @@
-<ion-content class="login" no-bounce>
-  <div text-center>
-    <ion-img width="120" height="120" src="../../assets/imgs/logo-icon.png" class="logo"></ion-img>
-  </div>
-  <ion-card>
-    <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign In</ion-card-header>
-    <form novalidate [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)">
-      <ion-list no-lines>
-        <ion-item>
-          <ion-label floating>Email Address</ion-label>
-          <ion-input type="text" formControlName="email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Password</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-        <div padding>
-          <button type="submit" ion-button block [disabled]="!loginForm.valid">Login</button>
-        </div>
-      </ion-list>
-    </form>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6>
-          <button ion-button outline (click)="goToForgotPassword()" float-left>Forgot
-            Password?</button>
-        </ion-col>
-        <ion-col col-6>
-          <button ion-button outline (click)="goToSignup()" float-right>Sign up!</button>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
-  <div class="content-wrapper">
-    <div padding>
-      <button ion-button block icon-start [style.backgroundColor]="'#3b5998'" (click)="loginWithFacebook()">
-        <ion-icon name="logo-facebook"></ion-icon>
-        Login With Facebook
-      </button>
+<ion-content>
+  <ion-header>
+    <ion-navbar color="danger">
+      <ion-title>Login</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content class="login">
+    <div text-center>
+      <ion-img width="120" height="120" src="../../assets/imgs/logo-icon.png" class="logo"></ion-img>
     </div>
-    <div padding>
-      <button ion-button block icon-start [style.backgroundColor]="'#d34836'">
-        <ion-icon name="logo-googleplus"></ion-icon>
-        Login With Google+
-      </button>
+    <ion-card>
+      <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign In</ion-card-header>
+      <form novalidate [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)">
+        <ion-list no-lines>
+          <ion-item>
+            <ion-label floating>Email Address</ion-label>
+            <ion-input type="text" formControlName="email"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" formControlName="password"></ion-input>
+          </ion-item>
+          <div padding>
+            <button type="submit" ion-button block color="primary">Login</button>
+          </div>
+        </ion-list>
+      </form>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-6>
+            <button ion-button outline (click)="goToForgotPassword()" float-left>Forgot
+              Password?</button>
+          </ion-col>
+          <ion-col col-6>
+            <button ion-button outline (click)="goToSignup()" float-right>Sign up!</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <div class="content-wrapper">
+      <div padding>
+        <button ion-button block icon-start color="facebook" (click)="loginWithFacebook()">
+          <ion-icon name="logo-facebook"></ion-icon>
+          Login With Facebook
+        </button>
+      </div>
+      <div padding>
+        <button ion-button block icon-start color="gmail">
+          <ion-icon name="logo-googleplus"></ion-icon>
+          Login With Google+
+        </button>
+      </div>
     </div>
-  </div>
-</ion-content>
+  </ion-content>

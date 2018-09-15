@@ -7,6 +7,7 @@ import { EventListPage } from '../pages/event-list/event-list.component';
 import { AuthService } from '../core/auth.service';
 import { ProfilePage } from '../pages/profile/profile.component';
 import { CompanyListPage } from '../pages/company-list/company-list.component';
+import { WelcomePage } from '../pages/welcome/welcome.component';
 
 @Component({
   templateUrl: 'app.component.html'
@@ -38,11 +39,11 @@ export class MyApp {
             if (user) {
               this.rootPage = CompanyListPage;
             } else {
-              this.rootPage = LoginPage;
+              this.rootPage = WelcomePage;
             }
           },
           () => {
-            this.rootPage = LoginPage;
+            this.rootPage = WelcomePage;
           }
         );
     });
