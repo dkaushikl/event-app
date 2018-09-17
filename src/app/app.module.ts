@@ -9,35 +9,37 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { AuthService } from '../core/auth.service';
+import { CompanyService } from '../core/company.service';
 import { EventService } from '../core/event.service';
 import { AddCompanyPage } from '../pages/add-company/add-company.component';
 import { AddEventPage } from '../pages/add-event/add-event.component';
+import { CompanyListPage } from '../pages/company-list/company-list.component';
+import { CompanyMemberPage } from '../pages/company-member/company-member.component';
 import { EventDetailPage } from '../pages/event-detail/event-detail.component';
 import { EventListPage } from '../pages/event-list/event-list.component';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password.component';
+import { HomePage } from '../pages/home/home.component';
+import { ProfilePage } from '../pages/profile/profile.component';
+import { WelcomePage } from '../pages/welcome/welcome.component';
 import { SharedProvider } from '../shared/shared.provider';
 import { LoginPage } from './../pages/login/login.component';
 import { RegisterPage } from './../pages/register/register.component';
 import { MyApp } from './app.component';
-import { AuthService } from '../core/auth.service';
-import { ProfilePage } from '../pages/profile/profile.component';
-import { CompanyListPage } from '../pages/company-list/company-list.component';
-import { CompanyMemberPage } from '../pages/company-member/company-member.component';
-import { CompanyService } from '../core/company.service';
-import { ResetPasswordPage } from '../pages/reset-password/reset-password.component';
-import { WelcomePage } from '../pages/welcome/welcome.component';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyCOhwNHsYRh8PT49djMQkvfXKI9kbQahDo",
-  authDomain: "event-app-1234.firebaseapp.com",
-  databaseURL: "https://event-app-1234.firebaseio.com",
-  projectId: "event-app-1234",
-  storageBucket: "event-app-1234.appspot.com",
-  messagingSenderId: "991073427296"
+  apiKey: 'AIzaSyCOhwNHsYRh8PT49djMQkvfXKI9kbQahDo',
+  authDomain: 'event-app-1234.firebaseapp.com',
+  databaseURL: 'https://event-app-1234.firebaseio.com',
+  projectId: 'event-app-1234',
+  storageBucket: 'event-app-1234.appspot.com',
+  messagingSenderId: '991073427296'
 };
 
-const page = [EventListPage, EventDetailPage, AddEventPage, LoginPage, RegisterPage, AddCompanyPage, CompanyListPage,  CompanyMemberPage, ProfilePage, ResetPasswordPage, WelcomePage]
+const page = [EventListPage, EventDetailPage, AddEventPage, LoginPage, RegisterPage, AddCompanyPage, CompanyListPage,
+  CompanyMemberPage, ProfilePage, ForgotPasswordPage, WelcomePage, HomePage];
 
-  const service = [EventService, CompanyService, AuthService];
+const service = [EventService, CompanyService, AuthService];
 @NgModule({
   declarations: [
     MyApp,

@@ -13,14 +13,11 @@
 </ion-header>
 <ion-content>
   <ion-list *ngIf="eventList != undefined && eventList != null">
-    <ion-toolbar>
-      <ion-title>My Events</ion-title>
-    </ion-toolbar>
     <ion-item *ngFor="let event of eventList" (click)="goToEventDetail()">
       <ion-icon name="book" danger item-left></ion-icon>
-      <h2>{{event.title}}</h2>
-      <h3>{{event.startDate}}, {{event.endDate}}</h3>
-      <p>{{event.description}}</p>
+      <h2>{{ event.title }}</h2>
+      <h3>{{ event.startDate }}, {{ event.endDate }}</h3>
+      <p>{{ event.description }}</p>
     </ion-item>
   </ion-list>
 </ion-content>

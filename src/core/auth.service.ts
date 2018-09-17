@@ -33,7 +33,7 @@ export class AuthService {
   }
 
   signOut(): Promise<void> {
-    return  this.afAuth.auth.signOut();
+    return this.afAuth.auth.signOut();
   }
 
   signInWithGoogle() {
@@ -44,15 +44,13 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
 
-  resetPassword(emailAddress:string){
+  resetPassword(emailAddress: string) {
     return Observable.create(observer => {
-      this.afAuth.auth.sendPasswordResetEmail(emailAddress).then(function(success) {
-          //console.log('email sent', success);
-          observer.next(success);
-        }, function(error) {
-          //console.log('error sending email',error);
-          observer.error(error);
-        });
-     });
+      this.afAuth.auth.sendPasswordResetEmail(emailAddress).then(function (success) {
+        observer.next(success);
+      }, function (error) {
+        observer.error(error);
+      });
+    });
   }
 }

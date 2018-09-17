@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password.component';
 import { LoginPage } from '../login/login.component';
 import { RegisterPage } from '../register/register.component';
-
 @Component({
   selector: 'page-welcome',
   templateUrl: 'welcome.component.html',
@@ -18,5 +18,9 @@ export class WelcomePage {
 
   register() {
     this.navCtrl.push(RegisterPage);
+  }
+
+  forgotPassword() {
+    this.navCtrl.push(ForgotPasswordPage);
   }
 }

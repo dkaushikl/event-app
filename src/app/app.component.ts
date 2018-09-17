@@ -8,6 +8,7 @@ import { AuthService } from '../core/auth.service';
 import { ProfilePage } from '../pages/profile/profile.component';
 import { CompanyListPage } from '../pages/company-list/company-list.component';
 import { WelcomePage } from '../pages/welcome/welcome.component';
+import { HomePage } from '../pages/home/home.component';
 
 @Component({
   templateUrl: 'app.component.html'
@@ -21,12 +22,13 @@ export class MyApp {
   constructor(public auth: AuthService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.pages = [
+      { title: 'Home', icon: 'md-home', component: HomePage },
       { title: 'Event', icon: 'md-home', component: EventListPage },
       { title: 'Company', icon: 'md-business', component: CompanyListPage },
       { title: 'Profile', icon: 'md-user', component: ProfilePage },
       { title: 'Logout', icon: 'md-log-out', component: null },
     ];
-    this.userEmail = this.auth.getEmail()
+    this.userEmail = this.auth.getEmail();
   }
 
   initializeApp() {
@@ -35,17 +37,17 @@ export class MyApp {
       this.splashScreen.hide();
 
       this.auth.afAuth.authState.subscribe(
-          user => {
-            if (user) {
-              this.rootPage = CompanyListPage;
-            } else {
-              this.rootPage = WelcomePage;
-            }
-          },
-          () => {
+        user => {
+          if (user) {
+            this.rootPage = HomePage;
+          } else {
             this.rootPage = WelcomePage;
           }
-        );
+        },
+        () => {
+          this.rootPage = WelcomePage;
+        }
+      );
     });
   }
 

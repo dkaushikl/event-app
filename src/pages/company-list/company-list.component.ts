@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { AddCompanyPage } from '../add-company/add-company.component';
-import { CompanyMemberPage } from '../company-member/company-member.component';
+import { MenuController, NavController } from 'ionic-angular';
+import { AuthService } from '../../core/auth.service';
 import { CompanyService } from '../../core/company.service';
 import { Company } from '../../model/events';
-import { AuthService } from '../../core/auth.service';
 import { SharedProvider } from '../../shared/shared.provider';
-
+import { AddCompanyPage } from '../add-company/add-company.component';
+import { CompanyMemberPage } from '../company-member/company-member.component';
 @Component({
   selector: 'page-company-list',
   templateUrl: 'company-list.component.html',
@@ -17,8 +16,8 @@ export class CompanyListPage {
   companyList: Company[];
   userId: string;
 
-  constructor(public menuCtrl: MenuController, public navCtrl: NavController, public db: AngularFireDatabase, public companyService: CompanyService,
-    public auth: AuthService, public shared: SharedProvider) {
+  constructor(public menuCtrl: MenuController, public navCtrl: NavController, public db: AngularFireDatabase,
+    public companyService: CompanyService, public auth: AuthService, public shared: SharedProvider) {
     this.menuCtrl.enable(true, 'myMenu');
     this.userId = this.auth.getUserId();
   }

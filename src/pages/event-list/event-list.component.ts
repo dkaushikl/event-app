@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, MenuController } from 'ionic-angular';
+import { MenuController, NavController } from 'ionic-angular';
+import { EventService } from '../../core/event.service';
 import { AddEventPage } from '../add-event/add-event.component';
 import { EventDetailPage } from '../event-detail/event-detail.component';
-import { EventService } from '../../core/event.service';
 
 @Component({
   selector: 'page-event-list',

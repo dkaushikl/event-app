@@ -8,7 +8,6 @@ export class SharedProvider {
   constructor(private _toastCtrl: ToastController, private _alert: AlertController, public event: Events) { }
 
   public Toast = {
-
     show: (text: string, duration?, position?, closeButton?, btnText?) => {
       this._toastMsg = this._toastCtrl.create({
         message: text,
@@ -23,13 +22,12 @@ export class SharedProvider {
     hide() {
       this._toastMsg.dismiss();
     }
-  }
+  };
 
   public Alert = {
-
     confirm: (msg?, title?) => {
       return new Promise((resolve, reject) => {
-        let alert = this._alert.create({
+        const alert = this._alert.create({
           title: title || 'Confirm',
           message: msg || 'Do you want continue?',
           buttons: [
@@ -53,12 +51,12 @@ export class SharedProvider {
     },
 
     alert: (msg, title?) => {
-      let alert = this._alert.create({
+      const alert = this._alert.create({
         title: title || 'Alert',
         subTitle: msg,
         buttons: ['Dismiss']
       });
       alert.present();
     }
-  }
+  };
 }

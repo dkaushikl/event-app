@@ -14,9 +14,4 @@ export class ProfilePage {
     this.email = this.auth.getEmail();
     this.userId = this.auth.getUserId();
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
-  }
-
 }

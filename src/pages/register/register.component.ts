@@ -1,14 +1,14 @@
-import { LoginPage } from "./../login/login.component";
-import { Component } from "@angular/core";
-import { NavController, NavParams, MenuController, LoadingController } from "ionic-angular";
-import { SharedProvider } from "../../shared/shared.provider";
-import { FormBuilder, FormGroup, FormControl, Validators } from "@angular/forms";
-import { AuthService } from "../../core/auth.service";
-import { User } from "../../model/user";
+import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
+import { AuthService } from '../../core/auth.service';
+import { User } from '../../model/user';
+import { SharedProvider } from '../../shared/shared.provider';
+import { LoginPage } from './../login/login.component';
 
 @Component({
-  selector: "page-register",
-  templateUrl: "register.component.html"
+  selector: 'page-register',
+  templateUrl: 'register.component.html'
 })
 
 export class RegisterPage {
@@ -41,9 +41,8 @@ export class RegisterPage {
         await this.auth.signUp(objUser);
         this.isRegisterSubmitted = false;
         loading.dismiss();
-        this.navCtrl.setRoot(LoginPage, {}, { animate: true, direction: 'forward' });
+        this.navCtrl.push(LoginPage, {}, { animate: true, direction: 'forward' });
       } catch (error) {
-        console.log(error);
         loading.dismiss();
         switch (error.code) {
           case 'auth/invalid-email':
@@ -56,7 +55,7 @@ export class RegisterPage {
             this.shared.Toast.show('This email has already been used for another account.');
             break;
           default:
-            this.shared.Toast.show(error.message)
+            this.shared.Toast.show(error.message);
             break;
         }
       }
@@ -64,6 +63,6 @@ export class RegisterPage {
   }
 
   login() {
-    this.navCtrl.setRoot(LoginPage);
+    this.navCtrl.push(LoginPage, {}, { animate: true, direction: 'forward' });
   }
 }

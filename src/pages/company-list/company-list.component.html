@@ -13,15 +13,12 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <ion-toolbar text-center>
-      <ion-title>My Company</ion-title>
-    </ion-toolbar>
     <ion-item-sliding #slidingItem *ngFor="let company of companyList">
       <ion-item button (click)="goToCompanyMember(company)">
         <ion-label>
-          <h3>{{company.name}}</h3>
+          <h3>{{ company.name }}</h3>
           <p>
-            {{company.createdDate | date: 'shortDate'}}
+            {{ company.createdDate | date: 'shortDate' }}
           </p>
         </ion-label>
       </ion-item>
@@ -37,11 +34,6 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
-  <!--
-  <ion-list-header>
-    No Company Found
-  </ion-list-header> -->
-
   <ion-fab right bottom>
     <button ion-fab color="danger" (click)="addCompany()">
       <ion-icon name="add"></ion-icon>

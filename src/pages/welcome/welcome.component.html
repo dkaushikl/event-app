@@ -1,7 +1,9 @@
-<ion-content padding>
+<ion-content padding color="danger">
   <div class="center_screen">
     <img class="logo" src="../../assets/imgs/logo-icon.png" alt="Logo">
-
+    <br />
+    <br /><br />
+    <br />
     <button ion-button icon-left full color="facebook" round (click)="login()">
       Log in
     </button>
@@ -9,10 +11,9 @@
     <button ion-button icon-left full color="secondary" round (click)="register()">
       Sign up
     </button>
-<br/>
-<br/><br/>
-<br/><br/>
-<br/>
-    <button ion-button round full color="dark">Forgot password</button>
+    <br />
+    <br /><br />
+    <br />
+    <button ion-button round full color="dark" (click)="forgotPassword()">Forgot password</button>
   </div>
 </ion-content>
