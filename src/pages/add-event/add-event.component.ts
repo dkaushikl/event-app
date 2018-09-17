@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { MenuController, NavController, ToastController } from 'ionic-angular';
-import { event } from './../../model/event';
+import { Event } from '../../model/events';
 
 @Component({
   selector: 'page-add-event',
   templateUrl: 'add-event.component.html'
 })
 export class AddEventPage {
-  public event: event;
+  public event: Event;
   isEventFormSubmitted = false;
   eventList: AngularFireList<any>;
   eventForm: FormGroup;
@@ -29,7 +29,7 @@ export class AddEventPage {
     });
   }
 
-  addEvent(obj: event, isValid: boolean) {
+  addEvent(obj: Event, isValid: boolean) {
     this.isEventFormSubmitted = true;
     if (isValid) {
       const data = {
