@@ -7,3 +7,12 @@
   font-size: 20px;
   color: map_get($colors, danger) !important;
 }
+
+* ::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -webkit-user-select: text;
+  user-select: text;
+}

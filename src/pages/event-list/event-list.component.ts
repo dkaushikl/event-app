@@ -11,7 +11,7 @@ import { EventDetailPage } from '../event-detail/event-detail.component';
 
 export class EventListPage {
   eventList: any;
-
+  queryText: string;
   constructor(public menuCtrl: MenuController, public navCtrl: NavController,
     public eventService: EventService) {
     this.eventService.getEvents().subscribe(event => {
@@ -29,5 +29,12 @@ export class EventListPage {
 
   goToEventDetail() {
     this.navCtrl.push(EventDetailPage);
+  }
+
+  refreshAll(refresher) {
+    this.eventService.getEvents().subscribe(event => {
+      refresher.complete();
+      this.ionViewDidLoad();
+    });
   }
 }
