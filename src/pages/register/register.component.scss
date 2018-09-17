@@ -11,56 +11,6 @@ page-register {
         margin: auto;
         width: 100%;
 
-        .input_area {
-          display: flex;
-          background-color: #fff;
-          border-radius: 60px;
-          height: map_get($height, btnheight);
-          overflow: hidden;
-          margin-bottom: map_get($margin, small);
-
-          ion-icon {
-            margin: auto;
-            padding: 0 16px;
-            color: map_get($colors, lightdark);
-            font-size: map_get($font, small);
-          }
-
-          input {
-            border: 0;
-            flex: 1;
-            background-color: transparent;
-            margin: auto;
-            height: map_get($height, btnheight);
-            font-size: map_get($font, medium);
-          }
-
-          input::-webkit-input-placeholder {
-            color: map_get($colors, lightdark) !important;
-            font-size: map_get($font, bitsmall) !important;
-          }
-
-          input:-moz-placeholder {
-            color: map_get($colors, lightdark) !important;
-            font-size: map_get($font, bitsmall) !important;
-          }
-
-          input::-moz-placeholder {
-            color: map_get($colors, lightdark) !important;
-            font-size: map_get($font, bitsmall) !important;
-          }
-
-          input:-ms-input-placeholder {
-            color: map_get($colors, lightdark) !important;
-            font-size: map_get($font, bitsmall) !important;
-          }
-
-          .select-placeholder {
-            color: map_get($colors, lightdark);
-            font-size: map_get($font, bitsmall);
-          }
-        }
-
         [ion-button] {
           float: left;
         }
