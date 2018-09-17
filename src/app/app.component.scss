@@ -1,41 +1,9 @@
-#myMenu .toolbar .toolbar-background {
+#myMenu .toolbar .toolbar-background,
+.danger {
   background-color: map_get($colors, danger) !important;
 }
 
-// #myMenu .toolbar .toolbar-background {
-//   background-color: #2D3238;
-// }
-// #myMenu .toolbar .toolbar-title {
-//   color: #FFFFFF;
-// }
-// #myMenu .content .list {
-//   background-color: transparent;
-// }
-// #myMenu .content .list .item {
-//   background-color: transparent;
-//   color: #FFFFFF;
-//   border-bottom: 1px solid #dedede;
-// }
-// #myMenu .content .list .item.active {
-//   background-color: #2D3238;
-//   color: #FFFFFF;
-// }
-// #myMenu .content .list .item.active .item-inner {
-//   border: none;
-// }
-// #myMenu .content .list .item .item-inner {
-//   margin-left: 8px;
-//   border: none;
-// }
-// .my-navbar .toolbar .toolbar-background {
-//   background-color: #2D3238;
-// }
-// .my-navbar .toolbar-content .toolbar-title {
-//   color: #FFFFFF;
-// }
-// .my-navbar .toolbar .icon {
-//   color: #FFFFFF;
-// }
-// .my-navbar .back-button-text {
-//   color: #FFFFFF;
-// }
+.font-awesome {
+  font-size: 20px;
+  color: map_get($colors, danger) !important;
+}

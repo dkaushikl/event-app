@@ -22,11 +22,11 @@ export class MyApp {
   constructor(public auth: AuthService, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.pages = [
-      { title: 'Home', icon: 'md-home', component: HomePage },
-      { title: 'Event', icon: 'md-home', component: EventListPage },
-      { title: 'Company', icon: 'md-business', component: CompanyListPage },
-      { title: 'Profile', icon: 'md-user', component: ProfilePage },
-      { title: 'Logout', icon: 'md-log-out', component: null },
+      { title: 'Home', icon: 'fa-home', component: HomePage },
+      { title: 'Event', icon: 'fa-calendar', component: EventListPage },
+      { title: 'Company', icon: 'fa-building-o', component: CompanyListPage },
+      { title: 'Profile', icon: 'fa-user', component: ProfilePage },
+      { title: 'Logout', icon: 'fa-sign-out', component: null },
     ];
     this.userEmail = this.auth.getEmail();
   }

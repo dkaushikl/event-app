@@ -1,7 +1,7 @@
 <ion-menu [content]="content" side="left" id="myMenu">
   <ion-header>
-    <ion-toolbar>
-      <ion-title color="white">Event Manager</ion-title>
+    <ion-toolbar color="light">
+      <ion-title>Event Manager</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -9,7 +9,7 @@
     <ion-list no-lines>
       <ion-list-header>{{ this.auth.getEmail() }}</ion-list-header>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" [class.active]="checkActivePage(p)">
-        <ion-icon name="{{p.icon}}" item-left color="danger"></ion-icon>
+        <i class="fa {{p.icon}} font-awesome" item-left aria-hidden="true"></i>
         {{ p.title }}
       </button>
     </ion-list>
