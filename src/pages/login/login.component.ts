@@ -69,22 +69,6 @@ export class LoginPage {
     this.navCtrl.push(RegisterPage, {}, { animate: true, direction: 'forward' });
   }
 
-  loginWithGoogle() {
-    // this.auth.signInWithGoogle()
-    //   .then((result: any) => {
-    //     this.newMethod(result);
-    //   }).catch((error): any => {
-    //     this.util.showToast(error.message);
-    //   });
-  }
-
-  loginWithFacebook() {
-    // this.auth.signInWithFacebook().then((result: any) => {
-    // }).catch((error): any => {
-    //   this.util.showToast(error.message);
-    // });
-  }
-
   goToForgotPassword() {
     this.navCtrl.push(ForgotPasswordPage, {}, { animate: true, direction: 'forward' });
   }
