@@ -40,7 +40,7 @@ export class CompanyListPage {
         data.createdDate = new Date().toDateString();
         data.createdBy = this.auth.getUserId();
         this.companyService.addCompany(data);
-        this.util.showToast('Market added successfully!');
+        this.util.showToast('Company added successfully!');
       }
     });
     modal.present();
@@ -58,10 +58,6 @@ export class CompanyListPage {
       }
     });
     modal.present();
-
-    // this.company = new Company();
-    // this.company = company;
-    // this.navCtrl.push(AddCompanyPage, this.company);
   }
 
   deleteCompany(slidingItem: ItemSliding, company: Company) {

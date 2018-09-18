@@ -53,7 +53,7 @@ export class MyApp {
 
   async logout() {
     this.auth.signOut();
-    this.nav.setRoot(LoginPage, {}, { animate: true, direction: 'forward' });
+    this.nav.setRoot(WelcomePage, {}, { animate: true, direction: 'forward' });
   }
 
   async openPage(page) {
