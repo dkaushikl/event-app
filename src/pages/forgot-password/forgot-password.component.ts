@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../core/auth.service';
-import { SharedProvider } from '../../shared/shared.provider';
 import { LoginPage } from '../login/login.component';
 import { RegisterPage } from '../register/register.component';
+import { UtilProvider } from '../../core';
 
 @Component({
   selector: 'page-forgot-password',
@@ -13,7 +13,7 @@ import { RegisterPage } from '../register/register.component';
 export class ForgotPasswordPage {
   resetPasswordForm: FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private auth: AuthService,
-    public loadingCtrl: LoadingController, public shared: SharedProvider) {
+    public loadingCtrl: LoadingController, public util: UtilProvider) {
     this.resetPasswordForm = this.fb.group({
       'email': new FormControl('', [Validators.required, Validators.email])
     });
@@ -30,7 +30,7 @@ export class ForgotPasswordPage {
         loading.dismiss();
         this.navCtrl.push(LoginPage, {}, { animate: true, direction: 'forward' });
       }, registerError => {
-        this.shared.Toast.show(registerError.message);
+        this.util.showToast(registerError.message);
       });
     }
   }

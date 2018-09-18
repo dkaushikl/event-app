@@ -3,7 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Company } from '../model/events';
+import { Company } from '../model';
 
 @Injectable()
 export class CompanyService {

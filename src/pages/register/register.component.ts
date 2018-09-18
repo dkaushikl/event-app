@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
+import { UtilProvider } from '../../core';
 import { AuthService } from '../../core/auth.service';
-import { User } from '../../model/user';
-import { SharedProvider } from '../../shared/shared.provider';
+import { User } from '../../model';
 import { LoginPage } from './../login/login.component';
 
 @Component({
@@ -16,7 +16,7 @@ export class RegisterPage {
   isRegisterSubmitted = false;
   public registerForm: FormGroup;
 
-  constructor(public shared: SharedProvider, public menuCtrl: MenuController, public fb: FormBuilder,
+  constructor(public util: UtilProvider, public menuCtrl: MenuController, public fb: FormBuilder,
     private auth: AuthService, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams) {
     this.menuCtrl.enable(false, 'myMenu');
     this.BindData();
@@ -24,8 +24,8 @@ export class RegisterPage {
 
   BindData() {
     this.registerForm = this.fb.group({
-      'email': new FormControl('', [Validators.required, Validators.email]),
-      'password': new FormControl('', [Validators.required, Validators.minLength(6)])
+      'email': ['', Validators.compose([Validators.minLength(5), Validators.maxLength(160), Validators.required, Validators.email])],
+      'password': new FormControl('', [Validators.minLength(6), Validators.maxLength(20), Validators.required])
     });
   }
 
@@ -46,16 +46,16 @@ export class RegisterPage {
         loading.dismiss();
         switch (error.code) {
           case 'auth/invalid-email':
-            this.shared.Toast.show('Please enter a valid email address.');
+            this.util.showToast('Please enter a valid email address.');
             break;
           case 'auth/weak-password':
-            this.shared.Toast.show('Enter strong password.');
+            this.util.showToast('Enter strong password.');
             break;
           case 'auth/email-already-in-use':
-            this.shared.Toast.show('This email has already been used for another account.');
+            this.util.showToast('This email has already been used for another account.');
             break;
           default:
-            this.shared.Toast.show(error.message);
+            this.util.showToast(error.message);
             break;
         }
       }

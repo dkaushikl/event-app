@@ -2,23 +2,22 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
 import { AuthService } from '../../core/auth.service';
-import { User } from '../../model/user';
-import { SharedProvider } from '../../shared/shared.provider';
+import { User } from '../../model';
 import { EventListPage } from '../event-list/event-list.component';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password.component';
 import { RegisterPage } from '../register/register.component';
+import { UtilProvider } from '../../core';
 
 @Component({
   selector: 'page-login',
   templateUrl: 'login.component.html',
-  providers: [SharedProvider]
 })
 
 export class LoginPage {
   user = {} as User;
   isLoginSubmitted = false;
   public loginForm: FormGroup;
-  constructor(public shared: SharedProvider, public menuCtrl: MenuController, public fb: FormBuilder, private auth: AuthService,
+  constructor(public util: UtilProvider, public menuCtrl: MenuController, public fb: FormBuilder, private auth: AuthService,
     public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
     this.menuCtrl.enable(false, 'myMenu');
     this.BindData();
@@ -49,16 +48,16 @@ export class LoginPage {
         loading.dismiss();
         switch (error.code) {
           case 'auth/invalid-email':
-            this.shared.Toast.show('Please enter a valid email address');
+            this.util.showToast('Please enter a valid email address');
             break;
           case 'auth/wrong-password':
-            this.shared.Toast.show('Incorrect username and password combination.');
+            this.util.showToast('Incorrect username and password combination.');
             break;
           case 'auth/user-not-found':
-            this.shared.Toast.show('User not found.');
+            this.util.showToast('User not found.');
             break;
           default: {
-            this.shared.Toast.show(error.message);
+            this.util.showToast(error.message);
             break;
           }
         }
@@ -75,15 +74,15 @@ export class LoginPage {
     //   .then((result: any) => {
     //     this.newMethod(result);
     //   }).catch((error): any => {
-    //     this.shared.Toast.show(error.message);
+    //     this.util.showToast(error.message);
     //   });
   }
 
   loginWithFacebook() {
-    this.auth.signInWithFacebook().then((result: any) => {
-    }).catch((error): any => {
-      this.shared.Toast.show(error.message);
-    });
+    // this.auth.signInWithFacebook().then((result: any) => {
+    // }).catch((error): any => {
+    //   this.util.showToast(error.message);
+    // });
   }
 
   goToForgotPassword() {

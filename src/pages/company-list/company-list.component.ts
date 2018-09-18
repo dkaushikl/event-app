@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { MenuController, NavController } from 'ionic-angular';
+import { MenuController, ItemSliding, ModalController, NavController } from 'ionic-angular';
 import { AuthService } from '../../core/auth.service';
 import { CompanyService } from '../../core/company.service';
-import { Company } from '../../model/events';
-import { SharedProvider } from '../../shared/shared.provider';
 import { AddCompanyPage } from '../add-company/add-company.component';
 import { CompanyMemberPage } from '../company-member/company-member.component';
+import { UtilProvider } from '../../core/util';
+import { Company } from '../../model';
 @Component({
   selector: 'page-company-list',
   templateUrl: 'company-list.component.html',
@@ -16,8 +16,8 @@ export class CompanyListPage {
   companyList: Company[];
   userId: string;
 
-  constructor(public menuCtrl: MenuController, public navCtrl: NavController, public db: AngularFireDatabase,
-    public companyService: CompanyService, public auth: AuthService, public shared: SharedProvider) {
+  constructor(private modalCtrl: ModalController, public menuCtrl: MenuController, public navCtrl: NavController,
+    public db: AngularFireDatabase, public companyService: CompanyService, public auth: AuthService, public util: UtilProvider) {
     this.menuCtrl.enable(true, 'myMenu');
     this.userId = this.auth.getUserId();
   }
@@ -29,29 +29,58 @@ export class CompanyListPage {
     this.menuCtrl.enable(true, 'myMenu');
   }
 
-  addCompany() {
-    this.navCtrl.push(AddCompanyPage);
-  }
-
   goToCompanyMember() {
     this.navCtrl.push(CompanyMemberPage);
   }
 
-  editCompany(company: Company) {
-    this.company = new Company();
-    this.company = company;
-    this.navCtrl.push(AddCompanyPage, this.company);
+  addCompany() {
+    const modal = this.modalCtrl.create(AddCompanyPage);
+    modal.onDidDismiss((data: Company) => {
+      if (data) {
+        data.createdDate = new Date().toDateString();
+        data.createdBy = this.auth.getUserId();
+        this.companyService.addCompany(data);
+        this.util.showToast('Market added successfully!');
+      }
+    });
+    modal.present();
   }
 
-  deleteCompany(id) {
-    this.shared.Alert.confirm(
-      'Delete Company',
-      'Are you sure you want to delete this item?')
-      .then(() => {
-        this.companyService.deleteCompany(id);
-        this.shared.Toast.show('delete successfully');
-      }).catch(() => {
-        this.shared.Toast.show('your data is safe.');
-      });
+  editCompany(company: Company) {
+    const modal = this.modalCtrl.create(AddCompanyPage, { company });
+    modal.onDidDismiss((data: Company) => {
+      if (data) {
+        data.createdDate = new Date().toDateString();
+        data.createdBy = this.auth.getUserId();
+        this.companyService.updateCompany(data.key, data)
+          .then(() => this.util.showToast(`Company ${company.name} edited successfully!`))
+          .catch(e => this.util.showToast('Error: ' + e));
+      }
+    });
+    modal.present();
+
+    // this.company = new Company();
+    // this.company = company;
+    // this.navCtrl.push(AddCompanyPage, this.company);
+  }
+
+  deleteCompany(slidingItem: ItemSliding, company: Company) {
+    this.util.showAlert(
+      'Remove Company',
+      `Are you sure to delete "${company.name}"?`,
+      [
+        { text: 'Cancel', handler: () => slidingItem.close() },
+        {
+          text: 'Remove', handler: () => {
+            this.companyService.deleteCompany(company.key)
+              .then(() => {
+                slidingItem.close();
+                this.util.showToast(`"${company.name}" was removed successfully!`);
+              })
+              .catch(e => this.util.showToast('Error: ', e));
+          }
+        }
+      ]
+    );
   }
 }
