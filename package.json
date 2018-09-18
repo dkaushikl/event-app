@@ -8,7 +8,8 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "lint": "ionic-app-scripts lint",
+    "firebase": "ionic build --release && firebase deploy"
   },
   "config": {
     "ionic_copy": "./scripts/copy-custom-libs.js"
@@ -47,7 +48,7 @@
     "zone.js": "0.8.26"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.2.0",
+    "@ionic/app-scripts": "^3.2.0",
     "codelyzer": "4.4.4",
     "typescript": "~2.6.2"
   },
