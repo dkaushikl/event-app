@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { MenuController, NavController, ToastController } from 'ionic-angular';
-import { Event } from '../../model';
+import { Event } from '../../models';
 
 @Component({
   selector: 'page-add-event',

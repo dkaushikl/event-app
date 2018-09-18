@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
 import { UtilProvider } from '../../core';
 import { AuthService } from '../../core/auth.service';
-import { User } from '../../model';
+import { User } from '../../models';
 import { LoginPage } from './../login/login.component';
 
 @Component({

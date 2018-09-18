@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { CompanyService } from '../../core/company.service';
-import { Company } from '../../model';
 
 @Component({
   selector: 'page-add-company',

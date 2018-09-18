@@ -6,7 +6,7 @@ import { CompanyService } from '../../core/company.service';
 import { AddCompanyPage } from '../add-company/add-company.component';
 import { CompanyMemberPage } from '../company-member/company-member.component';
 import { UtilProvider } from '../../core/util';
-import { Company } from '../../model';
+import { Company } from '../../models';
 @Component({
   selector: 'page-company-list',
   templateUrl: 'company-list.component.html',
