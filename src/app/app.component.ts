@@ -1,4 +1,3 @@
-import { LoginPage } from './../pages/login/login.component';
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -39,7 +38,7 @@ export class MyApp {
       this.auth.afAuth.authState.subscribe(
         user => {
           if (user) {
-            this.rootPage = HomePage;
+            this.rootPage = CompanyListPage;
           } else {
             this.rootPage = WelcomePage;
           }

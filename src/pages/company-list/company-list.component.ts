@@ -14,6 +14,7 @@ import { CompanyInfoPage } from '../company-info/company-info.component';
 
 export class CompanyListPage {
   public companyList: Company[];
+  public userId: string;
   private companyListAll: Company[];
   private queryText: string;
 
@@ -23,6 +24,7 @@ export class CompanyListPage {
 
   ionViewDidLoad() {
     this.loadCompany(true);
+    this.userId = this.auth.getUserId();
     this.menuCtrl.enable(true, 'myMenu');
   }
 
@@ -46,7 +48,7 @@ export class CompanyListPage {
     modal.onDidDismiss((data: Company) => {
       if (data) {
         data.createdDate = new Date().toDateString();
-        data.createdBy = this.auth.getUserId();
+        data.createdBy = this.userId;
         this.companyService.addCompany(data);
         this.util.showToast('Company added successfully!');
       }
@@ -59,7 +61,7 @@ export class CompanyListPage {
     modal.onDidDismiss((data: Company) => {
       if (data) {
         data.createdDate = new Date().toDateString();
-        data.createdBy = this.auth.getUserId();
+        data.createdBy = this.userId;
         this.companyService.updateCompany(data.key, data)
           .then(() => this.util.showToast(`Company ${company.name} edited successfully!`))
           .catch(e => this.util.showToast('Error: ' + e));
