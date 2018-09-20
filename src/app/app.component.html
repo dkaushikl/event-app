@@ -1,13 +1,13 @@
 <ion-menu [content]="content" side="left" id="myMenu">
   <ion-header>
-    <ion-toolbar color="light">
-      <ion-title>Event Manager</ion-title>
+    <ion-toolbar>
+      <ion-title color="white">Event Manager</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list no-lines>
-      <ion-list-header>{{ this.auth.getEmail() }}</ion-list-header>
+      <!-- <ion-list-header>{{ this.auth.getEmail() }}</ion-list-header> -->
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" [class.active]="checkActivePage(p)">
         <i class="fa {{p.icon}} font-awesome" item-left aria-hidden="true"></i>
         {{ p.title }}

@@ -7,7 +7,8 @@
 
   <ion-content class="login">
     <div text-center>
-      <ion-img width="120" height="120" src="../../assets/imgs/logo-icon.png" class="logo"></ion-img>
+      <img class="logo" width="120" height="120" src="../../assets/imgs/logo-icon.png" alt="Logo">
+      <!-- <ion-img width="120" height="120" src="../../assets/imgs/logo-icon.png" class="logo"></ion-img> -->
     </div>
     <ion-card>
       <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign In</ion-card-header>
@@ -29,8 +30,8 @@
       <ion-grid>
         <ion-row>
           <ion-col col-6>
-            <button ion-button outline (click)="goToForgotPassword()" float-left>Forgot
-              Password?</button>
+            <button ion-button outline (click)="goToForgotPassword()" float-left>Forgot Password?
+            </button>
           </ion-col>
           <ion-col col-6>
             <button ion-button outline (click)="goToSignup()" float-right>Sign up!</button>

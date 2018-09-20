@@ -7,11 +7,11 @@
   <div class="center_screen">
     <form novalidate [formGroup]="registerForm" (ngSubmit)="register(registerForm.value, registerForm.valid)">
       <div class="input_area">
-        <ion-icon name="md-mail"></ion-icon>
+        <ion-icon name="md-person"></ion-icon>
         <input type="text" placeholder="Firstname" formControlName="firstname">
       </div>
       <div class="input_area">
-        <ion-icon name="md-mail"></ion-icon>
+        <ion-icon name="md-person"></ion-icon>
         <input type="text" placeholder="Lastname" formControlName="lastname">
       </div>
       <div class="input_area">
@@ -19,24 +19,15 @@
         <input type="text" placeholder="E-mail Id" formControlName="email">
       </div>
       <div class="input_area">
-          <ion-icon name="md-mail"></ion-icon>
-          <input type="text" placeholder="Mobile No" formControlName="mobileno">
-        </div>
+        <ion-icon name="md-call"></ion-icon>
+        <input type="text" placeholder="Mobile No" formControlName="mobileno">
+      </div>
       <div class="input_area">
         <ion-icon name="md-lock"></ion-icon>
         <input type="password" placeholder="Password" formControlName="password">
       </div>
       <button type="submit" ion-button margin-top full color="danger" round>Sign up</button>
+      <button type="button" ion-button margin-top full color="primary" round (click)="login()">Log in</button>
     </form>
   </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar text-center>
-    <ion-buttons>
-      <button small ion-button block (click)="login()">
-        <small>Already have an account?&nbsp;<strong>Log in</strong></small>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-footer>

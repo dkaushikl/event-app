@@ -1,6 +1,6 @@
 page-register {
   ion-content {
-    background-image: url("../../assets/imgs/bg.jpg");
+    background-image: url("../../assets/imgs/background.jpg");
     background-size: cover;
     display: flex;
 
@@ -34,35 +34,6 @@ page-register {
             height: map_get($height, btnheight);
             font-size: map_get($font, medium);
           }
-
-          input::-webkit-input-placeholder {
-            color: map_get($colors, lightdark) !important;
-            font-size: map_get($font, bitsmall) !important;
-          }
-
-          input:-moz-placeholder {
-            color: map_get($colors, lightdark) !important;
-            font-size: map_get($font, bitsmall) !important;
-          }
-
-          input::-moz-placeholder {
-            color: map_get($colors, lightdark) !important;
-            font-size: map_get($font, bitsmall) !important;
-          }
-
-          input:-ms-input-placeholder {
-            color: map_get($colors, lightdark) !important;
-            font-size: map_get($font, bitsmall) !important;
-          }
-
-          .select-placeholder {
-            color: map_get($colors, lightdark);
-            font-size: map_get($font, bitsmall);
-          }
-        }
-
-        [ion-button] {
-          float: left;
         }
       }
     }

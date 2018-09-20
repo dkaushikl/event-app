@@ -18,13 +18,15 @@
     <ion-item-sliding #slidingItem *ngFor="let company of companyList">
       <ion-item button class="company-label" (click)="goToCompanyInfo(company)">
         <ion-label>{{ company?.name }}</ion-label>
+        <p>{{ company?.createdBy }}</p>
+        <p>{{ userId }}</p>
       </ion-item>
       <ion-item-options *ngIf="company.createdBy === userId" side="right">
-        <button ion-button color="primary" (click)="editCompany(company)">
+        <button ion-button color="primary" (click)="editCompany(slidingItem, company)">
           <ion-icon name="create"></ion-icon>
           Edit
         </button>
-        <button ion-button expandable color="danger" (click)="deleteCompany(slidingItem, company.key)">
+        <button ion-button expandable color="danger" (click)="deleteCompany(slidingItem, company)">
           <ion-icon name="trash"></ion-icon>
           Delete
         </button>

@@ -8,7 +8,7 @@
     <ion-title>{{ editMode ? 'Edit company' : 'Add new company' }}</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content padding>
+<ion-content>
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -19,7 +19,32 @@
       <ion-col>
         <ion-item>
           <ion-label floating>Company name</ion-label>
-          <ion-input type="text" [(ngModel)]="companyName"></ion-input>
+          {{ company.name}}
+          <ion-input type="text" [(ngModel)]="company.name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input type="text" [(ngModel)]="company.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Mobile No</ion-label>
+          <ion-input type="text" [(ngModel)]="company.mobileno"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Address</ion-label>
+          <ion-textarea type="text" [(ngModel)]="company.address"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>City</ion-label>
+          <ion-input type="text" [(ngModel)]="company.city"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>State</ion-label>
+          <ion-input type="text" [(ngModel)]="company.state"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Country</ion-label>
+          <ion-input type="text" [(ngModel)]="company.country"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -29,6 +54,6 @@
   <ion-toolbar>
     <button ion-button full color="primary" *ngIf="!editMode" (click)="addNewCompany()">Create</button>
     <button ion-button full color="primary" *ngIf="editMode" (click)="editCompany()">Modify</button>
-    <button type="button" ion-button full color="danger" (click)="cancel()">Cancel</button>
+    <button type="button" ion-button full color="secondary" (click)="cancel()">Cancel</button>
   </ion-toolbar>
 </ion-footer>

@@ -22,15 +22,49 @@
 
 <ion-content padding>
   <div [ngSwitch]="companySwitch">
-    <ion-list *ngSwitchCase="'information'">
-      <ion-card>
-        <ion-card-header text-capitalize style="font-weight: bold;">{{ company?.name }}</ion-card-header>
-        <ion-card-content>
-          <h2></h2>
-          <p>{{ company?.createdDate | appDateFormat }}</p>
-        </ion-card-content>
-      </ion-card>
-    </ion-list>
+    <div *ngSwitchCase="'information'">
+      <ion-list>
+        <ion-card>
+          <ion-card-header text-capitalize style="font-weight: bold;">{{ company?.name }}</ion-card-header>
+          <ion-card-content>
+            <p>
+              <b>Email</b>: {{ company?.email }}</p>
+            <br/>
+            <p>
+              <b>Mobile no</b>: {{ company?.mobileno }}</p>
+            <br/>
+            <p>
+              <b>Address</b>: {{ company?.address }}</p>
+            <br/>
+            <p>
+              <b>City</b>: {{ company?.city }}</p>
+            <br/>
+            <p>
+              <b>State</b>: {{ company?.state }}</p>
+            <br/>
+            <p>
+              <b>Country</b>: {{ company?.country }}</p>
+            <br/>
+            <p>
+              <b>CreatedDate</b>: {{ company?.createdDate | appDateFormat }}
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-list>
+      <ion-fab right bottom>
+        <button ion-fab color="light">
+          <ion-icon name="arrow-dropup"></ion-icon>
+        </button>
+        <ion-fab-list side="top">
+          <button ion-fab>
+            <ion-icon name="logo-facebook"></ion-icon>
+          </button>
+          <button ion-fab>
+            <ion-icon name="logo-twitter"></ion-icon>
+          </button>
+        </ion-fab-list>
+      </ion-fab>
+    </div>
 
     <div *ngSwitchCase="'member'">
       <ion-refresher (ionRefresh)="refreshAll($event)">
@@ -48,5 +82,7 @@
       </ion-list>
     </div>
   </div>
+
+
 </ion-content>
 c

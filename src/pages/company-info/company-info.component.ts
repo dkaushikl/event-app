@@ -9,7 +9,7 @@ import { CompanyMemberPage } from '../company-member/company-member.component';
   templateUrl: 'company-info.component.html',
 })
 export class CompanyInfoPage {
-  private company: Company;
+  public company: Company;
   public companyMemberList: CompanyMember[];
   public companySwitch = 'information';
   constructor(private auth: AuthService, private modalCtrl: ModalController, private navParams: NavParams,

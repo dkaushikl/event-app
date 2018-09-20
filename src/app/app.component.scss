@@ -16,3 +16,7 @@ body {
   -webkit-user-select: text;
   user-select: text;
 }
+
+.toolbar-title-md {
+  color: map_get($colors, white) !important;
+}
