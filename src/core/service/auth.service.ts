@@ -2,44 +2,32 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { AngularFireObject, AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { User } from '../../shared/models';
 @Injectable()
 export class AuthService {
-  // private user: firebase.User;
   authState: firebase.User;
   logged: boolean;
-  constructor(public afAuth: AngularFireAuth) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     afAuth.authState.subscribe((auth: any) => {
       this.authState = auth;
       this.logged = auth;
     });
   }
 
-  signUp(credentials) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-  }
-
-  signInWithGoogle() {
-    // According to the platform, select the best login approach
-    //  if(this.platformSrv.is('cordova') && this.platformSrv.is('mobile')) {
-    //   // Native login - Google account selector
-    //   return this.nativeLoginWithGoogleAccountSelector();
-    // } else {
-    //   // Web Login - Firebase
-    //   return this.firebaseLoginWithGoogle();
-    // }
-    // return this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  signUp(user: User) {
+    return new Promise((resolve, reject) => {
+      this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+        .then((result: any) => {
+          user.userid = result.user.uid;
+          this.setUserData(user);
+          resolve(result);
+        }, err => reject(err));
+    });
   }
 
   signInWithEmail(credentials) {
     return this.afAuth.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
-  }
-
-  getAuthenticated(): boolean {
-    return this.authState !== null;
-  }
-
-  getUserObservable() {
-    return this.afAuth.authState;
   }
 
   getCurrentUser() {
@@ -52,6 +40,19 @@ export class AuthService {
 
   getUserId() {
     return (this.authState !== null) ? this.authState.uid : '';
+  }
+
+  setUserData(user: User) {
+    this.db.object(`users/${user.userid}`).update(user)
+      .catch(error => console.log(error));
+  }
+
+  getUserByUid(uid: string): AngularFireObject<User> {
+    return this.db.object(`/users/${uid}`);
+  }
+
+  getUsers(): AngularFireList<User[]> {
+    return this.db.list('/users');
   }
 
   signOut() {

@@ -2,7 +2,7 @@
   <ion-navbar color="danger">
     <ion-title>{{ company?.name }}</ion-title>
     <ion-buttons end>
-      <button ion-button color="primary" icon-only (click)="AddCompanyMember()">
+      <button ion-button color="white" icon-only (click)="AddCompanyMember()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>
@@ -27,13 +27,26 @@
         <ion-card-header text-capitalize style="font-weight: bold;">{{ company?.name }}</ion-card-header>
         <ion-card-content>
           <h2></h2>
-          <p>{{ company?.createdDate }}</p>
+          <p>{{ company?.createdDate | appDateFormat }}</p>
         </ion-card-content>
       </ion-card>
     </ion-list>
 
-    <ion-list *ngSwitchCase="'member'">
-
-    </ion-list>
+    <div *ngSwitchCase="'member'">
+      <ion-refresher (ionRefresh)="refreshAll($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      <ion-list>
+        <ion-item *ngFor="let companyMember of companyMemberList" #slidingItem button>
+          <ion-label>
+            <h3>{{ companyMember.email }}</h3>
+            <p>
+              {{ companyMember.createdDate | appDateFormat }}
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </div>
   </div>
 </ion-content>
+c

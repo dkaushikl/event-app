@@ -1,5 +1,10 @@
 <ion-header>
-  <ion-navbar transparent>
+  <ion-navbar color="danger">
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()" class="my-style-for-modal">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>{{ editMode ? 'Edit company' : 'Add new company' }}</ion-title>
   </ion-navbar>
 </ion-header>

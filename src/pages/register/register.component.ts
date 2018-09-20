@@ -23,7 +23,10 @@ export class RegisterPage {
 
   BindData() {
     this.registerForm = this.fb.group({
+      'firstname': ['', Validators.compose([Validators.required])],
+      'lastname': ['', Validators.compose([Validators.required])],
       'email': ['', Validators.compose([Validators.minLength(5), Validators.maxLength(160), Validators.required, Validators.email])],
+      'mobileno': ['', Validators.compose([Validators.minLength(10), Validators.maxLength(13), Validators.required])],
       'password': new FormControl('', [Validators.minLength(6), Validators.maxLength(20), Validators.required])
     });
   }
@@ -37,6 +40,9 @@ export class RegisterPage {
       });
       loading.present();
       try {
+        objUser.createdDate = new Date().toDateString();
+        objUser.status = true;
+        debugger;
         await this.auth.signUp(objUser);
         this.isRegisterSubmitted = false;
         loading.dismiss();
