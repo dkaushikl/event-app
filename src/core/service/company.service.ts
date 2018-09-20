@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { Company } from '../models';
+import { Company } from '../../shared/models';
+
 @Injectable()
 export class CompanyService {
   private companyRef: AngularFireList<Company>;

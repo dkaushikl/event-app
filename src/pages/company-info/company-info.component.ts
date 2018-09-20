@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, NavParams } from 'ionic-angular';
-import { AuthService, CompanyMemberService, UtilProvider } from '../../core';
-import { Company } from '../../models';
+import { AuthService, CompanyMemberService, UtilProvider } from '../../core/service';
+import { Company } from '../../shared/models';
 import { CompanyMemberPage } from '../company-member/company-member.component';
 
 @Component({
@@ -10,12 +10,14 @@ import { CompanyMemberPage } from '../company-member/company-member.component';
 })
 export class CompanyInfoPage {
   private company: Company;
+  public companySwitch = 'information';
   constructor(private auth: AuthService, private modalCtrl: ModalController, private navParams: NavParams,
     private companyMemberService: CompanyMemberService, private util: UtilProvider) {
   }
 
   ionViewWillEnter() {
     this.company = this.navParams.data;
+    console.log(this.company);
   }
 
   async AddCompanyMember() {

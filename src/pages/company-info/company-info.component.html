@@ -7,10 +7,33 @@
       </button>
     </ion-buttons>
   </ion-navbar>
+
+  <ion-toolbar>
+    <ion-segment class="primary" [(ngModel)]="companySwitch">
+      <ion-segment-button value="information">
+        Information
+      </ion-segment-button>
+      <ion-segment-button value="member">
+        Member
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <div *ngIf="company">
-    <h1>{{ company.name }}</h1>
+  <div [ngSwitch]="companySwitch">
+    <ion-list *ngSwitchCase="'information'">
+      <ion-card>
+        <ion-card-header text-capitalize style="font-weight: bold;">{{ company?.name }}</ion-card-header>
+        <ion-card-content>
+          <h2></h2>
+          <p>{{ company?.createdDate }}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'member'">
+
+    </ion-list>
   </div>
 </ion-content>

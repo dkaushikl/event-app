@@ -1,8 +1,8 @@
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { CompanyMember } from '../models';
 import { Injectable } from '@angular/core';
+import { CompanyMember } from '../../shared/models';
 
 @Injectable()
 export class CompanyMemberService {

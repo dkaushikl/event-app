@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
-import { UtilProvider } from '../../core';
-import { AuthService } from '../../core/auth.service';
-import { User } from '../../models';
+import { User } from '../../shared/models';
 import { LoginPage } from './../login/login.component';
+import { UtilProvider, AuthService } from '../../core/service';
 
 @Component({
   selector: 'page-register',

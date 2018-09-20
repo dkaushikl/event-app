@@ -3,11 +3,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Nav, Platform } from 'ionic-angular';
 import { EventListPage } from '../pages/event-list/event-list.component';
-import { AuthService } from '../core/auth.service';
 import { ProfilePage } from '../pages/profile/profile.component';
 import { CompanyListPage } from '../pages/company-list/company-list.component';
 import { WelcomePage } from '../pages/welcome/welcome.component';
 import { HomePage } from '../pages/home/home.component';
+import { AuthService } from '../core/service';
 
 @Component({
   templateUrl: 'app.component.html'

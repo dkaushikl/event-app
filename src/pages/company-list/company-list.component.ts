@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { MenuController, ItemSliding, ModalController, NavController } from 'ionic-angular';
-import { AuthService } from '../../core/auth.service';
-import { CompanyService } from '../../core/company.service';
 import { AddCompanyPage } from '../add-company/add-company.component';
-import { UtilProvider } from '../../core/util';
-import { Company } from '../../models';
+import { Company } from '../../shared/models';
 import { CompanyInfoPage } from '../company-info/company-info.component';
+import { CompanyService, AuthService, UtilProvider } from '../../core/service';
 @Component({
   selector: 'page-company-list',
   templateUrl: 'company-list.component.html',

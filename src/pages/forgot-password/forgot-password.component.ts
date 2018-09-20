@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, NavController, NavParams } from 'ionic-angular';
-import { AuthService } from '../../core/auth.service';
 import { LoginPage } from '../login/login.component';
 import { RegisterPage } from '../register/register.component';
-import { UtilProvider } from '../../core';
+import { AuthService, UtilProvider } from '../../core/service';
 
 @Component({
   selector: 'page-forgot-password',
@@ -12,8 +11,8 @@ import { UtilProvider } from '../../core';
 })
 export class ForgotPasswordPage {
   resetPasswordForm: FormGroup;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private auth: AuthService,
-    public loadingCtrl: LoadingController, public util: UtilProvider) {
+  constructor(private navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private auth: AuthService,
+    private loadingCtrl: LoadingController, private util: UtilProvider) {
     this.resetPasswordForm = this.fb.group({
       'email': new FormControl('', [Validators.required, Validators.email])
     });

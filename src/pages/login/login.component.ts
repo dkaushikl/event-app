@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
-import { AuthService } from '../../core/auth.service';
-import { User } from '../../models';
+import { User } from '../../shared/models';
 import { EventListPage } from '../event-list/event-list.component';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password.component';
 import { RegisterPage } from '../register/register.component';
-import { UtilProvider } from '../../core';
+import { AuthService, UtilProvider } from '../../core/service';
 
 @Component({
   selector: 'page-login',

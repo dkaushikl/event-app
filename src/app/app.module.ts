@@ -23,7 +23,9 @@ import { LoginPage } from './../pages/login/login.component';
 import { RegisterPage } from './../pages/register/register.component';
 import { CompanyInfoPage } from '../pages/company-info/company-info.component';
 import { MyApp } from './app.component';
-import { UtilProvider, AuthService, CompanyService, CompanyMemberService, EventService } from '../core';
+
+import { SharedModule } from '../shared';
+import { CoreModule } from '../core';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCOhwNHsYRh8PT49djMQkvfXKI9kbQahDo',
@@ -37,8 +39,6 @@ export const firebaseConfig = {
 const page = [EventListPage, EventDetailPage, AddEventPage, LoginPage, RegisterPage, AddCompanyPage, CompanyListPage,
   CompanyMemberPage, ProfilePage, ForgotPasswordPage, WelcomePage, HomePage, CompanyInfoPage];
 
-const service = [EventService, CompanyService, CompanyMemberService, AuthService, UtilProvider];
-
 @NgModule({
   declarations: [
     MyApp,
@@ -47,6 +47,8 @@ const service = [EventService, CompanyService, CompanyMemberService, AuthService
   imports: [
     BrowserModule,
     HttpClientModule,
+    CoreModule,
+    SharedModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
@@ -62,7 +64,6 @@ const service = [EventService, CompanyService, CompanyMemberService, AuthService
     SplashScreen,
     AngularFireDatabase,
     AngularFirestore,
-    ...service,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
   ]
 })
