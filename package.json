@@ -15,7 +15,7 @@
     "ionic_copy": "./scripts/copy-custom-libs.js"
   },
   "dependencies": {
-    "@angular/animations": "5.2.11",
+    "@angular/animations": "6.1.8",
     "@angular/common": "5.2.11",
     "@angular/compiler": "5.2.11",
     "@angular/compiler-cli": "5.2.11",
