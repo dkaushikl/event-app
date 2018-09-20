@@ -42,7 +42,6 @@ export class RegisterPage {
       try {
         objUser.createdDate = new Date().toDateString();
         objUser.status = true;
-        debugger;
         await this.auth.signUp(objUser);
         this.isRegisterSubmitted = false;
         loading.dismiss();

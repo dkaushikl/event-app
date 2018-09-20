@@ -8,7 +8,7 @@ import { User } from '../../shared/models';
 export class AuthService {
   authState: firebase.User;
   logged: boolean;
-  constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase) {
+  constructor(public afAuth: AngularFireAuth, private db: AngularFireDatabase) {
     afAuth.authState.subscribe((auth: any) => {
       this.authState = auth;
       this.logged = auth;
