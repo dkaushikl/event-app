@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar color="danger">
+    <ion-title>{{ company?.name }}</ion-title>
+    <ion-buttons end>
+      <button ion-button color="primary" icon-only (click)="AddCompanyMember()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="company">
+    <h1>{{ company.name }}</h1>
+
+  </div>
+</ion-content>

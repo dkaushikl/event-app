@@ -1,37 +1,32 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Company } from '../models';
-
 @Injectable()
 export class CompanyService {
-  companyList: any;
-  companyRef: AngularFireList<Company>;
-  companies: Observable<Company[]>;
-  company: AngularFireObject<Company>;
+  private companyRef: AngularFireList<Company>;
+  private companies: Observable<Company[]>;
 
-  constructor(public auth: AngularFireAuth, private database: AngularFireDatabase) {
-    this.companyRef = database.list('company');
-    this.companies = this.companyRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    );
+  constructor(private database: AngularFireDatabase) {
   }
 
-  getCompanies() {
-    return this.companies;
+  getCompanies(isForced) {
+    if (this.companies !== undefined && !isForced) {
+      return this.companies;
+    } else {
+      this.companyRef = this.database.list('company');
+      this.companies = this.companyRef.snapshotChanges().pipe(
+        map(changes =>
+          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+        )
+      );
+      return this.companies;
+    }
   }
 
   addCompany(company: Company) {
     this.database.list<Company>('company').push(company);
-  }
-
-  getClient(id: string) {
-    this.company = this.database.object('/company/' + id);
-    return this.company;
   }
 
   updateCompany(id: string, company: Company) {

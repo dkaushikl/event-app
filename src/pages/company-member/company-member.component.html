@@ -1,18 +1,31 @@
-<!--
-  Generated template for the CompanyMemberPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>companyMember</ion-title>
+  <ion-navbar transparent>
+    <ion-title>Add Company Member</ion-title>
   </ion-navbar>
-
 </ion-header>
-
-
-<ion-content padding>
-
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Fill the following fields:
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item>
+          <ion-label>Company Name : {{ companyName }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label floating>Enter email address</ion-label>
+          <ion-input type="text" [(ngModel)]="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
+<ion-footer class="stick-footer">
+  <ion-toolbar>
+    <button ion-button full color="primary" (click)="addCompanyMember()">AddMember</button>
+    <button type="button" ion-button full color="danger" (click)="cancel()">Cancel</button>
+  </ion-toolbar>
+</ion-footer>

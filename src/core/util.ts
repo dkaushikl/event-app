@@ -1,25 +1,33 @@
 import { Injectable } from '@angular/core';
-import { AlertController, Platform, ToastController } from 'ionic-angular';
+import { AlertController, Platform, ToastController, LoadingController, Loading } from 'ionic-angular';
 
 @Injectable()
 export class UtilProvider {
+  private loading: Loading;
 
-  constructor(private alertCtrl: AlertController, private platformSrv: Platform, private toastCtrl: ToastController) {
-    console.log('Hello UtilProvider Provider');
+  constructor(private alertCtrl: AlertController, private platformSrv: Platform, private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController) {
   }
 
-  /**
-   *
-   */
+  public showLoader() {
+    this.loading = this.loadingCtrl.create({
+      spinner: 'dots',
+      content: 'Please wait',
+      duration: 2000
+    });
+
+    this.loading.present();
+  }
+
+  public disableLoader() {
+    this.loading.present();
+  }
+
   public isNativePlatform() {
     return (this.platformSrv.is('cordova') && this.platformSrv.is('mobile'));
   }
 
-  /**
-   * Displays toast message into the screen
-   * @param {string} message Message to display
-   */
-  public showToast(message: string, duration?: number, position?: string): void {
+  public showToast(message: string, duration?: number, position?: string) {
     const toast = this.toastCtrl.create({
       message: message,
       duration: duration || 3000,
@@ -28,13 +36,7 @@ export class UtilProvider {
     toast.present();
   }
 
-  /**
-   * Prompts an alert into the screen
-   * @param {string} title Title of the alert
-   * @param {string} msg Message of the alert
-   * @param {Array<Object>} buttons (optional) Array of buttons. By default 'OK'
-   */
-  public showAlert(title: string, msg: string, buttons?: Array<Object>): void {
+  public showAlert(title: string, msg: string, buttons?: Array<Object>) {
     this.alertCtrl.create({
       title: title,
       subTitle: msg,
@@ -42,13 +44,6 @@ export class UtilProvider {
     }).present();
   }
 
-  /**
-   *
-   * @param title
-   * @param message
-   * @param inputs
-   * @param buttons
-   */
   public showPromptAlert(title: string, message: string, inputs?: Array<Object>, buttons?: Array<Object>) {
     this.alertCtrl.create({
       title: title,
@@ -57,5 +52,4 @@ export class UtilProvider {
       buttons: buttons || ['OK']
     }).present();
   }
-
 }

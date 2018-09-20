@@ -4,33 +4,41 @@ import { MenuController, ItemSliding, ModalController, NavController } from 'ion
 import { AuthService } from '../../core/auth.service';
 import { CompanyService } from '../../core/company.service';
 import { AddCompanyPage } from '../add-company/add-company.component';
-import { CompanyMemberPage } from '../company-member/company-member.component';
 import { UtilProvider } from '../../core/util';
 import { Company } from '../../models';
+import { CompanyInfoPage } from '../company-info/company-info.component';
 @Component({
   selector: 'page-company-list',
   templateUrl: 'company-list.component.html',
 })
-export class CompanyListPage {
-  company: Company;
-  companyList: Company[];
-  userId: string;
 
-  constructor(private modalCtrl: ModalController, public menuCtrl: MenuController, public navCtrl: NavController,
-    public db: AngularFireDatabase, public companyService: CompanyService, public auth: AuthService, public util: UtilProvider) {
-    this.menuCtrl.enable(true, 'myMenu');
-    this.userId = this.auth.getUserId();
+export class CompanyListPage {
+  public companyList: Company[];
+  private companyListAll: Company[];
+  private queryText: string;
+
+  constructor(private modalCtrl: ModalController, private menuCtrl: MenuController, private navCtrl: NavController,
+    private companyService: CompanyService, private auth: AuthService, private util: UtilProvider) {
   }
 
   ionViewDidLoad() {
-    this.companyService.getCompanies().subscribe(companies => {
-      this.companyList = companies;
-    });
+    this.loadCompany(true);
     this.menuCtrl.enable(true, 'myMenu');
   }
 
-  goToCompanyMember() {
-    this.navCtrl.push(CompanyMemberPage);
+  refreshAll(refresher) {
+    this.loadCompany(false);
+    refresher.complete();
+  }
+
+  private loadCompany(isForce) {
+    this.companyService.getCompanies(isForce).subscribe(companies => {
+      this.companyList = this.companyListAll = companies;
+    });
+  }
+
+  goToCompanyInfo(company: Company) {
+    this.navCtrl.push(CompanyInfoPage, company);
   }
 
   addCompany() {
@@ -78,5 +86,16 @@ export class CompanyListPage {
         }
       ]
     );
+  }
+
+  updateCompany() {
+    const queryTextLower = this.queryText.toLowerCase();
+    if (queryTextLower.trim() !== '') {
+      this.companyList = this.companyListAll.filter((item) => {
+        return item.name.toLowerCase().indexOf(queryTextLower.toLowerCase()) > -1;
+      });
+    } else {
+      this.companyList = this.companyListAll;
+    }
   }
 }
