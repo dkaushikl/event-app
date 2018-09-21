@@ -1,16 +1,16 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import {
   MenuController,
   NavController,
   NavParams,
   ViewController
-} from "ionic-angular";
-import { CompanyService } from "../../core/service";
-import { Company } from "./../../shared/models";
+} from 'ionic-angular';
+import { CompanyService } from '../../core/service';
+import { Company } from './../../shared/models';
 
 @Component({
-  selector: "page-add-company",
-  templateUrl: "add-company.component.html"
+  selector: 'page-add-company',
+  templateUrl: 'add-company.component.html'
 })
 export class AddCompanyPage {
   company: Company;
@@ -22,7 +22,7 @@ export class AddCompanyPage {
     public menuCtrl: MenuController,
     public navParams: NavParams
   ) {
-    const params = this.navParams.get("company");
+    const params = this.navParams.get('company');
     if (params) {
       this.company = this.navParams.data.company;
       this.editMode = true;
