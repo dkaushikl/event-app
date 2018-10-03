@@ -38,11 +38,15 @@ export class CompanyInfoPage {
 
     modal.onDidDismiss((data: any) => {
       if (data) {
-        data.createdDate = new Date().toDateString();
-        data.createdBy = this.auth.getUserId();
+        // data.createdDate = new Date().toDateString();
+        // data.createdBy = this.auth.getUserId();
         this.companyMemberService.addCompanyMember(data);
         this.util.showToast('Company member added successfully!');
       }
     });
+  }
+
+  async deleteCompany() {
+    console.log('delete company');
   }
 }

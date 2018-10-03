@@ -5,7 +5,7 @@
 </ion-header>
 <ion-content padding>
   <div class="center_screen">
-    <form novalidate [formGroup]="registerForm" (ngSubmit)="register(registerForm.value, registerForm.valid)">
+    <form novalidate [formGroup]="registerForm" (ngSubmit)="submit(registerForm.value, registerForm.valid)">
       <div class="input_area">
         <ion-icon name="md-person"></ion-icon>
         <input type="text" placeholder="Firstname" formControlName="firstname">

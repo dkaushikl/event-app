@@ -27,7 +27,10 @@ export class CompanyService {
   }
 
   addCompany(company: Company) {
-    this.database.list<Company>('company').push(company);
+    this.database.database.ref().child('/company').push(company);
+    // this.database.list<Company>('company').push(company);
+    // const toSend = this.database.object(`/company/${company.key}`);
+    // toSend.set(company);
   }
 
   updateCompany(id: string, company: Company) {

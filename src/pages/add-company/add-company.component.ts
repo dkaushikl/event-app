@@ -34,6 +34,7 @@ export class AddCompanyPage {
 
   addNewCompany() {
     this.viewCtrl.dismiss({
+      key: 'company-123',
       name: this.company.name,
       email: this.company.email,
       mobileno: this.company.mobileno,

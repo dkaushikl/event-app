@@ -10,7 +10,7 @@ export class CompanyMemberService {
   private companyMemberRef: AngularFireList<CompanyMember>;
   private companyMembers: Observable<CompanyMember[]>;
 
-  constructor(private database: AngularFireDatabase, private auth: AuthService) {
+  constructor(private database: AngularFireDatabase) {
   }
 
   getCompanyMember() {
@@ -28,7 +28,21 @@ export class CompanyMemberService {
   }
 
   addCompanyMember(companyMember: CompanyMember) {
-    this.database.list<CompanyMember>('company_member').push(companyMember);
+
+    // this.database.database.ref().child('/company_member').push(companyMember);
+
+    // this.db.object(`members/${userid}`).valueChanges()
+
+    // this.database.database.ref().set(companyMember.key, this.database.object(`members/${companyMember.userId}.valueChanges()`));
+
+    // console.log(companyMember);
+
+    // const data = this.database.object(`company_member/${companyMember.key}`);
+    // console.log(data);
+
+
+
+    // this.database.list<CompanyMember>('company_member').push(companyMember);
   }
 
   updateCompanyMember(id: string, companyMember: CompanyMember) {

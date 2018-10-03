@@ -8,11 +8,10 @@
   <ion-content class="login">
     <div text-center>
       <img class="logo" width="120" height="120" src="../../assets/imgs/logo-icon.png" alt="Logo">
-      <!-- <ion-img width="120" height="120" src="../../assets/imgs/logo-icon.png" class="logo"></ion-img> -->
     </div>
     <ion-card>
       <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign In</ion-card-header>
-      <form novalidate [formGroup]="loginForm" (ngSubmit)="login(loginForm.value, loginForm.valid)">
+      <form novalidate [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value, loginForm.valid)">
         <ion-list no-lines>
           <ion-item>
             <ion-label floating>Email Address</ion-label>

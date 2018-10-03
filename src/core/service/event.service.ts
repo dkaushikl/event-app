@@ -13,6 +13,15 @@ export class EventService {
 
   addEvent(event: Event) {
     this.database.list('/event').push(event);
+
+    // const yourRef = this.database.list('event');
+    // let userId = "UID",
+    //   userInfos = { data: "your user datas" };
+
+    // yourRef.update(userId, userInfos);
+
+    // const users = this.database.object('/users');
+    // users.update({ [key]: value });
   }
 
   editEvent(key: string, event: Event) {
