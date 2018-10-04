@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { MenuController, NavController, ToastController } from 'ionic-angular';
 import { Event } from '../../shared/models';
 
@@ -11,12 +10,10 @@ import { Event } from '../../shared/models';
 export class AddEventPage {
   public event: Event;
   isEventFormSubmitted = false;
-  eventList: AngularFireList<any>;
   eventForm: FormGroup;
-  constructor(private toastCtrl: ToastController, public fb: FormBuilder, public navCtrl: NavController,
-    db: AngularFireDatabase, public menuCtrl: MenuController) {
+  eventList: any;
+  constructor(private toastCtrl: ToastController, public fb: FormBuilder, public navCtrl: NavController, public menuCtrl: MenuController) {
     this.menuCtrl.enable(false, 'myMenu');
-    this.eventList = db.list('event');
     this.bindData();
   }
 

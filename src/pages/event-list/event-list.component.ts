@@ -14,9 +14,9 @@ export class EventListPage {
   queryText: string;
   constructor(public menuCtrl: MenuController, public navCtrl: NavController,
     public eventService: EventService) {
-    this.eventService.getEvents().subscribe(event => {
-      this.eventList = event;
-    });
+    // this.eventService.getEvents().subscribe(event => {
+    //   this.eventList = event;
+    // });
   }
 
   ionViewDidLoad() {
@@ -32,9 +32,9 @@ export class EventListPage {
   }
 
   refreshAll(refresher) {
-    this.eventService.getEvents().subscribe(event => {
-      refresher.complete();
-      this.ionViewDidLoad();
-    });
+    // this.eventService.getEvents().subscribe(event => {
+    //   refresher.complete();
+    //   this.ionViewDidLoad();
+    // });
   }
 }

@@ -1,22 +1,22 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import {
   MenuController,
   ItemSliding,
   ModalController,
   NavController
-} from "ionic-angular";
-import { AddCompanyPage } from "../add-company/add-company.component";
-import { Company } from "../../shared/models";
-import { CompanyInfoPage } from "../company-info/company-info.component";
-import { CompanyService, AuthService, UtilProvider } from "../../core/service";
+} from 'ionic-angular';
+import { AddCompanyPage } from '../add-company/add-company.component';
+import { Company } from '../../shared/models';
+import { CompanyInfoPage } from '../company-info/company-info.component';
+import { CompanyService, AuthenticationService, UtilProvider } from '../../core/service';
 
 @Component({
-  selector: "page-company-list",
-  templateUrl: "company-list.component.html"
+  selector: 'page-company-list',
+  templateUrl: 'company-list.component.html'
 })
 export class CompanyListPage {
   public companyList: Company[];
-  public userId: string;
+  public userId: number;
   public queryText: string;
   private companyListAll: Company[];
 
@@ -25,14 +25,12 @@ export class CompanyListPage {
     private menuCtrl: MenuController,
     private navCtrl: NavController,
     private companyService: CompanyService,
-    private auth: AuthService,
     private util: UtilProvider
   ) {}
 
   ionViewDidLoad() {
     this.loadCompany(true);
-    this.userId = this.auth.getUserId();
-    this.menuCtrl.enable(true, "myMenu");
+    this.menuCtrl.enable(true, 'myMenu');
   }
 
   refreshAll(refresher) {
@@ -54,10 +52,8 @@ export class CompanyListPage {
     const modal = this.modalCtrl.create(AddCompanyPage);
     modal.onDidDismiss((data: Company) => {
       if (data) {
-        data.createdDate = new Date().toUTCString();
-        data.createdBy = this.userId;
         this.companyService.addCompany(data);
-        this.util.showToast("Company added successfully!");
+        this.util.showToast('Company added successfully!');
         slidingItem.close();
       }
     });
@@ -68,14 +64,14 @@ export class CompanyListPage {
     const modal = this.modalCtrl.create(AddCompanyPage, { company });
     modal.onDidDismiss((data: Company) => {
       if (data) {
-        data.createdDate = new Date().toUTCString();
-        data.createdBy = this.userId;
-        this.companyService
-          .updateCompany(data.key, data)
-          .then(() =>
-            this.util.showToast(`Company ${company.name} edited successfully!`)
-          )
-          .catch(e => this.util.showToast("Error: " + e));
+        // data.createdDate = new Date().toUTCString();
+        // data.createdBy = this.userId;
+        // this.companyService
+        //   .updateCompany(data.key, data)
+        //   .then(() =>
+        //     this.util.showToast(`Company ${company.name} edited successfully!`)
+        //   )
+        //   .catch(e => this.util.showToast('Error: ' + e));
       }
     });
     modal.present();
@@ -84,22 +80,22 @@ export class CompanyListPage {
 
   deleteCompany(slidingItem: ItemSliding, company: Company) {
     this.util.showAlert(
-      "Remove Company",
+      'Remove Company',
       `Are you sure to delete '${company.name}'?`,
       [
-        { text: "Cancel", handler: () => slidingItem.close() },
+        { text: 'Cancel', handler: () => slidingItem.close() },
         {
-          text: "Remove",
+          text: 'Remove',
           handler: () => {
-            this.companyService
-              .deleteCompany(company.key)
-              .then(() => {
-                slidingItem.close();
-                this.util.showToast(
-                  `'${company.name}' was removed successfully!`
-                );
-              })
-              .catch(e => this.util.showToast("Error: ", e));
+            // this.companyService
+            //   .deleteCompany(company.key)
+            //   .then(() => {
+            //     slidingItem.close();
+            //     this.util.showToast(
+            //       `'${company.name}' was removed successfully!`
+            //     );
+            //   })
+            //   .catch(e => this.util.showToast('Error: ', e));
           }
         }
       ]
@@ -108,7 +104,7 @@ export class CompanyListPage {
 
   updateCompany() {
     const queryTextLower = this.queryText.toLowerCase();
-    if (queryTextLower.trim() !== "") {
+    if (queryTextLower.trim() !== '') {
       this.companyList = this.companyListAll.filter(item => {
         return (
           item.name.toLowerCase().indexOf(queryTextLower.toLowerCase()) > -1

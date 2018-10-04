@@ -17,8 +17,8 @@ export class RegisterPage {
   isRegisterSubmitted = false;
   public registerForm: FormGroup;
 
-  constructor(public util: UtilProvider, public menuCtrl: MenuController, public fb: FormBuilder,
-    private auth: AuthenticationService, public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public util: UtilProvider, public menuCtrl: MenuController, public fb: FormBuilder, public navParams: NavParams,
+    private auth: AuthenticationService, public loadingCtrl: LoadingController, public navCtrl: NavController) {
     this.menuCtrl.enable(false, 'myMenu');
     this.bindData();
   }
@@ -46,6 +46,7 @@ export class RegisterPage {
       this.auth.Register(objRegister).subscribe((data: ApiResponse) => {
         this.util.showToast(data.Message);
         if (data.ResponseStatus === ApiResponseStatus.Ok) {
+          this.auth.AddUserStorage(data.Data);
           this.isRegisterSubmitted = false;
           loading.dismiss();
           this.navCtrl.setRoot(EventListPage, {}, { animate: true, direction: 'forward' });

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ModalController, NavParams } from 'ionic-angular';
-import { AuthService, CompanyMemberService, UtilProvider } from '../../core/service';
+import { CompanyMemberService, UtilProvider } from '../../core/service';
 import { Company, CompanyMember } from '../../shared/models';
 import { CompanyMemberPage } from '../company-member/company-member.component';
 
@@ -12,7 +12,8 @@ export class CompanyInfoPage {
   public company: Company;
   public companyMemberList: CompanyMember[];
   public companySwitch = 'information';
-  constructor(private auth: AuthService, private modalCtrl: ModalController, private navParams: NavParams,
+
+  constructor(private modalCtrl: ModalController, private navParams: NavParams,
     private companyMemberService: CompanyMemberService, private util: UtilProvider) {
   }
 
@@ -27,9 +28,9 @@ export class CompanyInfoPage {
   }
 
   private loadCompanyMember(isForce) {
-    this.companyMemberService.getCompanyMember().subscribe(companyMember => {
-      this.companyMemberList = companyMember;
-    });
+    // this.companyMemberService.getCompanyMember().subscribe(companyMember => {
+    //   this.companyMemberList = companyMember;
+    // });
   }
 
   async AddCompanyMember() {
@@ -38,15 +39,13 @@ export class CompanyInfoPage {
 
     modal.onDidDismiss((data: any) => {
       if (data) {
-        // data.createdDate = new Date().toDateString();
-        // data.createdBy = this.auth.getUserId();
         this.companyMemberService.addCompanyMember(data);
         this.util.showToast('Company member added successfully!');
       }
     });
   }
 
-  async deleteCompany() {
+  deleteCompany() {
     console.log('delete company');
   }
 }

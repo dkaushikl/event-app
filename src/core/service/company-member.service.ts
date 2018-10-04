@@ -1,30 +1,25 @@
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+// import { Observable } from 'rxjs';
+// import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CompanyMember } from '../../shared/models';
-import { AuthService } from './auth.service';
 
 @Injectable()
 export class CompanyMemberService {
-  private companyMemberRef: AngularFireList<CompanyMember>;
-  private companyMembers: Observable<CompanyMember[]>;
-
-  constructor(private database: AngularFireDatabase) {
-  }
+  // private companyMemberRef: AngularFireList<CompanyMember>;
+  // private companyMembers: Observable<CompanyMember[]>;
 
   getCompanyMember() {
-    this.companyMemberRef = this.database.list('company_member');
-    this.companyMembers = this.companyMemberRef.snapshotChanges().pipe(
-      map(changes =>
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-      )
-    );
-    return this.companyMembers;
+    // this.companyMemberRef = this.database.list('company_member');
+    // this.companyMembers = this.companyMemberRef.snapshotChanges().pipe(
+    //   map(changes =>
+    //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
+    //   )
+    // );
+    // return this.companyMembers;z
   }
 
   checkEmailExist(companyMember: CompanyMember) {
-    this.database.list<CompanyMember>('company_member').push(companyMember);
+    // this.database.list<CompanyMember>('company_member').push(companyMember);
   }
 
   addCompanyMember(companyMember: CompanyMember) {
@@ -46,10 +41,10 @@ export class CompanyMemberService {
   }
 
   updateCompanyMember(id: string, companyMember: CompanyMember) {
-    return this.database.list<CompanyMember>('company_member').update(id, companyMember);
+    // return this.database.list<CompanyMember>('company_member').update(id, companyMember);
   }
 
   deleteCompanyMember(id: string) {
-    return this.database.list<CompanyMember>('company_member').remove(id);
+    // return this.database.list<CompanyMember>('company_member').remove(id);
   }
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { WelcomePage } from '../welcome/welcome.component';
-import { AuthService } from '../../core/service';
+import { AuthenticationService } from '../../core/service';
 
 @Component({
   selector: 'page-profile',
@@ -9,15 +9,27 @@ import { AuthService } from '../../core/service';
 })
 export class ProfilePage {
   email: string;
-  userId: string;
+  fullName: string;
 
-  constructor(public auth: AuthService, public navCtrl: NavController, public navParams: NavParams) {
-    this.email = this.auth.getEmail();
-    this.userId = this.auth.getUserId();
+  constructor(public auth: AuthenticationService, public navCtrl: NavController, public navParams: NavParams) {
+    // this.getFullName();
+    // this.getEmail();
   }
 
+  // getFullName() {
+  //   this.auth.getFullname().then((fullname) => {
+  //     this.fullName = fullname;
+  //   });
+  // }
+
+  // getEmail() {
+  //   this.auth.getEmail().then((email) => {
+  //     this.email = email;
+  //   });
+  // }
+
   logOut() {
-    this.auth.signOut();
-    this.navCtrl.setRoot(WelcomePage);
+    this.auth.Logout();
+    this.navCtrl.setRoot(WelcomePage, {}, { animate: true, direction: 'forward' });
   }
 }

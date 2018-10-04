@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class HttpService {
+  token: string;
+  constructor(private storage: LocalStorageService) {
+    this.getToken();
+  }
+
   GetAuthHttpCommon() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const token = currentUser && currentUser.AccessToken;
     return {
-      headers: new HttpHeaders().set('Authorization', 'Bearer ' + token)
-        .set('Content-Type', 'application/json')
+      headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token).set('Content-Type', 'application/json')
     };
   }
 
@@ -18,9 +21,9 @@ export class HttpService {
     };
   }
 
-  GetForm() {
-    return {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-    };
+  getToken() {
+    this.storage.get('currentUser').then((data) => {
+      this.token = data && data.token;
+    });
   }
 }

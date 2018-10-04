@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
-import { User } from '../../shared/models';
-import { EventListPage } from '../event-list/event-list.component';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password.component';
 import { RegisterPage } from '../register/register.component';
-import { AuthService, UtilProvider, AuthenticationService } from '../../core/service';
+import { UtilProvider, AuthenticationService, LocalStorageService } from '../../core/service';
 import { Login } from '../../shared/models/authentication.model';
 import { ApiResponse } from '../../shared/models/response.model';
 import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
-
+import { CompanyListPage } from '../company-list/company-list.component';
 @Component({
   selector: 'page-login',
   templateUrl: 'login.component.html',
@@ -18,8 +16,9 @@ import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
 export class LoginPage {
   isLoginSubmitted = false;
   public loginForm: FormGroup;
-  constructor(public util: UtilProvider, public menuCtrl: MenuController, public fb: FormBuilder, private auth: AuthenticationService,
-    public navCtrl: NavController, public navParams: NavParams, public loadingCtrl: LoadingController) {
+  constructor(public util: UtilProvider, public menuCtrl: MenuController, public fb: FormBuilder,
+     private auth: AuthenticationService,    public navCtrl: NavController, public navParams: NavParams,
+      public loadingCtrl: LoadingController, private storage: LocalStorageService) {
     this.menuCtrl.enable(false, 'myMenu');
     this.bindData();
   }
@@ -44,9 +43,10 @@ export class LoginPage {
       this.auth.Login(objLogin).subscribe((data: ApiResponse) => {
         this.util.showToast(data.Message);
         if (data.ResponseStatus === ApiResponseStatus.Ok) {
+          this.auth.AddUserStorage(data.Data);
           this.isLoginSubmitted = false;
           loading.dismiss();
-          this.navCtrl.setRoot(EventListPage, {}, { animate: true, direction: 'forward' });
+          this.navCtrl.setRoot(CompanyListPage, {}, { animate: true, direction: 'forward' });
         } else {
           loading.dismiss();
         }

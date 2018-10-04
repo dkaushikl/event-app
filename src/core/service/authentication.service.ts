@@ -1,21 +1,23 @@
-import { Injectable, Output, EventEmitter } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { HttpService } from "./http.service";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HttpService } from './http.service';
 import { Register, Login, ForgotPassword, ResetPassword } from '../../shared/models/authentication.model';
+import { Events } from 'ionic-angular';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable()
 export class AuthenticationService {
   private apiUrl = 'http://localhost:50554/api/Users';
-  @Output() username: EventEmitter<any> = new EventEmitter();
-  @Output() isLogin: EventEmitter<any> = new EventEmitter();
 
-  constructor(private http: HttpClient, public httpService: HttpService) { }
+  constructor(private http: HttpClient, private httpService: HttpService, private storage: LocalStorageService, private events: Events) { }
 
   Register(obj: Register) {
+    this.events.publish('user:signup');
     return this.http.post(`${this.apiUrl}/Register`, obj, this.httpService.GetHttpJson());
   }
 
   Login(obj: Login) {
+    this.events.publish('user:login');
     return this.http.post(`${this.apiUrl}/Login`, obj, this.httpService.GetHttpJson());
   }
 
@@ -27,30 +29,24 @@ export class AuthenticationService {
     return this.http.post(`${this.apiUrl}/ResetPassword`, JSON.stringify(obj), this.httpService.GetHttpJson());
   }
 
-  CheckUserLoggedIn(): boolean {
-    if (localStorage.getItem("currentUser")) {
-      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      this.username.emit(currentUser.fullname);
-      this.isLogin.emit(true);
-      return true;
-    }
-    this.username.emit("");
-    this.isLogin.emit(false);
-    return false;
+  AddUserStorage(data) {
+    this.storage.set('hasLoggedIn', true);
+    this.storage.set('currentUser', data);
   }
 
-  GetUserName(): string {
-    if (localStorage.getItem("currentUser")) {
-      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-      return currentUser.Firstname === null || currentUser.Lastname === null
-        ? currentUser.Email
-        : currentUser.Firstname + " " + currentUser.Lastname;
-    }
-    return "";
+  RemoveUserStorage(data) {
+    this.storage.remove('hasLoggedIn');
+    this.storage.remove('currentUser');
+  }
+
+  hasLoggedIn() {
+    return this.storage.get('hasLoggedIn').then((value) => {
+      return value === true;
+    });
   }
 
   Logout() {
-    localStorage.removeItem("currentUser");
-    this.CheckUserLoggedIn();
+    this.RemoveUserStorage('currentUser');
+    this.events.publish('user:logout');
   }
 }
