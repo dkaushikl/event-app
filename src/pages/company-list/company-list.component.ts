@@ -22,8 +22,8 @@ export class CompanyListPage {
   ) { }
 
   ionViewDidLoad() {
-    this.getAllCompany();
     this.menuCtrl.enable(true, 'myMenu');
+    this.getAllCompany();
   }
 
   getAllCompany() {

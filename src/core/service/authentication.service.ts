@@ -33,6 +33,10 @@ export class AuthenticationService {
     return this.http.get(`${this.apiUrl}/GetProfile/`, this.httpService.GetAuthHttpCommon());
   }
 
+  updateProfile(obj: any) {
+    return this.http.post(`${this.apiUrl}/EditProfile`, obj, this.httpService.GetAuthHttpCommon());
+  }
+
   AddUserStorage(data) {
     this.storage.set('hasLoggedIn', true);
     this.storage.set('currentUser', data);

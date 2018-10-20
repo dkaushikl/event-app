@@ -3,43 +3,66 @@
     <button menuToggle ion-button icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title> My Profile</ion-title>
+<ion-title text-capitalize> {{ user?.firstname }} {{ user?.lastname }}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="navigateTo('EditProfilePage')">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="no-scroll">
+<ion-content>
   <ng-container *ngIf="user">
     <div class="user-section">
-      <div class="user-details" padding-horizontal>
-        <img class="user-img" src="../../assets/imgs/user_placeholder.png" alt="Event manager Logo">
-
-        <div class="user-class">
-          <ion-icon name="person" item-start></ion-icon>
-          {{ user.Fullname }}
-        </div>
+      <div class="user-details">
 
         <div class="user-class">
           <ion-icon name="mail" item-start></ion-icon>
-          {{ user.Email }}
+          {{ user.email }}
         </div>
 
-        <div class="user-class">
+        <div class="user-class" *ngIf="user.mobile">
           <ion-icon name="call" item-start></ion-icon>
-          {{ user.Mobile }}
+          {{ user.mobile }}
         </div>
 
-        <div class="user-class" *ngIf="user.Gender">
-          <ion-icon name="person" item-start></ion-icon>
-          {{ user.Gender }}
-        </div>
-
-        <div class="user-class">
+        <div class="user-class" *ngIf="user.birthDate">
           <ion-icon name="calendar" item-start></ion-icon>
-          {{ user.CreateDate | appDateFormat }}
+          {{ user.birthDate | appDateFormat : 'dd-MM-yyyy' }}
         </div>
 
+        <div class="user-class" *ngIf="user.gender">
+          <span *ngIf="user.gender == 'Male'">
+            <ion-icon name="man" item-start></ion-icon>
+          </span>
+          <span *ngIf="user.gender == 'Female'">
+            <ion-icon name="female" item-start></ion-icon>
+          </span>
+          {{ user.gender }}
+        </div>
+
+        <div class="user-class" *ngIf="user.city">
+          <ion-icon name="home" item-start></ion-icon>
+          {{ user.city }}
+        </div>
+
+        <div class="user-class" *ngIf="user.state">
+          <ion-icon name="globe" item-start></ion-icon>
+          {{ user.state }}
+        </div>
+
+        <div class="user-class" *ngIf="user.country">
+          <ion-icon name="planet" item-start></ion-icon>
+          {{ user.country }}
+        </div>
+
+        <div class="user-class" *ngIf="user.createDate">
+          <ion-icon name="calendar" item-start></ion-icon>
+          {{ user.createDate | appDateFormat: 'dd-MM-yyyy hh:mm:ss' }}
+        </div>
       </div>
-      <div class="actions-container">
+      <div class="actions-container" padding>
         <button class="action-button" ion-button outline (click)="navigateTo('EditProfilePage')">
           <ion-icon item-start name="md-create"></ion-icon>
           Edit Profile

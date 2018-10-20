@@ -21,7 +21,6 @@ export class MyApp {
   constructor(public auth: AuthenticationService, public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen, public events: Events, public menu: MenuController) {
 
-
     this.pages = [
       { title: 'Home', icon: 'fa-home', component: HomePage },
       { title: 'Event', icon: 'fa-calendar', component: EventListPage },
@@ -32,7 +31,7 @@ export class MyApp {
 
     this.auth.hasLoggedIn().then((hasLoggedIn) => {
       this.platformReady();
-      this.rootPage = hasLoggedIn ? HomePage : LoginPage;
+      this.rootPage = hasLoggedIn ? ProfilePage : LoginPage;
       this.enableMenu(hasLoggedIn === true);
     });
 

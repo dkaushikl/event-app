@@ -14,8 +14,7 @@ export class UtilProvider {
       this.loading = this.loadingCtrl.create({
         spinner: 'dots',
         content: 'Please wait',
-        duration: 2000,
-        dismissOnPageChange: true
+        duration: 2000
       });
 
       this.loading.present();
@@ -38,7 +37,6 @@ export class UtilProvider {
       message: message,
       duration: duration || 2000,
       position: position || 'bottom',
-      dismissOnPageChange: true
     });
     toast.present();
   }
