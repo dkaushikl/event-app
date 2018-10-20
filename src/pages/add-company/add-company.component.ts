@@ -7,21 +7,26 @@ import {
 } from 'ionic-angular';
 import { CompanyService } from '../../core/service';
 import { Company } from './../../shared/models';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Validator } from '../../shared/common/common.validator';
 
 @Component({
-  selector: 'page-add-company',
+  selector: "page-add-company",
   templateUrl: 'add-company.component.html'
 })
 export class AddCompanyPage {
   company: Company;
   editMode: boolean;
+  companyForm: FormGroup;
   constructor(
+    private fb: FormBuilder,
     public viewCtrl: ViewController,
     public navCtrl: NavController,
     public companyService: CompanyService,
     public menuCtrl: MenuController,
     public navParams: NavParams
   ) {
+    this.bindForm();
     const params = this.navParams.get('company');
     if (params) {
       this.company = this.navParams.data.company;
@@ -32,30 +37,43 @@ export class AddCompanyPage {
     }
   }
 
-  addNewCompany() {
-    this.viewCtrl.dismiss({
-      key: 'company-123',
-      name: this.company.name,
-      email: this.company.email,
-      mobileno: this.company.mobileno,
-      address: this.company.address,
-      city: this.company.city,
-      state: this.company.state,
-      country: this.company.country
+  bindForm() {
+    this.companyForm = this.fb.group({
+      'name': ['', Validators.compose([Validators.required])],
+      'email': ['', Validators.compose([Validators.required, Validator.validateEmail])],
+      'mobileno': ['', Validators.compose([Validators.minLength(10), Validators.maxLength(13), Validators.required])],
+      'address': ['', Validators.compose([Validators.required])],
+      'city': ['', Validators.compose([Validators.required])],
+      'state': ['', Validators.compose([Validators.required])],
+      'country': ['', Validators.compose([Validators.required])]
     });
   }
 
-  editCompany() {
-    this.viewCtrl.dismiss({
-      key: this.company.key,
-      name: this.company.name,
-      email: this.company.email,
-      mobileno: this.company.mobileno,
-      address: this.company.address,
-      city: this.company.city,
-      state: this.company.state,
-      country: this.company.country
-    });
+  addNewCompany(obj: any, isValid: boolean) {
+    if (isValid) {
+      if (this.editMode) {
+        this.viewCtrl.dismiss({
+          id: this.company.id,
+          name: obj.name,
+          email: obj.email,
+          mobileno: obj.mobileno,
+          address: obj.address,
+          city: obj.city,
+          state: obj.state,
+          country: obj.country
+        });
+      } else {
+        this.viewCtrl.dismiss({
+          name: obj.name,
+          email: obj.email,
+          mobileno: obj.mobileno,
+          address: obj.address,
+          city: obj.city,
+          state: obj.state,
+          country: obj.country
+        });
+      }
+    }
   }
 
   cancel() {

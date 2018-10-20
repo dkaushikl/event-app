@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar color="danger">
+  <ion-navbar color="primary">
     <ion-buttons left>
       <button ion-button icon-only (click)="cancel()" class="my-style-for-modal">
         <ion-icon name="arrow-back"></ion-icon>
@@ -9,28 +9,34 @@
   </ion-navbar>
 </ion-header>
 <ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        Fill the following fields:
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Company Name : {{ companyName }}</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Enter email address</ion-label>
-          <ion-input type="text" [(ngModel)]="email"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form novalidate [formGroup]="companyMemberForm" (ngSubmit)="addCompanyMember(companyMemberForm.value, companyMemberForm.valid)">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-list no-lines>
+            <ion-item>
+              <ion-label>Company Name : {{ companyName }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label stacked>Enter email address</ion-label>
+              <ion-input type="text" formControlName="email"></ion-input>
+              <ion-label>
+                <p class="danger" *ngIf="companyMemberForm.controls.email.errors?.required && companyMemberForm.controls.email.dirty">This
+                  field is required</p>
+                <p class="danger" *ngIf="companyMemberForm.controls.email.errors?.validateEmail && companyMemberForm.controls.email.dirty">This
+                  must be a valid e-mail</p>
+              </ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>
 <ion-footer class="stick-footer">
   <ion-toolbar>
-    <button ion-button full color="primary" (click)="addCompanyMember()">Add Member</button>
-    <button type="button" ion-button full color="danger" (click)="cancel()">Cancel</button>
+    <button type="button" ion-button full color="primary" (click)="addCompanyMember(companyMemberForm.value, companyMemberForm.valid)">Add
+      Member</button>
+    <button type="button" ion-button full color="primary" (click)="cancel()">Cancel</button>
   </ion-toolbar>
 </ion-footer>

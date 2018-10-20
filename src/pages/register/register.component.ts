@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from './../login/login.component';
 import { UtilProvider, AuthenticationService } from '../../core/service';
-import { Register } from '../../shared/models/authentication.model';
-import { ApiResponse } from '../../shared/models/response.model';
 import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
-import { EventListPage } from '../event-list/event-list.component';
+import { Validator } from '../../shared/common/common.validator';
+import { CompanyListPage } from '../company-list/company-list.component';
+import { ApiResponse } from '../../shared/models/response.model';
+import { Register } from '../../shared/models/authentication.model';
 
 @Component({
   selector: 'page-register',
@@ -27,31 +28,24 @@ export class RegisterPage {
     this.registerForm = this.fb.group({
       'firstname': ['', Validators.compose([Validators.required])],
       'lastname': ['', Validators.compose([Validators.required])],
-      'email': ['', Validators.compose([Validators.minLength(5), Validators.maxLength(160), Validators.required, Validators.email])],
+      'email': ['', Validators.compose([Validators.required, Validator.validateEmail])],
       'mobileno': ['', Validators.compose([Validators.minLength(10), Validators.maxLength(13), Validators.required])],
-      'password': new FormControl('', [Validators.minLength(3), Validators.maxLength(20), Validators.required])
+      'password': ['', Validators.compose([Validators.required])]
     });
   }
 
   submit(objRegister: Register, isValid: boolean) {
     this.isRegisterSubmitted = true;
     if (isValid) {
-      const loading = this.loadingCtrl.create({
-        content: 'Please Wait',
-        spinner: 'crescent'
-      });
-
-      loading.present();
-
+      this.util.showLoader();
       this.auth.Register(objRegister).subscribe((data: ApiResponse) => {
         this.util.showToast(data.Message);
         if (data.ResponseStatus === ApiResponseStatus.Ok) {
           this.auth.AddUserStorage(data.Data);
           this.isRegisterSubmitted = false;
-          loading.dismiss();
-          this.navCtrl.setRoot(EventListPage, {}, { animate: true, direction: 'forward' });
+          this.navCtrl.setRoot(CompanyListPage, {}, { animate: true, direction: 'forward' });
         } else {
-          loading.dismiss();
+          this.util.disableLoader();
         }
       });
     }

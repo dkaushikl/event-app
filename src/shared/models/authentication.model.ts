@@ -21,8 +21,9 @@ export class ConfirmPassword {
 }
 
 export class ResetPassword {
-  public password: string;
+  public email: string;
   public code: string;
+  public password: string;
 }
 
 export class ChangePassword {

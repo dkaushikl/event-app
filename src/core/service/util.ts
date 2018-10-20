@@ -10,17 +10,23 @@ export class UtilProvider {
   }
 
   public showLoader() {
-    this.loading = this.loadingCtrl.create({
-      spinner: 'dots',
-      content: 'Please wait',
-      duration: 2000
-    });
+    if (!this.loading) {
+      this.loading = this.loadingCtrl.create({
+        spinner: 'dots',
+        content: 'Please wait',
+        duration: 2000,
+        dismissOnPageChange: true
+      });
 
-    this.loading.present();
+      this.loading.present();
+    }
   }
 
   public disableLoader() {
-    this.loading.present();
+    if (this.loading) {
+      this.loading.dismiss();
+      this.loading = null;
+    }
   }
 
   public isNativePlatform() {
@@ -30,8 +36,9 @@ export class UtilProvider {
   public showToast(message: string, duration?: number, position?: string) {
     const toast = this.toastCtrl.create({
       message: message,
-      duration: duration || 3000,
-      position: position || 'bottom'
+      duration: duration || 2000,
+      position: position || 'bottom',
+      dismissOnPageChange: true
     });
     toast.present();
   }

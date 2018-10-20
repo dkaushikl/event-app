@@ -1,14 +1,24 @@
 // Ionic Variables and Theming. For more info, please see:
-// http://ionicframework.com/docs/v2/theming/
-$font-path: "../assets/fonts";
+// http://ionicframework.com/docs/theming/
+
+// Font path is used to include ionicons,
+// roboto, and noto sans fonts
+$font-path: '../assets/fonts';
+
+// The app direction is used to include
+// rtl styles in your app. For more info, please see:
+// http://ionicframework.com/docs/theming/rtl-support/
 $app-direction: ltr;
-@import "ionic.globals";
+
+@import 'ionic.globals';
+
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
 // the Sass variables found in Ionic's source scss files.
 // To view all the possible Ionic variables, see:
-// http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
+
 // Named Color Variables
 // --------------------------------------------------
 // Named colors makes it easy to reuse colors on various components.
@@ -16,80 +26,99 @@ $app-direction: ltr;
 // to match your app's branding. Ionic uses a Sass map of
 // colors so you can add, rename and remove colors as needed.
 // The "primary" color is the only required color in the map.
-//color
-$colors: ( // primary:    #673AB7,
-primary: #3b5998,
-lightprimary: #EDE7F6,
-secondary: #32db64,
-danger: #f53d3d,
-white: #fff,
-dark: #525252,
-lightdark: #b7b7b7,
-light: #f8f8f8,
-extralight: #fff,
-facebook: #3b5998,
-twitter: #429cd6,
-gmail: #df4b37,
-bg : #f1f4f5,
-lightbg : #f8f8f8,
-bordercolor: rgba(183, 183, 183, 0.39),
+
+// http://paletton.com/#uid=3190u0k9SoR2YDs6ctvdDkTh5f+
+
+$primary-0: #c6b689;
+$primary-1: #FFF9E7;
+$primary-2: #EBDFBE;
+$primary-3: #A69460;
+$primary-4: #7F6E3B;
+
+$secondary-0:#5A707F;
+$secondary-1:#ABB5BB;
+$secondary-2:#7B8B96;
+$secondary-3:#405A6A;
+$secondary-4:#294151;
+
+$accent-0: #706187;
+$accent-1: #B9B3C3;
+$accent-2: #8F84A0;
+$accent-3: #574571;
+$accent-4: #3E2D57;
+
+$danger: #fa3e3e;
+$fb-blue: #3b5998;
+$google-red: #db3236;
+
+$colors: (primary: $primary-0,
+primary-1: $primary-1,
+primary-2: $primary-2,
+primary-3: $primary-3,
+primary-4: $primary-4,
+
+secondary: $secondary-0,
+secondary-1: $secondary-1,
+secondary-2: $secondary-2,
+secondary-3: $secondary-3,
+secondary-4: $secondary-4,
+
+accent: $accent-0,
+accent-1: $accent-1,
+accent-2: $accent-2,
+accent-3: $accent-3,
+accent-4: $accent-4,
+
+danger: $danger,
+
+light: $primary-1,
+dark: $primary-4,
+
+fb: $fb-blue,
+google: $google-red,
 );
-//fonsize
-$font: (big: 2.3rem,
-extramedium: 1.9rem,
-largemedium: 1.6rem,
-medium: 1.5rem,
-small: 1.5rem,
-bitsmall: 1.4rem,
-smallbtn: 1.3rem,
-);
-//margin
-$margin: (big: 32px,
-medium: 16px,
-small: 8px,
-bitsmall: 4px,
-);
-//padding
-$padding: (sixteen: 16px,
-eighteen: 8px,
-);
-$height:(btnheight: 4rem,
-roundbtn: 5rem,
-propic: 20rem,
-smallbtn: 3rem,
-large: 7rem,
-);
-$width:(logo: 14rem,
-roundbtn: 5rem,
-propic: 20rem,
-btnwidth: 4rem,
-);
-$radius: (big: 8px,
-medium: 4px,
-small: 2px,
-);
+
+
+
+// App
+// --------------------------------------------------
+$border-color: #c8c7cc;
+$border-style: 1px solid $border-color;
+$section-spacer: 20px;
+$section-bg-color: #FFF;
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
+
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
+
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
+
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can
 // then be future customized. This import comes last
 // so that the above variables are used and Ionic's
 // default are overridden.
-@import "ionic.theme.default";
+
+@import 'ionic.theme.default';
+
+// $list-background-color: $primary-1;
+
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:
-// http://ionicframework.com/docs/v2/ionicons/
-@import "ionic.ionicons";
+// http://ionicframework.com/docs/ionicons/
+
+@import 'ionic.ionicons';
+
 // Fonts
 // --------------------------------------------------
-@import "roboto";
-@import "noto-sans";
+
+@import 'roboto';
+@import 'noto-sans';

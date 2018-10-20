@@ -1,13 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { Nav, Platform, Events, MenuController } from 'ionic-angular';
-import { EventListPage } from '../pages/event-list/event-list.component';
-import { ProfilePage } from '../pages/profile/profile.component';
+import { Events, MenuController, Nav, Platform } from 'ionic-angular';
+import { AuthenticationService } from '../core/service';
 import { CompanyListPage } from '../pages/company-list/company-list.component';
-import { WelcomePage } from '../pages/welcome/welcome.component';
+import { EventListPage } from '../pages/event-list/event-list.component';
 import { HomePage } from '../pages/home/home.component';
-import { AuthenticationService, LocalStorageService } from '../core/service';
+import { ProfilePage } from '../pages/profile/profile.component';
+import { LoginPage } from '../pages/login/login.component';
 
 @Component({
   templateUrl: 'app.component.html'
@@ -19,16 +19,8 @@ export class MyApp {
   pages: Array<{ title: string, icon: string, component: any }>;
 
   constructor(public auth: AuthenticationService, public platform: Platform, public statusBar: StatusBar,
-    public splashScreen: SplashScreen, public events: Events, public menu: MenuController, private storage: LocalStorageService) {
+    public splashScreen: SplashScreen, public events: Events, public menu: MenuController) {
 
-    this.storage.get('email').then((hasEmail) => {
-      if (hasEmail === '' || hasEmail === null) {
-        this.rootPage = WelcomePage;
-      } else {
-        this.rootPage = CompanyListPage;
-      }
-      this.platformReady();
-    });
 
     this.pages = [
       { title: 'Home', icon: 'fa-home', component: HomePage },
@@ -39,12 +31,14 @@ export class MyApp {
     ];
 
     this.auth.hasLoggedIn().then((hasLoggedIn) => {
+      this.platformReady();
+      this.rootPage = hasLoggedIn ? HomePage : LoginPage;
       this.enableMenu(hasLoggedIn === true);
     });
 
-    this.enableMenu(true);
     this.listenToLoginEvents();
   }
+
   async openPage(page) {
     if (page.component) {
       this.nav.setRoot(page.component);
@@ -84,6 +78,6 @@ export class MyApp {
 
   logout() {
     this.auth.Logout();
-    this.nav.setRoot(WelcomePage, {}, { animate: true, direction: 'forward' });
+    this.nav.setRoot(LoginPage);
   }
 }

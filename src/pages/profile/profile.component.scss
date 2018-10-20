@@ -1,0 +1,56 @@
+page-profile {
+  .no-scroll .scroll-content {
+    overflow: hidden;
+  }
+
+  img.user-img {
+    height: 230px !important;
+    margin-top: 16px;
+  }
+
+  .user-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $section-spacer;
+
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      background-color: $section-bg-color;
+      border-top: $border-style;
+
+      .user-class {
+        display: flex;
+        font-size: 1.15em;
+        padding: 15px;
+        border-bottom: $border-style;
+
+        ion-icon {
+          font-weight: bold;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+
+  .actions-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: $section-spacer 0;
+    background: $section-bg-color;
+
+    .action-button {
+      text-align: center;
+      color: black;
+
+      ion-icon {
+        margin-right: 8px;
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Edit Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-bounce has-bouncing="false" no-padding>
+  <ng-container *ngIf="user">
+    <div class="list-container" padding>
+      <ion-list>
+        <ion-list-header>Complete your profile</ion-list-header>
+
+
+        <ion-item>
+          <ion-label stacked>Firstname</ion-label>
+          <ion-input [(ngModel)]="user.Firstname" name="Firstname" type="text" placeholder="Firstname" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Lastname</ion-label>
+          <ion-input [(ngModel)]="user.Lastname" name="Lastname" type="text" placeholder="Lastname" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Email</ion-label>
+          <ion-input [(ngModel)]="user.Email" name="Email" type="text" placeholder="Email" readonly></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Gender</ion-label>
+          <ion-select [(ngModel)]="user.gender" name="gender" placeholder="Gender">
+            <ion-option value="Male">Male</ion-option>
+            <ion-option value="Female">Female</ion-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Birthdate</ion-label>
+          <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="user.birthdate"></ion-datetime>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>State</ion-label>
+          <ion-input [(ngModel)]="user.city" name="city" type="text" placeholder="City"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>State</ion-label>
+          <ion-input [(ngModel)]="user.state" name="state" type="text" placeholder="State"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Country</ion-label>
+          <ion-input [(ngModel)]="user.country" name="country" type="text" placeholder="Country"></ion-input>
+        </ion-item>
+      </ion-list>
+    </div>
+  </ng-container>
+  <footer></footer>
+</ion-content>

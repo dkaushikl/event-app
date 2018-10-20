@@ -1,33 +1,50 @@
 <ion-header>
-  <ion-navbar color="danger">
-    <ion-title>Add Event</ion-title>
-    <ion-buttons right>
-      <button ion-button icon-only (click)="goBack()">
-        <ion-icon name="home"></ion-icon>
-      </button>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">Close</button>
     </ion-buttons>
+    <ion-title>{{ editMode ? 'Update event' : 'Create event' }}</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content padding>
   <form novalidate [formGroup]="eventForm" (ngSubmit)="addEvent(eventForm.value, eventForm.valid)">
-    <ion-item [ngClass]="{'error-border':!eventForm.controls.title.valid && eventForm.controls.title.touched}">
-      <ion-label stacked>Title</ion-label>
-      <ion-input type="text" formControlName="title" [ngClass]="{'error-border':!eventForm.controls['title'].valid}" ></ion-input>
-    </ion-item><br />
-    <div class="error-box" *ngIf="eventForm.controls['title'].hasError('required') && eventForm.controls['title'].touched">*
-      Title is required!</div>
     <ion-item>
-      <ion-label stacked>Description</ion-label>
-      <ion-textarea type="text" formControlName="description"></ion-textarea>
+      <ion-label>Name</ion-label>
+      <ion-input required type="text" formControlName="name" name="name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Startdate</ion-label>
-      <ion-datetime type="text" displayFormat="M/D/YYYY HH:MM" pickerFormat="M/D/YYYY HH:MM" formControlName="startDate"></ion-datetime>
+      <ion-label>Description</ion-label>
+      <ion-textarea required type="text" formControlName="description"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label stacked>Enddate</ion-label>
-      <ion-datetime type="text" displayFormat="M/D/YYYY HH:MM" pickerFormat="M/D/YYYY HH:MM" formControlName="endDate"></ion-datetime>
+      <ion-label>Price</ion-label>
+      <ion-input required type="number" formControlName="price"></ion-input>
     </ion-item>
-    <button type="submit" ion-button block color="primary" [disabled]="!eventForm.valid"> Add Event </button>
+    <ion-item>
+      <ion-label>Vanue</ion-label>
+      <ion-textarea required type="text" formControlName="vanue"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Start date</ion-label>
+      <ion-datetime required displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" formControlName="startDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Start Time</ion-label>
+      <ion-datetime required displayFormat="hh:mm A" pickerFormat="hh:mm A" formControlName="startTime"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>End Date</ion-label>
+      <ion-datetime required displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" formControlName="endDate"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>End Time</ion-label>
+      <ion-datetime required displayFormat="hh:mm A" pickerFormat="hh:mm A" formControlName="endTime"></ion-datetime>
+    </ion-item>
+
+    <button type="submit" class="event-button" ion-button block [disabled]="!eventForm.valid" *ngIf="!editMode" (click)="addEvent(eventForm.value, eventForm.valid)">{{
+      editMode ? 'Update' : 'Create' }}</button>
+
+    <button type="button" ion-button block color="secondary" (click)="cancel()">Cancel</button>
   </form>
 </ion-content>

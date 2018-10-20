@@ -1,10 +1,12 @@
 export class Event {
-  title: string;
-  description: string;
-  startDate: string;
-  endDate: string;
   companyId: string;
-  createdBy: string;
-  createdDate: string;
   id: string;
+  name: string;
+  description: string;
+  price: number;
+  vanue: string;
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
 }

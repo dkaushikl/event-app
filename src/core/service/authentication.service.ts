@@ -22,11 +22,15 @@ export class AuthenticationService {
   }
 
   Forgot(obj: ForgotPassword) {
-    return this.http.post(`${this.apiUrl}/ForgotPassword/${obj.email}`, this.httpService.GetHttpJson());
+    return this.http.post(`${this.apiUrl}/ForgotPassword/`, obj, this.httpService.GetHttpJson());
   }
 
   Reset(obj: ResetPassword) {
-    return this.http.post(`${this.apiUrl}/ResetPassword`, JSON.stringify(obj), this.httpService.GetHttpJson());
+    return this.http.post(`${this.apiUrl}/ResetPassword/`, obj, this.httpService.GetHttpJson());
+  }
+
+  getProfile() {
+    return this.http.get(`${this.apiUrl}/GetProfile/`, this.httpService.GetAuthHttpCommon());
   }
 
   AddUserStorage(data) {
@@ -34,7 +38,7 @@ export class AuthenticationService {
     this.storage.set('currentUser', data);
   }
 
-  RemoveUserStorage(data) {
+  RemoveUserStorage() {
     this.storage.remove('hasLoggedIn');
     this.storage.remove('currentUser');
   }
@@ -45,8 +49,12 @@ export class AuthenticationService {
     });
   }
 
+  currentUser() {
+    return this.storage.get('currentUser');
+  }
+
   Logout() {
-    this.RemoveUserStorage('currentUser');
+    this.RemoveUserStorage();
     this.events.publish('user:logout');
   }
 }

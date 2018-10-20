@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { MenuController, NavController } from 'ionic-angular';
-import { EventService } from '../../core/service';
-import { AddEventPage } from '../add-event/add-event.component';
+import { EventService, UtilProvider } from '../../core/service';
 import { EventDetailPage } from '../event-detail/event-detail.component';
+import { ApiResponse } from '../../shared/models/response.model';
 
 @Component({
   selector: 'page-event-list',
@@ -10,31 +10,28 @@ import { EventDetailPage } from '../event-detail/event-detail.component';
 })
 
 export class EventListPage {
-  eventList: any;
-  queryText: string;
-  constructor(public menuCtrl: MenuController, public navCtrl: NavController,
-    public eventService: EventService) {
-    // this.eventService.getEvents().subscribe(event => {
-    //   this.eventList = event;
-    // });
+  eventList = [];
+
+  constructor(private menuCtrl: MenuController,
+    private navCtrl: NavController,
+    private eventService: EventService,
+    private util: UtilProvider) {
   }
 
   ionViewDidLoad() {
     this.menuCtrl.enable(true, 'myMenu');
+    this.getAllEvent();
   }
 
-  addEvent() {
-    this.navCtrl.push(AddEventPage);
+  getAllEvent() {
+    this.util.showLoader();
+    this.eventService.getAllEvent().subscribe((data: ApiResponse) => {
+      this.eventList = data.Data;
+      this.util.disableLoader();
+    });
   }
 
   goToEventDetail() {
     this.navCtrl.push(EventDetailPage);
-  }
-
-  refreshAll(refresher) {
-    // this.eventService.getEvents().subscribe(event => {
-    //   refresher.complete();
-    //   this.ionViewDidLoad();
-    // });
   }
 }

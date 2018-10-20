@@ -1,40 +1,24 @@
 <ion-header>
-  <ion-navbar color="danger">
+  <ion-navbar color="primary">
     <button menuToggle ion-button icon-only>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title> Company List</ion-title>
+    <ion-title> Company </ion-title>
   </ion-navbar>
-  <ion-toolbar>
-    <ion-searchbar placeholder="Search" [(ngModel)]="queryText" (ionInput)="updateCompany()">
-    </ion-searchbar>
-  </ion-toolbar>
 </ion-header>
+
 <ion-content>
-  <ion-refresher (ionRefresh)="refreshAll($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <ion-list>
-    <ion-item-sliding #slidingItem *ngFor="let company of companyList">
-      <ion-item button class="company-label" (click)="goToCompanyInfo(company)">
-        <ion-label>{{ company?.name }}</ion-label>
-        <p>{{ company?.createdBy }}</p>
-        <p>{{ userId }}</p>
-      </ion-item>
-      <ion-item-options *ngIf="company.createdBy === userId" side="right">
-        <button ion-button color="primary" (click)="editCompany(slidingItem, company)">
-          <ion-icon name="create"></ion-icon>
-          Edit
-        </button>
-        <button ion-button expandable color="danger" (click)="deleteCompany(slidingItem, company)">
-          <ion-icon name="trash"></ion-icon>
-          Delete
-        </button>
-      </ion-item-options>
-    </ion-item-sliding>
+  <ion-list [virtualScroll]="companyList">
+    <ion-item button class="company-label" *virtualItem="let company">
+      <ion-label text-left>{{ company?.name }}</ion-label>
+      <ion-label text-center (click)="goToCompanyInfo(company)">
+        <ion-icon name="arrow-dropright-circle"></ion-icon>
+      </ion-label>
+    </ion-item>
   </ion-list>
+
   <ion-fab right bottom>
-    <button ion-fab color="danger" (click)="addCompany()">
+    <button ion-fab color="primary" (click)="addCompany()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>

@@ -1,8 +1,3 @@
-#myMenu .toolbar .toolbar-background,
-.danger {
-  background-color: map_get($colors, danger) !important;
-}
-
 .font-awesome {
   font-size: 20px;
   color: map_get($colors, danger) !important;
@@ -17,6 +12,67 @@ body {
   user-select: text;
 }
 
-.toolbar-title-md {
-  color: map_get($colors, white) !important;
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    width: 100% / (12 / $i);
+  }
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.fixed-content,
+.scroll-content {
+  background: $primary-1;
+}
+
+.scroll-content {
+  @media screen and (min-width: '720px') {
+    width: 720px;
+    min-width: 720px;
+    max-width: 720px;
+    margin: auto;
+  }
+}
+
+ion-slides {
+  .slide-zoom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .swiper-pagination-bullet {
+    background: white;
+    opacity: 0.5;
+  }
+
+  .swiper-pagination-bullet-active {
+    opacity: 1;
+    background: white;
+  }
+}
+
+ion-modal {
+  .modal-wrapper {
+    position: absolute;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 auto;
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+
+    @media screen and (min-width: '720px') {
+      width: 720px !important;
+    }
+  }
+}
+
+ion-list {
+  margin: 0 !important;
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { LocalStorageService } from './local-storage.service';
+import { AuthenticationService } from './authentication.service';
 
 @Injectable()
 export class HttpService {
@@ -10,6 +11,9 @@ export class HttpService {
   }
 
   GetAuthHttpCommon() {
+    if (this.token === undefined) {
+      this.getToken();
+    }
     return {
       headers: new HttpHeaders().set('Authorization', 'Bearer ' + this.token).set('Content-Type', 'application/json')
     };

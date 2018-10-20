@@ -15,17 +15,18 @@ import { EventListPage } from '../pages/event-list/event-list.component';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password.component';
 import { HomePage } from '../pages/home/home.component';
 import { ProfilePage } from '../pages/profile/profile.component';
-import { WelcomePage } from '../pages/welcome/welcome.component';
 import { LoginPage } from './../pages/login/login.component';
 import { RegisterPage } from './../pages/register/register.component';
 import { CompanyInfoPage } from '../pages/company-info/company-info.component';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password.component';
+import { EditProfilePage } from '../pages/edit-profile/edit-profile.component';
 import { MyApp } from './app.component';
 
 import { SharedModule } from '../shared';
 import { CoreModule } from '../core';
 
 const page = [EventListPage, EventDetailPage, AddEventPage, LoginPage, RegisterPage, AddCompanyPage, CompanyListPage,
-  CompanyMemberPage, ProfilePage, ForgotPasswordPage, WelcomePage, HomePage, CompanyInfoPage];
+  CompanyMemberPage, ProfilePage, ForgotPasswordPage, HomePage, CompanyInfoPage, ResetPasswordPage, EditProfilePage];
 
 @NgModule({
   declarations: [

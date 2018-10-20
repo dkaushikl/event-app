@@ -1,35 +1,35 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { WelcomePage } from '../welcome/welcome.component';
-import { AuthenticationService } from '../../core/service';
+import { AuthenticationService, UtilProvider } from '../../core/service';
+import { ApiResponse } from '../../shared/models/response.model';
+import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
+import { EditProfilePage } from '../edit-profile/edit-profile.component';
 
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.component.html',
 })
 export class ProfilePage {
-  email: string;
-  fullName: string;
-
-  constructor(public auth: AuthenticationService, public navCtrl: NavController, public navParams: NavParams) {
-    // this.getFullName();
-    // this.getEmail();
+  user: any;
+  isEdit = false;
+  constructor(public auth: AuthenticationService, public navCtrl: NavController, public navParams: NavParams,
+    private util: UtilProvider) {
+    this.getProfile();
   }
 
-  // getFullName() {
-  //   this.auth.getFullname().then((fullname) => {
-  //     this.fullName = fullname;
-  //   });
-  // }
+  getProfile() {
+    this.util.showLoader();
+    this.auth.getProfile().subscribe((data: ApiResponse) => {
+      this.util.disableLoader();
+      if (data.ResponseStatus == ApiResponseStatus.Ok) {
+        this.user = data.Data;
+      } else {
+        this.util.showToast(data.Message);
+      }
+    });
+  }
 
-  // getEmail() {
-  //   this.auth.getEmail().then((email) => {
-  //     this.email = email;
-  //   });
-  // }
-
-  logOut() {
-    this.auth.Logout();
-    this.navCtrl.setRoot(WelcomePage, {}, { animate: true, direction: 'forward' });
+  navigateTo() {
+    this.navCtrl.push(EditProfilePage, this.user);
   }
 }

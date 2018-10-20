@@ -1,7 +1,4 @@
 export interface CompanyMember {
-  key: string;
+  companyId: string;
   email: string;
-  userId: string;
-  assignBy: string;
-  createdDate: string;
 }

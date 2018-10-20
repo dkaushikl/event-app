@@ -1,31 +1,27 @@
 import { Injectable } from '@angular/core';
+import { Event } from '../../shared/models';
+import { HttpClient } from '@angular/common/http';
+import { HttpService } from './http.service';
 
 @Injectable()
 export class EventService {
-  eventList: any;
+  private apiUrl = 'http://localhost:50554/api/Event';
+  constructor(private http: HttpClient, public httpService: HttpService) { }
 
-  getEvents() {
-    // return this.database.list('/event', ref => ref.orderByChild('createdDate')).valueChanges();
+  getAllEvent(companyId?: number) {
+    return this.http.get(`${this.apiUrl}/GetAllEvent/${companyId}`, this.httpService.GetAuthHttpCommon());
   }
 
   addEvent(event: Event) {
-    // this.database.list('/event').push(event);
-
-    // const yourRef = this.database.list('event');
-    // let userId = "UID",
-    //   userInfos = { data: "your user datas" };
-
-    // yourRef.update(userId, userInfos);
-
-    // const users = this.database.object('/users');
-    // users.update({ [key]: value });
+    return this.http.post(`${this.apiUrl}/InsertEvent`, event, this.httpService.GetAuthHttpCommon());
   }
 
-  editEvent(key: string, event: Event) {
-    // this.database.list('/event').update(key, event);
+  updateEvent(event: Event) {
+    return this.http.post(`${this.apiUrl}/UpdateEvent`, event, this.httpService.GetAuthHttpCommon());
   }
 
-  deleteEvent(key: string) {
-    // this.database.list('/event').remove(key);
+  deleteEvent(id: string) {
+    const obj = { id: id };
+    return this.http.post(`${this.apiUrl}/DeleteEvent`, obj, this.httpService.GetAuthHttpCommon());
   }
 }

@@ -1,20 +1,110 @@
+// page-login {
+//   .login {
+//     background-image: url('../../assets/imgs/background.jpg');
+//     padding-top: 50px;
+//     overflow: hidden !important;
+//   }
+
+//   .logo {
+//     margin: 25px 0 0 20px;
+//   }
+
+//   .login .card,
+//   .login.card-md {
+//     margin: 10px
+//   }
+
+//   .scroll-content {
+//     padding-bottom: 0 !important;
+//   }
+
+//   .danger {
+//     color: white;
+//   }
+// }
+
+
 page-login {
-  .login {
-    background-image: url('../../assets/imgs/background.jpg');
-    padding-top: 50px;
-    overflow: hidden !important;
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100%;
+    width: 100vw;
+    position: relative;
+    background-color: white;
+
+    .inner-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+
+      @media screen and (min-width: '720px') {
+        width: 720px;
+        min-width: 720px;
+        max-width: 720px;
+        margin: auto;
+      }
+    }
   }
 
   .logo {
-    margin: 25px 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    width: 100%;
+
+    img {
+      width: 50%;
+    }
   }
 
-  .login .card,
-  .login.card-md {
-    margin: 10px
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+
+    ion-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      color: $secondary-0;
+    }
+
+    .action-buttons {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
-  .scroll-content {
-    padding-bottom: 0 !important;
+  .third-party-buttons {
+    p {
+      width: 100%;
+    }
+  }
+
+  .action-buttons-divider {
+    p {
+      width: 100%;
+      text-align: center;
+      color: #adadad;
+    }
+  }
+
+  .forgot-password {
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+
+    a {
+      color: #adadad !important;
+    }
   }
 }

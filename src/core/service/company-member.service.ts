@@ -1,50 +1,32 @@
-// import { Observable } from 'rxjs';
-// import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CompanyMember } from '../../shared/models';
+import { HttpClient } from '@angular/common/http';
+import { HttpService } from './http.service';
 
 @Injectable()
 export class CompanyMemberService {
-  // private companyMemberRef: AngularFireList<CompanyMember>;
-  // private companyMembers: Observable<CompanyMember[]>;
 
-  getCompanyMember() {
-    // this.companyMemberRef = this.database.list('company_member');
-    // this.companyMembers = this.companyMemberRef.snapshotChanges().pipe(
-    //   map(changes =>
-    //     changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-    //   )
-    // );
-    // return this.companyMembers;z
+  private apiUrl = 'http://localhost:50554/api/CompanyMember';
+  constructor(private http: HttpClient, public httpService: HttpService) { }
+
+  getCompanyMember(companyId: number) {
+    return this.http.get(`${this.apiUrl}/GetAllCompanyMember/${companyId}`, this.httpService.GetAuthHttpCommon());
   }
 
-  checkEmailExist(companyMember: CompanyMember) {
-    // this.database.list<CompanyMember>('company_member').push(companyMember);
+  getMaximumPage() {
+    return this.http.get(`${this.apiUrl}/GetMaximumPage`, this.httpService.GetAuthHttpCommon());
   }
 
   addCompanyMember(companyMember: CompanyMember) {
-
-    // this.database.database.ref().child('/company_member').push(companyMember);
-
-    // this.db.object(`members/${userid}`).valueChanges()
-
-    // this.database.database.ref().set(companyMember.key, this.database.object(`members/${companyMember.userId}.valueChanges()`));
-
-    // console.log(companyMember);
-
-    // const data = this.database.object(`company_member/${companyMember.key}`);
-    // console.log(data);
-
-
-
-    // this.database.list<CompanyMember>('company_member').push(companyMember);
+    return this.http.post(`${this.apiUrl}/InsertCompanyMember`, companyMember, this.httpService.GetAuthHttpCommon());
   }
 
-  updateCompanyMember(id: string, companyMember: CompanyMember) {
-    // return this.database.list<CompanyMember>('company_member').update(id, companyMember);
+  updateCompanyMember(companyMember: CompanyMember) {
+    return this.http.post(`${this.apiUrl}/UpdateCompanyMember`, companyMember, this.httpService.GetAuthHttpCommon());
   }
 
   deleteCompanyMember(id: string) {
-    // return this.database.list<CompanyMember>('company_member').remove(id);
+    const obj = { id: id };
+    return this.http.post(`${this.apiUrl}/DeleteCompanyMember`, obj, this.httpService.GetAuthHttpCommon());
   }
 }

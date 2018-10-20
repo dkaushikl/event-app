@@ -1,55 +1,34 @@
-<ion-content>
-  <ion-header>
-    <ion-navbar color="danger">
-      <ion-title>Login</ion-title>
-    </ion-navbar>
-  </ion-header>
-
-  <ion-content class="login">
-    <div text-center>
-      <img class="logo" width="120" height="120" src="../../assets/imgs/logo-icon.png" alt="Logo">
+<main>
+  <div class="inner-container">
+    <div class="logo">
+      <img src="../../assets/imgs/logo.png" alt="Event manager Logo">
     </div>
-    <ion-card>
-      <ion-card-header text-center [style.background-color]="'#c9c5cc'" color="light">Sign In</ion-card-header>
+    <div class="login-form">
       <form novalidate [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value, loginForm.valid)">
-        <ion-list no-lines>
-          <ion-item>
-            <ion-label floating>Email Address</ion-label>
-            <ion-input type="text" formControlName="email"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label floating>Password</ion-label>
-            <ion-input type="password" formControlName="password"></ion-input>
-          </ion-item>
-          <div padding>
-            <button type="submit" ion-button block color="primary">Login</button>
-          </div>
-        </ion-list>
+        <ion-item no-padding>
+          <ion-label>
+            <ion-icon name="md-mail"></ion-icon>
+          </ion-label>
+          <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
+        </ion-item>
+        <ion-item no-padding>
+          <ion-label>
+            <ion-icon name="md-lock"></ion-icon>
+          </ion-label>
+          <ion-input type="password" min="6" formControlName="password" placeholder="Password"></ion-input>
+        </ion-item>
+
+        <div class="action-buttons">
+          <button type="submit" color="primary" ion-button round full>Login</button>
+          <button type="button" color="secondary" ion-button round full (click)="goToSignup()">Sign up</button>
+        </div>
       </form>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-6>
-            <button ion-button outline (click)="goToForgotPassword()" float-left>Forgot Password?
-            </button>
-          </ion-col>
-          <ion-col col-6>
-            <button ion-button outline (click)="goToSignup()" float-right>Sign up!</button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-card>
-    <div class="content-wrapper">
-      <div padding>
-        <button ion-button block icon-start color="facebook">
-          <ion-icon name="logo-facebook"></ion-icon>
-          Login With Facebook
-        </button>
+      <div class="action-buttons-divider">
+        <p>or</p>
       </div>
-      <div padding>
-        <button ion-button block icon-start color="gmail">
-          <ion-icon name="logo-googleplus"></ion-icon>
-          Login With Google+
-        </button>
+      <div class="forgot-password">
+        <a (click)="goToForgotPassword()">Forgot Password</a>
       </div>
     </div>
-  </ion-content>
+  </div>
+</main>

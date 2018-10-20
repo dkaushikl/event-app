@@ -1,59 +1,46 @@
 <ion-header>
-  <ion-navbar color="danger">
-    <ion-buttons left>
-      <button ion-button icon-only (click)="cancel()" class="my-style-for-modal">
-        <ion-icon name="arrow-back"></ion-icon>
-      </button>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button (click)="cancel()">Close</button>
     </ion-buttons>
-    <ion-title>{{ editMode ? 'Edit company' : 'Add new company' }}</ion-title>
+    <ion-title>{{ editMode ? 'Update company' : 'Create company' }}</ion-title>
   </ion-navbar>
 </ion-header>
-<ion-content>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        Fill the following fields:
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label floating>Company name</ion-label>
-          {{ company.name}}
-          <ion-input type="text" [(ngModel)]="company.name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Email</ion-label>
-          <ion-input type="text" [(ngModel)]="company.email"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Mobile No</ion-label>
-          <ion-input type="text" [(ngModel)]="company.mobileno"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Address</ion-label>
-          <ion-textarea type="text" [(ngModel)]="company.address"></ion-textarea>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>City</ion-label>
-          <ion-input type="text" [(ngModel)]="company.city"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>State</ion-label>
-          <ion-input type="text" [(ngModel)]="company.state"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label floating>Country</ion-label>
-          <ion-input type="text" [(ngModel)]="company.country"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+
+<ion-content padding>
+  <form novalidate [formGroup]="companyForm" (ngSubmit)="addNewCompany(companyForm.value, companyForm.valid)">
+    <ion-item>
+      <ion-label>Name</ion-label>
+      <ion-input required type="text" formControlName="name" [(ngModel)]="company.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input required type="email" formControlName="email" [(ngModel)]="company.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Mobile No</ion-label>
+      <ion-input required type="tel" formControlName="mobileno" [(ngModel)]="company.mobileno"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Address</ion-label>
+      <ion-textarea type="text" formControlName="address" [(ngModel)]="company.address"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>City</ion-label>
+      <ion-input required type="text" formControlName="city" [(ngModel)]="company.city"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>State</ion-label>
+      <ion-input required type="text" formControlName="state" [(ngModel)]="company.state"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Country</ion-label>
+      <ion-input required type="text" formControlName="country" [(ngModel)]="company.country"></ion-input>
+    </ion-item>
+
+    <button type="submit" class="company-button" ion-button block [disabled]="!companyForm.valid" *ngIf="!editMode"
+      (click)="addNewCompany(companyForm.value, companyForm.valid)">{{ editMode ? 'Update' : 'Create' }}</button>
+
+    <button type="button" ion-button block color="secondary" (click)="cancel()">Cancel</button>
+  </form>
 </ion-content>
-<ion-footer class="stick-footer">
-  <ion-toolbar>
-    <button ion-button full color="primary" *ngIf="!editMode" (click)="addNewCompany()">Create</button>
-    <button ion-button full color="primary" *ngIf="editMode" (click)="editCompany()">Modify</button>
-    <button type="button" ion-button full color="secondary" (click)="cancel()">Cancel</button>
-  </ion-toolbar>
-</ion-footer>

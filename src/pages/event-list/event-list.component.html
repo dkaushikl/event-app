@@ -1,33 +1,20 @@
 <ion-header>
-  <ion-navbar color="danger">
-    <button menuToggle ion-button icon-only>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title> Event List</ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addEvent()">
-        <ion-icon name="add"></ion-icon>
-      </button>
-    </ion-buttons>
+    <ion-title> Event </ion-title>
   </ion-navbar>
-  <ion-toolbar placeholder="Search" [(ngModel)]="queryText">
-    <ion-searchbar></ion-searchbar>
-  </ion-toolbar>
 </ion-header>
 <ion-content>
-
-  <ion-refresher (ionRefresh)="refreshAll($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-  <div *ngIf="eventList != undefined && eventList != null">
-    <ion-card *ngFor="let event of eventList">
-      <ion-item text-capitalize (click)="goToEventDetail()">
-        <h2>{{ event.title }}</h2>
-      </ion-item>
-      <ion-card-content>
-        <p>{{ event.description }}</p>
-        <h3>{{ event.startDate }}, {{ event.endDate }}</h3>
-      </ion-card-content>
-    </ion-card>
-  </div>
+  <ion-card *ngFor="let event of eventList">
+    <ion-card-content>
+      <ion-card-title>
+        <span text-left text-capitalize> {{ event.Name }} </span>
+        <span text-right style="font-size: 14px;"> {{ event.StartTime }} -
+          {{ event.EndTime }} </span>
+      </ion-card-title>
+      <p> {{ event.Description }} </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
