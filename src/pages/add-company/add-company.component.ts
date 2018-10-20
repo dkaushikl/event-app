@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Validator } from '../../shared/common/common.validator';
 
 @Component({
-  selector: "page-add-company",
+  selector: 'page-add-company',
   templateUrl: 'add-company.component.html'
 })
 export class AddCompanyPage {

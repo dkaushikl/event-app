@@ -1,5 +1,5 @@
 
-import { FormControl, AbstractControl } from "@angular/forms";
+import { FormControl, AbstractControl } from '@angular/forms';
 
 export interface IValidationResult {
   [key: string]: boolean;
@@ -12,7 +12,7 @@ export class Validator {
     if (regExp.test(controls.value)) {
       return null;
     } else {
-      return { 'validateEmail': true }
+      return { 'validateEmail': true };
     }
   }
 }
