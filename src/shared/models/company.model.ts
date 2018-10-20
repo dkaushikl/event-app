@@ -1,4 +1,4 @@
-import { DateTime } from "ionic-angular/umd";
+import { DateTime } from 'ionic-angular/umd';
 
 export class Company {
   id: string;
