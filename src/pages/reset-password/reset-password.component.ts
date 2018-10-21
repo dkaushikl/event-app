@@ -15,7 +15,8 @@ import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
 export class ResetPasswordPage {
   resetPasswordForm: FormGroup;
 
-  constructor(private navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private auth: AuthenticationService, private util: UtilProvider) {
+  constructor(private navCtrl: NavController, public navParams: NavParams,
+    private fb: FormBuilder, private auth: AuthenticationService, private util: UtilProvider) {
     this.resetPasswordForm = this.fb.group({
       'email': ['', Validators.compose([Validators.required, Validator.validateEmail])],
       'code': ['', Validators.compose([Validators.required])],

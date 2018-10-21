@@ -4,7 +4,6 @@ import { LoadingController, MenuController, NavController, NavParams } from 'ion
 import { RegisterPage } from '../register/register.component';
 import { UtilProvider, AuthenticationService } from '../../core/service';
 import { Login } from '../../shared/models/authentication.model';
-import { ApiResponse } from '../../shared/models/response.model';
 import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
 import { HomePage } from '../home/home.component';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password.component';
@@ -35,14 +34,12 @@ export class LoginPage {
     this.isLoginSubmitted = true;
     if (isValid) {
       this.util.showLoader();
-      this.auth.Login(objLogin).subscribe((data: ApiResponse) => {
+      this.auth.Login(objLogin).subscribe((data: any) => {
         this.util.showToast(data.Message);
+        this.util.disableLoader();
         if (data.ResponseStatus === ApiResponseStatus.Ok) {
-          this.auth.AddUserStorage(data.Data);
           this.isLoginSubmitted = false;
           this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' });
-        } else {
-          this.util.disableLoader();
         }
       });
     }

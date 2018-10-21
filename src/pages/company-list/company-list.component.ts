@@ -43,8 +43,8 @@ export class CompanyListPage {
     modal.onDidDismiss((data: Company) => {
       if (data) {
         this.util.showLoader();
-        this.companyService.addCompany(data).subscribe((data: ApiResponse) => {
-          this.util.showToast(data.Message);
+        this.companyService.addCompany(data).subscribe((result: ApiResponse) => {
+          this.util.showToast(result.Message);
         });
       }
     });

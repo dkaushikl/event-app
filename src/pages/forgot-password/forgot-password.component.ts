@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { LoadingController, NavController, NavParams } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from '../login/login.component';
 import { AuthenticationService, UtilProvider } from '../../core/service';
 import { ResetPasswordPage } from '../reset-password/reset-password.component';
@@ -14,7 +14,8 @@ import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
 })
 export class ForgotPasswordPage {
   forgotPasswordForm: FormGroup;
-  constructor(private navCtrl: NavController, public navParams: NavParams, private fb: FormBuilder, private auth: AuthenticationService, private util: UtilProvider) {
+  constructor(private navCtrl: NavController, public navParams: NavParams,
+    private fb: FormBuilder, private auth: AuthenticationService, private util: UtilProvider) {
     this.forgotPasswordForm = this.fb.group({
       'email': ['', Validators.compose([Validators.required, Validator.validateEmail])],
     });

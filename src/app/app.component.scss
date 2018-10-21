@@ -12,20 +12,10 @@ body {
   user-select: text;
 }
 
-@for $i from 1 through 12 {
-  .col-#{$i} {
-    width: 100% / (12 / $i);
-  }
-}
 
 html,
 body {
   overflow-x: hidden;
-}
-
-.fixed-content,
-.scroll-content {
-  background: $primary-1;
 }
 
 .scroll-content {
@@ -34,25 +24,6 @@ body {
     min-width: 720px;
     max-width: 720px;
     margin: auto;
-  }
-}
-
-ion-slides {
-  .slide-zoom {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-
-  .swiper-pagination-bullet {
-    background: white;
-    opacity: 0.5;
-  }
-
-  .swiper-pagination-bullet-active {
-    opacity: 1;
-    background: white;
   }
 }
 
@@ -75,4 +46,8 @@ ion-modal {
 
 ion-list {
   margin: 0 !important;
+}
+
+button.item.active ion-icon {
+  font-weight: bold;
 }

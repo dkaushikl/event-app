@@ -21,7 +21,7 @@ export class ProfilePage {
     this.util.showLoader();
     this.auth.getProfile().subscribe((data: ApiResponse) => {
       this.util.disableLoader();
-      if (data.ResponseStatus == ApiResponseStatus.Ok) {
+      if (data.ResponseStatus === ApiResponseStatus.Ok) {
         this.user = data.Data;
       } else {
         this.util.showToast(data.Message);

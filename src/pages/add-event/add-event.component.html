@@ -1,9 +1,11 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-buttons start>
-      <button ion-button (click)="cancel()">Close</button>
+    <ion-buttons left>
+      <button ion-button icon-only (click)="cancel()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
     </ion-buttons>
-    <ion-title>{{ editMode ? 'Update event' : 'Create event' }}</ion-title>
+    <ion-title>{{ editMode ? 'Update Event' : 'Create Event' }}</ion-title>
   </ion-navbar>
 </ion-header>
 

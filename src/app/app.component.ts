@@ -3,11 +3,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { AuthenticationService } from '../core/service';
+
 import { CompanyListPage } from '../pages/company-list/company-list.component';
 import { EventListPage } from '../pages/event-list/event-list.component';
 import { HomePage } from '../pages/home/home.component';
 import { ProfilePage } from '../pages/profile/profile.component';
 import { LoginPage } from '../pages/login/login.component';
+import { ChangePasswordPage } from '../pages/change-password/change-password.component';
+import { PrivacyPage } from '../pages/privacy/privacy.component';
+import { AboutPage } from '../pages/about/about.component';
 
 @Component({
   templateUrl: 'app.component.html'
@@ -22,11 +26,16 @@ export class MyApp {
     public splashScreen: SplashScreen, public events: Events, public menu: MenuController) {
 
     this.pages = [
-      { title: 'Home', icon: 'fa-home', component: HomePage },
-      { title: 'Event', icon: 'fa-calendar', component: EventListPage },
-      { title: 'Company', icon: 'fa-building-o', component: CompanyListPage },
-      { title: 'Profile', icon: 'fa-user', component: ProfilePage },
-      { title: 'Logout', icon: 'fa-sign-out', component: null },
+      { title: 'Home', icon: 'globe', component: HomePage },
+      { title: 'Event', icon: 'calendar', component: EventListPage },
+      { title: 'Company', icon: 'contacts', component: CompanyListPage },
+
+      { title: 'Profile', icon: 'person', component: ProfilePage },
+      { title: 'Change Password', icon: 'lock', component: ChangePasswordPage },
+
+      { title: 'About', icon: 'information-circle', component: AboutPage },
+      { title: 'Privacy', icon: 'contact', component: PrivacyPage },
+      { title: 'Logout', icon: 'log-out', component: null },
     ];
 
     this.auth.hasLoggedIn().then((hasLoggedIn) => {

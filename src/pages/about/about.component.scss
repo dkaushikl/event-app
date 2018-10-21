@@ -1,0 +1,11 @@
+page-about {
+
+  .content {
+    background-color: color($colors, primary);
+  }
+
+  img {
+    max-width: 100% !important; //any size
+    max-height: 50% !important; //any size
+  }
+}

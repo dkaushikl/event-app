@@ -4,6 +4,9 @@ import { HttpService } from './http.service';
 import { Register, Login, ForgotPassword, ResetPassword } from '../../shared/models/authentication.model';
 import { Events } from 'ionic-angular';
 import { LocalStorageService } from './local-storage.service';
+import { map } from 'rxjs/operators';
+import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
+import { ApiResponse } from '../../shared/models/response.model';
 
 @Injectable()
 export class AuthenticationService {
@@ -18,7 +21,11 @@ export class AuthenticationService {
 
   Login(obj: Login) {
     this.events.publish('user:login');
-    return this.http.post(`${this.apiUrl}/Login`, obj, this.httpService.GetHttpJson());
+    return this.http.post(`${this.apiUrl}/Login`, obj, this.httpService.GetHttpJson())
+      .pipe(map((response: any) => {
+        this.AddUserStorage(response);
+        return response;
+      }));
   }
 
   Forgot(obj: ForgotPassword) {
@@ -29,6 +36,10 @@ export class AuthenticationService {
     return this.http.post(`${this.apiUrl}/ResetPassword/`, obj, this.httpService.GetHttpJson());
   }
 
+  changePassword(obj: any) {
+    return this.http.post(`${this.apiUrl}/ChangePassword/`, obj, this.httpService.GetAuthHttpCommon());
+  }
+
   getProfile() {
     return this.http.get(`${this.apiUrl}/GetProfile/`, this.httpService.GetAuthHttpCommon());
   }
@@ -37,9 +48,12 @@ export class AuthenticationService {
     return this.http.post(`${this.apiUrl}/EditProfile`, obj, this.httpService.GetAuthHttpCommon());
   }
 
-  AddUserStorage(data) {
-    this.storage.set('hasLoggedIn', true);
-    this.storage.set('currentUser', data);
+  AddUserStorage(data: ApiResponse) {
+    if (data.ResponseStatus === ApiResponseStatus.Ok) {
+      this.storage.set('hasLoggedIn', true);
+      this.storage.set('currentUser', data.Data);
+      this.httpService.token = data.Data.token;
+    }
   }
 
   RemoveUserStorage() {

@@ -25,7 +25,7 @@ export class EventListPage {
 
   getAllEvent() {
     this.util.showLoader();
-    this.eventService.getAllEvent().subscribe((data: ApiResponse) => {
+    this.eventService.getAllEvent(null).subscribe((data: ApiResponse) => {
       this.eventList = data.Data;
       this.util.disableLoader();
     });

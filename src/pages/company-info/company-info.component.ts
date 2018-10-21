@@ -25,18 +25,17 @@ export class CompanyInfoPage {
   }
 
   onSegmentChange() {
-    if (this.companySwitch.toLowerCase() == 'member') {
+    if (this.companySwitch.toLowerCase() === 'member') {
       this.getCompanyMember();
     }
   }
 
   getCompanyMember() {
-    if (this.companyMemberList != undefined && this.companyMemberList.length < 0) {
+    if (this.companyMemberList !== undefined && this.companyMemberList.length < 0) {
       this.util.showLoader();
     }
     this.companyMemberService.getCompanyMember(this.company.id).subscribe((data: ApiResponse) => {
-      console.log(data);
-      if (this.companyMemberList != undefined && this.companyMemberList.length > 0) {
+      if (this.companyMemberList !== undefined && this.companyMemberList.length > 0) {
         this.util.disableLoader();
       }
       this.companyMemberList = data.Data;
@@ -50,13 +49,12 @@ export class CompanyInfoPage {
   addEvent(fab: FabContainer) {
     const modal = this.modalCtrl.create(AddEventPage, { company: this.company });
     modal.onDidDismiss((data: Event) => {
-      console.log(data);
       fab.close();
       if (data) {
         this.util.showLoader();
-        this.eventService.addEvent(data).subscribe((data: ApiResponse) => {
+        this.eventService.addEvent(data).subscribe((result: ApiResponse) => {
           this.util.disableLoader();
-          this.util.showToast(data.Message);
+          this.util.showToast(result.Message);
         });
       }
     });
@@ -69,9 +67,9 @@ export class CompanyInfoPage {
     modal.onDidDismiss((data: any) => {
       if (data) {
         this.util.showLoader();
-        this.companyMemberService.addCompanyMember(data).subscribe((data: ApiResponse) => {
+        this.companyMemberService.addCompanyMember(data).subscribe((result: ApiResponse) => {
           this.util.disableLoader();
-          this.util.showToast(data.Message);
+          this.util.showToast(result.Message);
           this.getCompanyMember();
         });
       }

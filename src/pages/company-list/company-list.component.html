@@ -9,11 +9,8 @@
 
 <ion-content>
   <ion-list [virtualScroll]="companyList">
-    <ion-item button class="company-label" *virtualItem="let company">
+    <ion-item button class="company-label" *virtualItem="let company" (click)="goToCompanyInfo(company)">
       <ion-label text-left>{{ company?.name }}</ion-label>
-      <ion-label text-center (click)="goToCompanyInfo(company)">
-        <ion-icon name="arrow-dropright-circle"></ion-icon>
-      </ion-label>
     </ion-item>
   </ion-list>
 

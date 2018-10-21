@@ -8,8 +8,6 @@
   <ng-container>
     <div class="list-container" padding *ngIf="user">
       <ion-list>
-        <ion-list-header>Complete your profile</ion-list-header>
-
         <ion-item>
           <ion-label stacked>Firstname</ion-label>
           <ion-input [(ngModel)]="user.firstname" name="firstname" type="text" placeholder="Firstname" required

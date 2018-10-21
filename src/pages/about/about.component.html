@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button menuToggle ion-button icon-only>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title> About </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <img src="./assets/imgs/logo.png" style="display:block; margin:auto;">
+  <br>
+  <div text-center>
+    <ion-title color="light">Version: 1.00</ion-title>
+    <br>
+    <button ion-button round large (click)="openPrivacyPolicy()">Privacy Policy</button>
+    <br>
+    <ion-title color="light">Questions/Suggestions?</ion-title>
+    <ion-note ion-text color="light">eventmanagement@gmail.com</ion-note>
+  </div>
+</ion-content>
