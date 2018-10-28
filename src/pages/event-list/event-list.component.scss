@@ -1,0 +1,37 @@
+page-event-list {
+   
+    .card-md, .card-ios{
+        background: rgba(255, 255, 255, 0.9);
+    
+    .card-content-md, .card-content-ios{
+        padding: 5px 13px 13px 13px;
+        
+
+        p{
+            color: #676767;
+            font-size:13px;
+            padding-top:10px;
+            border-top: 1px dashed #a2a2a2;
+        }
+        .card-title-md, .card-title-ios{
+            margin:0;
+            line-height:1;
+        }
+    }
+    .event-name{
+        width: 100%;
+        display: block;
+        color: #a9188f;
+        font-size: 16px;
+    }
+    .event-time{
+        color: #0e6b90;
+        font-size:12px;
+    }
+}
+.card-ios{
+    .event-name{
+        margin-bottom: 3px;
+    }
+}
+}

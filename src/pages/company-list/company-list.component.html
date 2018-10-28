@@ -10,7 +10,8 @@
 <ion-content>
   <ion-list [virtualScroll]="companyList">
     <ion-item button class="company-label" *virtualItem="let company" (click)="goToCompanyInfo(company)">
-      <ion-label text-left>{{ company?.name }}</ion-label>
+        <span class="company-start-letter">K</span>
+      <!-- <ion-label text-left>{{ company?.name }}</ion-label> -->
     </ion-item>
   </ion-list>
 

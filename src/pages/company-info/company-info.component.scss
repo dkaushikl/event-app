@@ -2,36 +2,53 @@ page-company-info {
   .item.item-block {
     margin-bottom: 5px;
   }
+  .item-ios, .item-md{
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  .card-md, .card-ios{
+    background: rgba(255, 255, 255, 0.9);
+  }
+  .card-header-md,  .card-header-ios{
+    background: #65ca3b;
+    color: #fff;
+    text-align: center
+  }
+  .card-header-md + .card-content-md, .card-header-ios + .card-content-ios{
+    padding-top:15px;
+  }
 
   .item.item-block.teal {
-    border-left: 2px solid #3BC7C4;
+    border-left: 4px solid #3BC7C4;
   }
 
   .item.item-block.blue {
-    border-left: 2px solid #488aff;
+    border-left: 4px solid #488aff;
   }
 
   .item.item-block.red {
-    border-left: 2px solid #FE4C52;
+    border-left: 4px solid #FE4C52;
   }
 
   .item.item-block.yellow {
-    border-left: 2px solid #FED035;
+    border-left: 4px solid #FED035;
   }
 
   .item.item-block.orange {
-    border-left: 2px solid #FD8B2D;
+    border-left: 4px solid #FD8B2D;
   }
 
   .item.item-block.lightred {
-    border-left: 2px solid #AC282B;
+    border-left: 4px solid #AC282B;
   }
 
   .item.item-block.green {
-    border-left: 2px solid #008000;
+    border-left: 4px solid #008000;
   }
 
   .item.item-block.indigo {
-    border-left: 2px solid indigo;
+    border-left: 4px solid indigo;
+  }
+  .list-ios ion-item-sliding, .list-md ion-item-sliding{
+    background-color: transparent;
   }
 }

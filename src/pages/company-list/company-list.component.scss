@@ -1,5 +1,32 @@
 page-company-list {
+  
   .company-label ion-label {
     padding-left: 2px;
+    color:#fff;
   }
+  .list-md .item-block .item-inner,.list-ios .item-block .item-inner{
+    border-bottom:none;
+  }
+
+  .item-md, .item-ios{
+    background-color: rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid #3c3c3c;
+  }
+  .list-ios > .item-block:last-child{
+    border-bottom: 1px solid #3c3c3c;
+  }
+  .list-ios > .item-block:first-child{
+    border-top:none;
+  }
+  .company-start-letter{
+    height:30px;
+    width:30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color:#fff;
+    background-color: #ff005e;
+    border-radius: 100%;
+  }
+
 }

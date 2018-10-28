@@ -33,7 +33,7 @@ page-login {
     min-height: 100%;
     width: 100vw;
     position: relative;
-    background-color: white;
+    background:url(../assets/imgs/background-img.jpg);
 
     .inner-container {
       display: flex;
@@ -42,6 +42,35 @@ page-login {
       justify-content: center;
       height: 100%;
       width: 100%;
+ 
+    .list-md .item-input.item-input-has-focus:last-child,
+    .list-md .item-input.input-has-focus:last-child {
+      border-bottom-color: #dedede;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+}
+.item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
+.item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+  border-bottom-color: #dedede;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+      .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
+        border-bottom-color: #dedede;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .item-md.item-input.item-input-has-focus .item-inner,
+.item-md.item-input.input-has-focus .item-inner {
+  border-bottom-color: #dedede;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+    .label-md, .label-ios{
+        margin: 13px 8px 13px 8px;
+     }
 
       @media screen and (min-width: '720px') {
         width: 720px;
@@ -60,7 +89,7 @@ page-login {
     width: 100%;
 
     img {
-      width: 50%;
+      width: 65%;
     }
   }
 
@@ -81,6 +110,7 @@ page-login {
       margin-top: 20px;
       display: flex;
       flex-direction: column;
+
     }
   }
 
@@ -90,15 +120,16 @@ page-login {
     }
   }
 
-  .action-buttons-divider {
-    p {
-      width: 100%;
-      text-align: center;
-      color: #adadad;
+  .forgot-password {
+    margin-top: 15px;
+    width: 100%;
+    text-align: center;
+
+    a {
+      color: #adadad !important;
     }
   }
-
-  .forgot-password {
+  .sign-up-link{
     margin-top: 15px;
     width: 100%;
     text-align: center;

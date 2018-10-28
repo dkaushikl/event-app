@@ -37,8 +37,10 @@
     <button type="submit" class="register-button" [disabled]="isUpdating" ion-button full round>
       {{ isUpdating ? 'Register...': 'Register' }}
     </button>
-
-    <button type="button" class="login-button" color="secondary" ion-button full round (click)="login()">Login</button>
+    <div class="login-link">
+      <a (click)="login()">Back to Login</a>
+    </div>
+   
   </form>
   <footer></footer>
 </ion-content>

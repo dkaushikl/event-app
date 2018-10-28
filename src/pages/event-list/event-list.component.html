@@ -10,8 +10,8 @@
   <ion-card *ngFor="let event of eventList">
     <ion-card-content>
       <ion-card-title>
-        <span text-left text-capitalize> {{ event.Name }} </span>
-        <span text-right style="font-size: 14px;"> {{ event.StartTime }} -
+        <span class="event-name" text-left text-capitalize> {{ event.Name }} </span>
+        <span class="event-time" text-right> {{ event.StartTime }} -
           {{ event.EndTime }} </span>
       </ion-card-title>
       <p> {{ event.Description }} </p>

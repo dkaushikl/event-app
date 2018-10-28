@@ -1,7 +1,7 @@
 <main>
   <div class="inner-container">
     <div class="logo">
-      <img src="../../assets/imgs/logo.png" alt="Event manager Logo">
+      <img src="../../assets/imgs/event-manage.png" alt="Event manager Logo">
     </div>
     <div class="login-form">
       <form novalidate [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value, loginForm.valid)">
@@ -20,14 +20,17 @@
 
         <div class="action-buttons">
           <button type="submit" color="primary" ion-button round full>Login</button>
-          <button type="button" color="secondary" ion-button round full (click)="goToSignup()">Sign up</button>
+          
         </div>
       </form>
-      <div class="action-buttons-divider">
+      <!-- <div class="action-buttons-divider">
         <p>or</p>
+      </div> -->
+      <div class="sign-up-link">
+        <a (click)="goToSignup()">Don't have an account? Sign up</a>
       </div>
       <div class="forgot-password">
-        <a (click)="goToForgotPassword()">Forgot Password</a>
+        <a (click)="goToForgotPassword()">Forgot Password?</a>
       </div>
     </div>
   </div>
