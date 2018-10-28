@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MenuController, NavController, ViewController, NavParams } from 'ionic-angular';
+import { NavController, ViewController, NavParams } from 'ionic-angular';
 import { Event } from '../../shared/models';
+import { UtilProvider, EventService } from '../../core/service';
+import { ApiResponse } from '../../shared/models/response.model';
+import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
 
 @Component({
   selector: 'page-add-event',
@@ -10,12 +13,12 @@ import { Event } from '../../shared/models';
 export class AddEventPage {
   private company: any;
   public event: Event;
-  isEventFormSubmitted = false;
+  isUpdating = false;
   eventForm: FormGroup;
   editMode = false;
 
-  constructor(public fb: FormBuilder, public navParams: NavParams, public navCtrl: NavController, public menuCtrl: MenuController,
-    public viewCtrl: ViewController) {
+  constructor(private fb: FormBuilder, private navParams: NavParams, private navCtrl: NavController, private viewCtrl: ViewController,
+    private util: UtilProvider, private eventService: EventService) {
     this.company = this.navParams.data.company;
     this.bindData();
   }
@@ -25,7 +28,6 @@ export class AddEventPage {
       name: new FormControl('', [Validators.required]),
       description: new FormControl('', [Validators.required]),
       vanue: new FormControl('', [Validators.required]),
-      price: new FormControl('', [Validators.required]),
       startDate: new FormControl('', [Validators.required]),
       startTime: new FormControl('', [Validators.required]),
       endDate: new FormControl('', [Validators.required]),
@@ -33,33 +35,29 @@ export class AddEventPage {
     });
   }
 
-  addEvent(obj: Event, isValid: boolean) {
-    this.isEventFormSubmitted = true;
+  insertUpdateEvent(obj: Event, isValid: boolean) {
+    this.isUpdating = true;
     if (isValid) {
-      this.isEventFormSubmitted = false;
+      this.util.showLoader();
       if (this.editMode) {
-        this.viewCtrl.dismiss({
-          id: obj.id,
-          companyId: this.company ? this.company.id : 0,
-          name: obj.name,
-          description: obj.description,
-          price: obj.price,
-          startDate: obj.startDate,
-          startTime: obj.startTime,
-          endDate: obj.endDate,
-          endTime: obj.endTime,
+        obj.companyId = this.company ? this.company.id : 0;
+        this.eventService.updateEvent(obj).subscribe((result: ApiResponse) => {
+          this.isUpdating = false;
+          this.util.disableLoader();
+          this.util.showToast(result.Message);
+          if (result.ResponseStatus === ApiResponseStatus.Ok) {
+            this.viewCtrl.dismiss(obj);
+          }
         });
       } else {
-        this.viewCtrl.dismiss({
-          name: obj.name,
-          companyId: this.company ? this.company.id : 0,
-          description: obj.description,
-          vanue: obj.vanue,
-          price: obj.price,
-          startDate: obj.startDate,
-          startTime: obj.startTime,
-          endDate: obj.endDate,
-          endTime: obj.endTime,
+        obj.companyId = this.company ? this.company.id : 0;
+        this.eventService.addEvent(obj).subscribe((result: ApiResponse) => {
+          this.isUpdating = false;
+          this.util.disableLoader();
+          this.util.showToast(result.Message);
+          if (result.ResponseStatus === ApiResponseStatus.Ok) {
+            this.viewCtrl.dismiss(obj);
+          }
         });
       }
     }

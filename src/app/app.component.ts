@@ -40,7 +40,7 @@ export class MyApp {
 
     this.auth.hasLoggedIn().then((hasLoggedIn) => {
       this.platformReady();
-      this.rootPage = hasLoggedIn ? ProfilePage : LoginPage;
+      this.rootPage = hasLoggedIn ? CompanyListPage : LoginPage;
       this.enableMenu(hasLoggedIn === true);
     });
 
@@ -67,6 +67,7 @@ export class MyApp {
 
     this.events.subscribe('user:logout', () => {
       this.enableMenu(false);
+      this.nav.setRoot(LoginPage);
     });
   }
 
@@ -85,7 +86,7 @@ export class MyApp {
   }
 
   logout() {
-    this.auth.Logout();
+    this.auth.logout();
     this.nav.setRoot(LoginPage);
   }
 }

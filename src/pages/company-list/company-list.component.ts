@@ -40,14 +40,7 @@ export class CompanyListPage {
 
   addCompany() {
     const modal = this.modalCtrl.create(AddCompanyPage);
-    modal.onDidDismiss((data: Company) => {
-      if (data) {
-        this.util.showLoader();
-        this.companyService.addCompany(data).subscribe((result: ApiResponse) => {
-          this.util.showToast(result.Message);
-        });
-      }
-    });
+    modal.onDidDismiss(() => { this.getAllCompany();  });
     modal.present();
   }
 }

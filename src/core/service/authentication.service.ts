@@ -1,54 +1,70 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HttpService } from './http.service';
-import { Register, Login, ForgotPassword, ResetPassword } from '../../shared/models/authentication.model';
+import { Login, ForgotPassword, ResetPassword, Register } from '../../shared/models/authentication.model';
 import { Events } from 'ionic-angular';
 import { LocalStorageService } from './local-storage.service';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs/operators/map';
 import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
 import { ApiResponse } from '../../shared/models/response.model';
 
+import { catchError } from 'rxjs/operators/catchError';
+
 @Injectable()
 export class AuthenticationService {
-  private apiUrl = 'http://localhost:50554/api/Users';
+  // private apiUrl = 'http://localhost:50554/api/Users';
+  private apiUrl = 'http://event-management.azurewebsites.net/api/Users';
 
   constructor(private http: HttpClient, private httpService: HttpService, private storage: LocalStorageService, private events: Events) { }
 
-  Register(obj: Register) {
+  register(obj: Register) {
     this.events.publish('user:signup');
-    return this.http.post(`${this.apiUrl}/Register`, obj, this.httpService.GetHttpJson());
-  }
-
-  Login(obj: Login) {
-    this.events.publish('user:login');
-    return this.http.post(`${this.apiUrl}/Login`, obj, this.httpService.GetHttpJson())
+    return this.http.post(`${this.apiUrl}/Register`, obj, this.httpService.getHttpJson())
       .pipe(map((response: any) => {
-        this.AddUserStorage(response);
+        this.addUserStorage(response);
         return response;
-      }));
+      }), catchError(this.httpService.handleErrors()));
   }
 
-  Forgot(obj: ForgotPassword) {
-    return this.http.post(`${this.apiUrl}/ForgotPassword/`, obj, this.httpService.GetHttpJson());
+  login(obj: Login) {
+    this.events.publish('user:login');
+    return this.http.post(`${this.apiUrl}/Login`, obj, this.httpService.getHttpJson())
+      .pipe(map((response: any) => {
+        this.addUserStorage(response);
+        return response;
+      }), catchError(this.httpService.handleErrors()));
   }
 
-  Reset(obj: ResetPassword) {
-    return this.http.post(`${this.apiUrl}/ResetPassword/`, obj, this.httpService.GetHttpJson());
+  forgot(obj: ForgotPassword) {
+    return this.http.post(`${this.apiUrl}/ForgotPassword/`, obj, this.httpService.getHttpJson()).pipe(
+      catchError(this.httpService.handleError())
+    );
+  }
+
+  reset(obj: ResetPassword) {
+    return this.http.post(`${this.apiUrl}/ResetPassword/`, obj, this.httpService.getHttpJson()).pipe(
+      catchError(this.httpService.handleError())
+    );
   }
 
   changePassword(obj: any) {
-    return this.http.post(`${this.apiUrl}/ChangePassword/`, obj, this.httpService.GetAuthHttpCommon());
+    return this.http.post(`${this.apiUrl}/ChangePassword/`, obj, this.httpService.getAuthHttpCommon())
+      .pipe(catchError(this.httpService.handleError()));
   }
 
   getProfile() {
-    return this.http.get(`${this.apiUrl}/GetProfile/`, this.httpService.GetAuthHttpCommon());
+    return this.http.get(`${this.apiUrl}/GetProfile/`, this.httpService.getAuthHttpCommon()).pipe(
+      catchError(this.httpService.handleError())
+    );
   }
 
   updateProfile(obj: any) {
-    return this.http.post(`${this.apiUrl}/EditProfile`, obj, this.httpService.GetAuthHttpCommon());
+    return this.http.post(`${this.apiUrl}/EditProfile`, obj, this.httpService.getAuthHttpCommon()).pipe(
+      catchError(this.httpService.handleError())
+    );
   }
 
-  AddUserStorage(data: ApiResponse) {
+  private addUserStorage(data: ApiResponse) {
     if (data.ResponseStatus === ApiResponseStatus.Ok) {
       this.storage.set('hasLoggedIn', true);
       this.storage.set('currentUser', data.Data);
@@ -56,23 +72,22 @@ export class AuthenticationService {
     }
   }
 
-  RemoveUserStorage() {
+  private removeUserStorage() {
     this.storage.remove('hasLoggedIn');
     this.storage.remove('currentUser');
   }
 
-  hasLoggedIn() {
-    return this.storage.get('hasLoggedIn').then((value) => {
-      return value === true;
-    });
+  public async hasLoggedIn() {
+    const value = await this.storage.get('hasLoggedIn');
+    return value === true;
   }
 
-  currentUser() {
+  public currentUser() {
     return this.storage.get('currentUser');
   }
 
-  Logout() {
-    this.RemoveUserStorage();
+  public logout() {
+    this.removeUserStorage();
     this.events.publish('user:logout');
   }
 }

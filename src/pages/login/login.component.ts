@@ -34,7 +34,7 @@ export class LoginPage {
     this.isLoginSubmitted = true;
     if (isValid) {
       this.util.showLoader();
-      this.auth.Login(objLogin).subscribe((data: any) => {
+      this.auth.login(objLogin).subscribe((data: any) => {
         this.util.showToast(data.Message);
         this.util.disableLoader();
         if (data.ResponseStatus === ApiResponseStatus.Ok) {

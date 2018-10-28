@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController, MenuController, NavController, NavParams } from 'ionic-angular';
 import { LoginPage } from './../login/login.component';
+import { HomePage } from '../home/home.component';
 import { UtilProvider, AuthenticationService } from '../../core/service';
 import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
 import { Validator } from '../../shared/common/common.validator';
-import { CompanyListPage } from '../company-list/company-list.component';
 import { ApiResponse } from '../../shared/models/response.model';
 import { Register } from '../../shared/models/authentication.model';
 
@@ -15,7 +15,7 @@ import { Register } from '../../shared/models/authentication.model';
 })
 
 export class RegisterPage {
-  isRegisterSubmitted = false;
+  isUpdating = false;
   public registerForm: FormGroup;
 
   constructor(public util: UtilProvider, public menuCtrl: MenuController, public fb: FormBuilder, public navParams: NavParams,
@@ -35,19 +35,21 @@ export class RegisterPage {
   }
 
   submit(objRegister: Register, isValid: boolean) {
-    this.isRegisterSubmitted = true;
+    this.isUpdating = true;
     if (isValid) {
       this.util.showLoader();
-      this.auth.Register(objRegister).subscribe((data: ApiResponse) => {
+      this.auth.register(objRegister).subscribe((data: ApiResponse) => {
         this.util.showToast(data.Message);
+        this.isUpdating = false;
         if (data.ResponseStatus === ApiResponseStatus.Ok) {
-          this.auth.AddUserStorage(data.Data);
-          this.isRegisterSubmitted = false;
-          this.navCtrl.setRoot(CompanyListPage, {}, { animate: true, direction: 'forward' });
+          this.navCtrl.setRoot(HomePage, {}, { animate: true, direction: 'forward' });
         } else {
           this.util.disableLoader();
         }
       });
+    } else {
+      this.util.showToast('All field are mandatory!!');
+      this.isUpdating = false;
     }
   }
 

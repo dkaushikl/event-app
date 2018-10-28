@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>{{ company?.name }}</ion-title>
-    <ion-buttons end>
+    <ion-buttons end *ngIf="company?.userEmail == createdBy">
       <button ion-button color="white" icon-only (click)="AddCompanyMember()">
         <ion-icon name="add"></ion-icon>
       </button>
@@ -55,29 +55,27 @@
           </ion-card-content>
         </ion-card>
       </ion-list>
-      <div *ngIf="company?.userEmail == createdBy">
-        <ion-fab right bottom #fab>
-          <button ion-fab color="primary">
-            <ion-icon name="arrow-dropup"></ion-icon>
+      <ion-fab right bottom #fab>
+        <button ion-fab color="primary">
+          <ion-icon name="arrow-dropup"></ion-icon>
+        </button>
+        <ion-fab-list side="top">
+          <button ion-fab (click)="editCompany(company, fab)" *ngIf="company?.userEmail == createdBy">
+            <ion-icon name="create" color="primary"></ion-icon>
           </button>
-          <ion-fab-list side="top">
-            <button ion-fab (click)="editCompany(company, fab)">
-              <ion-icon name="create" color="primary"></ion-icon>
-            </button>
-            <button ion-fab (click)="deleteCompany(fab)">
-              <ion-icon name="trash" color="primary"></ion-icon>
-            </button>
-            <button ion-fab (click)="addEvent(fab)">
-              <ion-icon name="add" color="primary"></ion-icon>
-            </button>
-          </ion-fab-list>
-        </ion-fab>
-      </div>
+          <button ion-fab (click)="deleteCompany(fab)" *ngIf="company?.userEmail == createdBy">
+            <ion-icon name="trash" color="primary"></ion-icon>
+          </button>
+          <button ion-fab (click)="addEvent(fab)">
+            <ion-icon name="add" color="primary"></ion-icon>
+          </button>
+        </ion-fab-list>
+      </ion-fab>
     </div>
     <div *ngSwitchCase="'member'">
       <ion-list>
         <ion-item-sliding *ngFor="let companyMember of companyMemberList">
-          <ion-item button appRandomColor>
+          <ion-item appRandomColor>
             <ion-label>
               <div>
                 <h3>{{ companyMember.Firstname }} {{ companyMember.Lastname }}
@@ -89,7 +87,7 @@
               </p>
             </ion-label>
           </ion-item>
-          <ion-item-options side="right">
+          <ion-item-options side="right" *ngIf="company?.userEmail == createdBy">
             <button ion-button color="primary">
               <ion-icon name="trash"></ion-icon>
             </button>

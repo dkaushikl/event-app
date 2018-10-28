@@ -3,7 +3,6 @@ export class Event {
   id: string;
   name: string;
   description: string;
-  price: number;
   vanue: string;
   startDate: string;
   startTime: string;

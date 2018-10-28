@@ -1,19 +1,20 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-buttons left>
-      <button ion-button icon-only (click)="cancel()" class="my-style-for-modal">
+      <button ion-button icon-only (click)="cancel()">
         <ion-icon name="arrow-back"></ion-icon>
       </button>
     </ion-buttons>
     <ion-title>Add Company Member</ion-title>
   </ion-navbar>
 </ion-header>
+<!--
 <ion-content>
   <form novalidate [formGroup]="companyMemberForm" (ngSubmit)="addCompanyMember(companyMemberForm.value, companyMemberForm.valid)">
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-list no-lines>
+          <ion-list no-lines>s
             <ion-item>
               <ion-label>Company Name : {{ companyName }}</ion-label>
             </ion-item>
@@ -39,4 +40,17 @@
       Member</button>
     <button type="button" ion-button full color="primary" (click)="cancel()">Cancel</button>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->
+
+<ion-content padding>
+  <form novalidate [formGroup]="companyMemberForm" (ngSubmit)="addCompanyMember(companyMemberForm.value, companyMemberForm.valid)">
+    <ion-item>
+      <ion-label>Email</ion-label>
+      <ion-input type="email" formControlName="email"></ion-input>
+    </ion-item>
+
+    <button type="submit" class="company-button" [disabled]="!companyMemberForm.valid" ion-button block color="primary">{{
+      isUpdating ? 'Submitting...' : 'Submit' }}</button>
+    <button type="button" class="company-button" ion-button block color="secondary" (click)="cancel()">Cancel</button>
+  </form>
+</ion-content>

@@ -12,6 +12,7 @@ import { ApiResponseStatus } from '../../shared/enum/response-status.enum';
   selector: 'page-forgot-password',
   templateUrl: 'forgot-password.component.html',
 })
+
 export class ForgotPasswordPage {
   forgotPasswordForm: FormGroup;
   constructor(private navCtrl: NavController, public navParams: NavParams,
@@ -24,11 +25,11 @@ export class ForgotPasswordPage {
   submit(obj: any, isValid: boolean): void {
     if (isValid) {
       this.util.showLoader();
-      this.auth.Forgot(obj).subscribe((data: ApiResponse) => {
+      this.auth.forgot(obj).subscribe((data: ApiResponse) => {
         this.util.showToast(data.Message);
         this.util.disableLoader();
         if (data.ResponseStatus === ApiResponseStatus.Ok) {
-          this.navCtrl.push(ResetPasswordPage);
+          this.navCtrl.push(ResetPasswordPage, obj);
         }
       });
     }

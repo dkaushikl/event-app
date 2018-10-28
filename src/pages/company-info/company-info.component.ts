@@ -66,12 +66,7 @@ export class CompanyInfoPage {
     modal.present();
     modal.onDidDismiss((data: any) => {
       if (data) {
-        this.util.showLoader();
-        this.companyMemberService.addCompanyMember(data).subscribe((result: ApiResponse) => {
-          this.util.disableLoader();
-          this.util.showToast(result.Message);
-          this.getCompanyMember();
-        });
+        this.getCompanyMember();
       }
     });
   }
@@ -108,17 +103,15 @@ export class CompanyInfoPage {
     modal.onDidDismiss((data: Company) => {
       fab.close();
       if (data) {
-        this.util.showLoader();
-        this.companyService.updateCompany(data).subscribe((result: ApiResponse) => {
-          this.company.companyEmail = data.email;
-          this.company.mobileNo = data.mobileno;
-          this.company.address = data.address;
-          this.company.city = data.city;
-          this.company.country = data.country;
-          this.company.state = data.state;
-          this.util.disableLoader();
-          this.util.showToast(result.Message);
-        });
+        this.company.name = data.name;
+        this.company.mobileNo = data.mobileno;
+        this.company.mobileNo = data.mobileno;
+        this.company.companyEmail = data.email;
+        this.company.mobileNo = data.mobileno;
+        this.company.address = data.address;
+        this.company.city = data.city;
+        this.company.country = data.country;
+        this.company.state = data.state;
       }
     });
     modal.present();

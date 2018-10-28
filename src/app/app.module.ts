@@ -43,7 +43,9 @@ const page = [EventListPage, EventDetailPage, AddEventPage, LoginPage, RegisterP
     HttpClientModule,
     CoreModule,
     SharedModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      autocomplete: 'off'
+    }),
     IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],

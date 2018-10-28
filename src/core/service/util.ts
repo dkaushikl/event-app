@@ -13,8 +13,7 @@ export class UtilProvider {
     if (!this.loading) {
       this.loading = this.loadingCtrl.create({
         spinner: 'dots',
-        content: 'Please wait',
-        duration: 2000
+        content: 'Please wait'
       });
 
       this.loading.present();

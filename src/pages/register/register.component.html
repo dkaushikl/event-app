@@ -34,7 +34,10 @@
         <ion-input required min="6" name="password" type="password" formControlName="password" placeholder="Enter Password"></ion-input>
       </ion-item>
     </ion-list>
-    <button type="submit" class="register-button" [disabled]="!registerForm.valid" ion-button full round>Register</button>
+    <button type="submit" class="register-button" [disabled]="isUpdating" ion-button full round>
+      {{ isUpdating ? 'Register...': 'Register' }}
+    </button>
+
     <button type="button" class="login-button" color="secondary" ion-button full round (click)="login()">Login</button>
   </form>
   <footer></footer>
