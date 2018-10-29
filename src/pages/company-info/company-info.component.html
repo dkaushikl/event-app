@@ -25,32 +25,32 @@
     <div *ngSwitchCase="'information'">
       <ion-list>
         <ion-card>
-          <ion-card-header text-capitalize style="font-weight: bold;">{{ company?.name }}</ion-card-header>
+          <!-- <ion-card-header text-capitalize style="font-weight: bold;">{{ company?.name }}</ion-card-header> -->
           <ion-card-content>
             <p>
-              <b>Created By </b>: {{ company?.firstName }} {{ company?.lastName }}
+              <span>Created By </span> {{ company?.firstName }} {{ company?.lastName }}
             </p>
             <br />
             <p>
-              <b>Email</b>: {{ company?.companyEmail }}</p>
+              <span>Email</span> {{ company?.companyEmail }}</p>
             <br />
             <p>
-              <b>Mobile no</b>: {{ company?.mobileNo }}</p>
+              <span>Mobile no</span> {{ company?.mobileNo }}</p>
             <br />
             <p>
-              <b>Address</b>: {{ company?.address }}</p>
+              <span>Address</span> {{ company?.address }}</p>
             <br />
             <p>
-              <b>City</b>: {{ company?.city }}</p>
+              <span>City</span> {{ company?.city }}</p>
             <br />
             <p>
-              <b>State</b>: {{ company?.state }}</p>
+              <span>State</span> {{ company?.state }}</p>
             <br />
             <p>
-              <b>Country</b>: {{ company?.country }}</p>
+              <span>Country</span> {{ company?.country }}</p>
             <br />
             <p>
-              <b>Created Date</b>: {{ company?.createdDate | appDateFormat }}
+              <span>Created Date</span> {{ company?.createdDate | appDateFormat }}
             </p>
           </ion-card-content>
         </ion-card>

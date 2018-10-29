@@ -3,6 +3,19 @@ page-about {
   .content {
     background-color: color($colors, primary);
   }
+  .scroll-content{
+    background: #fff;
+    .email-id{
+      color: #b51983;
+      text-decoration: underline;
+    }
+    .title{
+      margin-bottom:10px;
+    }
+    .toolbar-title{
+      font-weight: normal;
+    }
+  }
 
   img {
     max-width: 100% !important; //any size

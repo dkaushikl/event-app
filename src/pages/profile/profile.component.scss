@@ -15,13 +15,17 @@ page-profile {
 
       .user-class {
         display: flex;
-        font-size: 1.15em;
+        font-size: 15px;
         padding: 15px;
-        border-bottom: $border-style;
+        border-bottom: 1px solid #eee;
+        color:#676767;
 
         ion-icon {
           font-weight: bold;
-          margin-right: 15px;
+          width: 30px;
+          color: #327eff;
+          text-align: center;
+          padding-right: 10px;
         }
       }
     }
@@ -37,7 +41,6 @@ page-profile {
 
     .action-button {
       text-align: center;
-      color: black;
 
       ion-icon {
         margin-right: 8px;

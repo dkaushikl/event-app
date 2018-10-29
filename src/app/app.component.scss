@@ -51,10 +51,15 @@ ion-list {
 button.item.active ion-icon {
   font-weight: bold;
 }
-.scroll-content {
-  background:url(../assets/imgs/background-img.jpg);
-}
-.button-md-primary, .button-ios{
+
+.button-ios-primary, .button-md-primary{
   color: #fff;
   background-color: #b51983;
+}
+.button-ios-secondary, .button-md-secondary {
+  color: #fff;
+  background-color: #ffc032;
+}
+.list-ios > .item-block:first-child{
+  border-top:none;
 }

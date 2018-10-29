@@ -1,5 +1,14 @@
 page-add-event {
   .event-button {
-    margin: 15px 0;
+    margin: 15px 5px;
+  }
+  .button-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+  .item-md, .item-ios{
+    padding:0;
   }
 }

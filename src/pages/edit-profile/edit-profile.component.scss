@@ -1,13 +1,17 @@
 page-edit-profile {
+  .item-md, .item-ios{
+    padding:0;
+  }
+  .list-ios > .item-block:first-child{
+    border-top:none;
+  }
+  .list-ios .item-block .item-inner{
+    border-bottom: 1px solid #eee
+  }
   .button-container {
     display: flex;
-    flex-direction: column;
     width: 100%;
     align-items: center;
     justify-content: center;
-
-    button {
-      width: 100%;
-    }
   }
 }

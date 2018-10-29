@@ -12,31 +12,31 @@
 <ion-content padding>
   <form novalidate [formGroup]="companyForm" (ngSubmit)="insertUpdateCompany(companyForm.value, companyForm.valid)">
     <ion-item>
-      <ion-label>Name</ion-label>
-      <ion-input required type="text" formControlName="name" [(ngModel)]="company.name"></ion-input>
+      <ion-label stacked>Name</ion-label>
+      <ion-input required type="text" formControlName="name" [(ngModel)]="company.name" placeholder="Name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input required type="email" formControlName="email" [(ngModel)]="company.email"></ion-input>
+      <ion-label stacked>Email</ion-label>
+      <ion-input required type="email" formControlName="email" [(ngModel)]="company.email" placeholder="Email"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Mobile No</ion-label>
-      <ion-input required type="tel" formControlName="mobileno" [(ngModel)]="company.mobileno"></ion-input>
+      <ion-label stacked>Mobile No</ion-label>
+      <ion-input required type="tel" formControlName="mobileno" [(ngModel)]="company.mobileno" placeholder="Mobile No"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Address</ion-label>
-      <ion-textarea type="text" formControlName="address" [(ngModel)]="company.address"></ion-textarea>
+      <ion-label stacked>Address</ion-label>
+      <ion-textarea type="text" formControlName="address" [(ngModel)]="company.address" placeholder="Address"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label>City</ion-label>
-      <ion-input required type="text" formControlName="city" [(ngModel)]="company.city"></ion-input>
+      <ion-label stacked>City</ion-label>
+      <ion-input required type="text" formControlName="city" [(ngModel)]="company.city" placeholder="City"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>State</ion-label>
-      <ion-input required type="text" formControlName="state" [(ngModel)]="company.state"></ion-input>
+      <ion-label stacked>State</ion-label>
+      <ion-input required type="text" formControlName="state" [(ngModel)]="company.state" placeholder="State"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Country</ion-label>
+      <ion-label stacked>Country</ion-label>
       <ion-select required [(ngModel)]="company.country" formControlName="country" name="country" placeholder="Country">
         <ion-option value="Afghanistan">Afghanistan</ion-option>
         <ion-option value="Åland Islands">Åland Islands</ion-option>
@@ -285,13 +285,14 @@
         <ion-option value="Zimbabwe">Zimbabwe</ion-option>
       </ion-select>
     </ion-item>
-
-    <button type="submit" class="company-button" ion-button block [disabled]="!companyForm.valid" *ngIf="!editMode">{{
+    <div class="button-container" padding>
+    <button type="submit" class="company-button" ion-button round [disabled]="!companyForm.valid" *ngIf="!editMode" color="primary">{{
       isUpdating ? 'Creating...' : 'Create' }}</button>
 
-    <button type="submit" class="company-button" ion-button block [disabled]="!companyForm.valid" *ngIf="editMode">{{
+    <button type="submit" class="company-button" ion-button round [disabled]="!companyForm.valid" *ngIf="editMode" color="primary">{{
       isUpdating ? 'Updating...' : 'Update' }}</button>
-
-    <button type="button" ion-button block color="secondary" (click)="cancel()">Cancel</button>
+    
+    <button type="button" ion-button round color="secondary" (click)="cancel()">Cancel</button>
+  </div>
   </form>
 </ion-content>

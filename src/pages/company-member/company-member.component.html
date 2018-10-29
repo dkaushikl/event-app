@@ -45,12 +45,13 @@
 <ion-content padding>
   <form novalidate [formGroup]="companyMemberForm" (ngSubmit)="addCompanyMember(companyMemberForm.value, companyMemberForm.valid)">
     <ion-item>
-      <ion-label>Email</ion-label>
-      <ion-input type="email" formControlName="email"></ion-input>
+      <ion-label stacked>Email</ion-label>
+      <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
     </ion-item>
-
-    <button type="submit" class="company-button" [disabled]="!companyMemberForm.valid" ion-button block color="primary">{{
+<div class="button-container">
+    <button type="submit" class="company-button" [disabled]="!companyMemberForm.valid" ion-button round color="primary">{{
       isUpdating ? 'Submitting...' : 'Submit' }}</button>
-    <button type="button" class="company-button" ion-button block color="secondary" (click)="cancel()">Cancel</button>
+    <button type="button" class="company-button" ion-button round color="secondary" (click)="cancel()">Cancel</button>
+  </div>
   </form>
 </ion-content>

@@ -2,15 +2,18 @@ page-company-list {
   
   .company-label ion-label {
     padding-left: 2px;
-    color:#fff;
+    color:#676767;
   }
   .list-md .item-block .item-inner,.list-ios .item-block .item-inner{
     border-bottom:none;
   }
 
   .item-md, .item-ios{
-    background-color: rgba(0, 0, 0, 0.4);
-    border-bottom: 1px solid #3c3c3c;
+    border-bottom: 1px solid #eee;
+    padding-left:12px;
+  }
+  .item-md.item-block .item-inner{
+    padding-right:12px;
   }
   .list-ios > .item-block:last-child{
     border-bottom: 1px solid #3c3c3c;
@@ -19,14 +22,15 @@ page-company-list {
     border-top:none;
   }
   .company-start-letter{
-    height:30px;
-    width:30px;
+    height:32px;
+    width:32px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     color:#fff;
     background-color: #ff005e;
     border-radius: 100%;
+    font-weight: 600;
   }
 
 }

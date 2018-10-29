@@ -12,40 +12,41 @@
 <ion-content padding>
   <form novalidate [formGroup]="eventForm" (ngSubmit)="insertUpdateEvent(eventForm.value, eventForm.valid)">
     <ion-item>
-      <ion-label>Name</ion-label>
-      <ion-input required type="text" formControlName="name" name="name"></ion-input>
+      <ion-label stacked>Name</ion-label>
+      <ion-input required type="text" formControlName="name" name="name" placeholder="Name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Description</ion-label>
-      <ion-textarea required type="text" formControlName="description"></ion-textarea>
+      <ion-label stacked>Description</ion-label>
+      <ion-textarea required type="text" formControlName="description" placeholder="Description"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label>Vanue</ion-label>
-      <ion-textarea required type="text" formControlName="vanue"></ion-textarea>
+      <ion-label stacked>Vanue</ion-label>
+      <ion-textarea required type="text" formControlName="vanue" placeholder="Venue"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label>Start date</ion-label>
-      <ion-datetime required displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" formControlName="startDate"></ion-datetime>
+      <ion-label stacked>Start date</ion-label>
+      <ion-datetime required displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" formControlName="startDate" placeholder="Start Date"></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>Start Time</ion-label>
-      <ion-datetime required displayFormat="hh:mm A" pickerFormat="hh:mm A" formControlName="startTime"></ion-datetime>
+      <ion-label stacked>Start Time</ion-label>
+      <ion-datetime required displayFormat="hh:mm A" pickerFormat="hh:mm A" formControlName="startTime" placeholder="Start Time"></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>End Date</ion-label>
-      <ion-datetime required displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" formControlName="endDate"></ion-datetime>
+      <ion-label stacked>End Date</ion-label>
+      <ion-datetime required displayFormat="M/D/YYYY" pickerFormat="M/D/YYYY" formControlName="endDate" placeholder="End Date"></ion-datetime>
     </ion-item>
     <ion-item>
-      <ion-label>End Time</ion-label>
-      <ion-datetime required displayFormat="hh:mm A" pickerFormat="hh:mm A" formControlName="endTime"></ion-datetime>
+      <ion-label stacked>End Time</ion-label>
+      <ion-datetime required displayFormat="hh:mm A" pickerFormat="hh:mm A" formControlName="endTime" placeholder="End Time"></ion-datetime>
     </ion-item>
-
-    <button type="submit" class="event-button" ion-button block [disabled]="!eventForm.valid" *ngIf="!editMode">{{
+<div class="button-container">
+    <button type="submit" class="event-button" ion-button round [disabled]="!eventForm.valid" *ngIf="!editMode" color="primary">{{
       isUpdating ? 'Creating...' : 'Create' }}</button>
 
-    <button type="submit" class="event-button" ion-button block [disabled]="!eventForm.valid" *ngIf="editMode">{{
+    <button type="submit" class="event-button" ion-button round [disabled]="!eventForm.valid" *ngIf="editMode" color="primary">{{
       isUpdating ? 'Updating...' : 'Update' }}</button>
 
-    <button type="button" ion-button block color="secondary" (click)="cancel()">Cancel</button>
+    <button type="button" ion-button round color="secondary" (click)="cancel()">Cancel</button>
+  </div>
   </form>
 </ion-content>

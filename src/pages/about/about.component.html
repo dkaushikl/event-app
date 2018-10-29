@@ -8,14 +8,16 @@
 </ion-header>
 
 <ion-content padding>
-  <img src="./assets/imgs/logo.png" style="display:block; margin:auto;">
+  <img src="./assets/imgs/event-manage.png" style="display:block; margin:auto;">
   <br>
   <div text-center>
-    <ion-title color="light">Version: 1.00</ion-title>
+    <ion-title color="light">Version: <b>1.00</b></ion-title>
     <br>
-    <button ion-button round large (click)="openPrivacyPolicy()">Privacy Policy</button>
+    <button ion-button round (click)="openPrivacyPolicy()" color="primary">Privacy Policy</button>
+    <br>
+    <br>
     <br>
     <ion-title color="light">Questions/Suggestions?</ion-title>
-    <ion-note ion-text color="light">eventmanagement@gmail.com</ion-note>
+    <ion-note ion-text class="email-id">eventmanagement@gmail.com</ion-note>
   </div>
 </ion-content>

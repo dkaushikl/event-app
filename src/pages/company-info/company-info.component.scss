@@ -1,22 +1,45 @@
 page-company-info {
   .item.item-block {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+
+    .item-inner{
+      border-bottom:none;
+    }
+  }
+  .list-ios .item-wrapper:last-child .item-block{
+    border-bottom: none
   }
   .item-ios, .item-md{
     background-color: rgba(255, 255, 255, 0.9);
   }
   .card-md, .card-ios{
     background: rgba(255, 255, 255, 0.9);
+    padding:0;
+    margin:0;
+    width: 100%;
+    box-shadow: none;
+
+    p{
+      border-bottom: 1px solid #eee;
+      padding-bottom:5px;
+    }
+
+    .card-content-md, .card-content-ios{
+      padding:0;
+    }
   }
-  .card-header-md,  .card-header-ios{
-    background: #65ca3b;
-    color: #fff;
-    text-align: center
-  }
+
   .card-header-md + .card-content-md, .card-header-ios + .card-content-ios{
     padding-top:15px;
   }
-
+ .card-content >p >span{
+  display: block;
+  font-size: 12px;
+  color: #000000;
+  margin-bottom: 0px;
+  font-weight: 500;
+ }
   .item.item-block.teal {
     border-left: 4px solid #3BC7C4;
   }
