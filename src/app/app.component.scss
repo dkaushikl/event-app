@@ -52,14 +52,39 @@ button.item.active ion-icon {
   font-weight: bold;
 }
 
-.button-ios-primary, .button-md-primary{
+.button-ios-primary,.button-ios-primary.activated, .button-md-primary, .button-md-primary.activated{
   color: #fff;
   background-color: #b51983;
 }
-.button-ios-secondary, .button-md-secondary {
+.button-ios-secondary, .button-ios-secondary.activated, .button-md-secondary, .button-md-secondary.activated {
   color: #fff;
-  background-color: #ffc032;
+  background-color: #ff005e;
 }
 .list-ios > .item-block:first-child{
   border-top:none;
+}
+::placeholder{
+  font-size: 16px;
+}
+
+.menu-inner{
+  .item-md, .item-ios, .list-ios > .item-block:last-child{
+    border-bottom:1px solid #eee;
+  }
+  .list-md .item-block .item-inner, .list-ios .item-block .item-inner{
+    border-bottom:none;
+  }
+  .item-md ion-icon[item-start] + .item-inner{
+    margin-left:10px;
+  }
+  .item > ion-icon{
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .label-md{
+    color:#222;
+    font-weight: 500;
+  }
 }

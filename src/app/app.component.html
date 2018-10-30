@@ -4,7 +4,7 @@
       <ion-title>Event Manager</ion-title>
     </ion-toolbar>
   </ion-header>
-
+  
   <ion-content>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" [class.active]="checkActivePage(p)">
